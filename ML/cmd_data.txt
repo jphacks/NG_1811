@@ -1,1 +1,10 @@
 git push origin master
+git add [PATH]
+git commit -m [String]
+git push origin [ブランチ名]
+git diff [PATH]
+git log
+find [PATH] -name [PATH]
+find [PATH] -name [PATH] | xargs cat
+cat [PATH] >> [PATH]
+cat [PATH] | grep [String]
