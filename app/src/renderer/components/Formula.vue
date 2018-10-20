@@ -28,7 +28,7 @@
                 draggable="true"
             />
         </div>
-        <Editable :writable="writable" value="" ref="endEditable" />
+        <Editable :writable="writable" value="" ref="endEditable" v-model="text" />
     </div>
 </template>
 
@@ -46,11 +46,14 @@ export default {
     props: ["value", "writable"],
     data() {
         return {
-            args: ["ls"]
+            args: ["ls"],
+            text: ""
         }
     },
     methods: {
         send() {
+            console.log(this.text)
+            this.text = ""
             this.$emit("send")
         },
         focus() {
@@ -80,6 +83,6 @@ export default {
 }
 .optionwith {
     margin-left: -17px;
-    padding-left: 22px;
+    padding-left: 18px;
 }
 </style>

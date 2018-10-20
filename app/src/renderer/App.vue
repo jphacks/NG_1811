@@ -2,7 +2,7 @@
     <div class="App">
         <Sidebar :blocks="candidate" @inputBlock="inputBlock" />
         <Console :log="log" v-model="inputForm" @send="send" ref="console" />
-        <ML :input="inputForm" @update="mlupdate" />
+        <ML :input="inputArr.join(' ')" @update="mlupdate" />
     </div>
 </template>
 
@@ -23,7 +23,16 @@ export default {
         return {
             candidate: [],
             log: [],
-            inputForm: []
+            inputForm: [],
+            inputArr: []
+        }
+    },
+    watch: {
+        inputForm: {
+            deep: true,
+            handler() {
+                this.inputArr =  this.formulaToArray(this.inputForm)
+            }
         }
     },
     methods: {
@@ -70,11 +79,8 @@ export default {
             this.log.push(ioobj)
             this.inputForm.splice(0)
 
-            const a = this.formulaToArray(f)
-            console.log(a)
-
             //const ls = child_process.spawn(a[0], a.slice(1))
-            const ls = child_process.exec(a.join(" "))
+            const ls = child_process.exec(this.inputArr.join(" "))
 
             ls.stdout.on("data", data => {
                 ioobj.outputString += data
