@@ -5,6 +5,7 @@
 <script>
 import model from "../assets/model.json"
 import cmdDescription from "../assets/cmdDescription.json"
+import { open } from 'fs';
 
 
 const list = [
@@ -68,7 +69,7 @@ const list = [
         val: "cat",
         args: [
             {
-                placeholder: "ファイル名"
+                placeholder: "[PATH]"
             }
         ]
     },
@@ -107,6 +108,9 @@ export default {
     },
     methods: {
         update() {
+            console.log(this.last)
+            console.log(this.second)
+            console.log(this.joinInput)
             var p = []
         
             if(this.second in model && this.last in model[this.second]["next"]){
@@ -120,6 +124,8 @@ export default {
                     p.push(obj)
                 }
             }
+
+            console.log(p)
 
             if(p.length!=0){
                 this.$emit("update", JSON.parse(JSON.stringify(p)))
@@ -139,10 +145,13 @@ export default {
                 }
             }
 
+            console.log(p)
+
             if(p.length!=0){
                 this.$emit("update", JSON.parse(JSON.stringify(p)))
                 return
             }
+
             this.$emit("update", list)
         },
         search(){
@@ -171,7 +180,7 @@ export default {
     },
     computed: {
         cmdSplit:function(){
-            return this.input.split(" ").filter(function(data){
+            return this.joinInput.split(" ").filter(function(data){
                 return data.length > 0
             })
         },
@@ -183,6 +192,15 @@ export default {
                 return this.cmdSplit[this.cmdSplit.length - 2]
             }
             return ""
+        },
+        joinInput:function(){
+            let cmd = ""
+            console.log(this.input)
+            for(var i = 0;i < this.input.length;i++){
+                if(this.input[i] != "undefined")
+                    cmd += this.input[i]
+            }
+            return cmd
         }
     }
 }
