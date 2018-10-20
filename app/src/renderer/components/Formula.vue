@@ -80,6 +80,6 @@ export default {
 }
 .optionwith {
     margin-left: -17px;
-    padding-left: 22px;
+    padding-left: 18px;
 }
 </style>
