@@ -1,19 +1,52 @@
 <template>
-    <div class="Editable" :contenteditable="writable" @input="update" @paste="paste" :data-placeholder="placeholder" @keydown.enter="enter"></div>
+    <div class="Editable" :contenteditable="writable" @input="update" @paste="paste" :data-placeholder="placeholder" @keydown.enter="enter" @keydown.space.prevent="space"></div>
 </template>
 
 <script>
 export default {
     props: ["value", "placeholder", "writable"],
-    mounted: function() {
-        if(this.value) {
-            this.$el.innerText = this.value
+    data() {
+        return {
+            val: ""
         }
     },
+    mounted: function() {
+        this.val = this.value
+
+    },
+    watch: {
+        // value(text) {
+        //     this.val = text
+        //     // const s = (text).split(" ")
+        //     // const newtext = s.pop()
+        //     // for (const t of s) {
+        //     //     this.$emit("inputBlock", {
+        //     //         type: "command",
+        //     //         val: t
+        //     //     })
+        //     // }
+        // },
+        value() {
+            this.val = this.value
+        },
+        val() {
+            if(this.$el.innerText != this.val) {
+                this.$el.innerText = this.val
+            }
+        },
+    },
     methods: {
+        space() {
+            this.$emit("inputBlock", {
+                type: "command",
+                val: this.value
+            })
+
+            this.val = ""
+        },
         update(e) {
-            const text = e.target.innerText
-            this.$emit("input", text)
+            this.val = e.target.innerText
+            this.$emit("input", this.val)
         },
         paste(e) {
             e.preventDefault()

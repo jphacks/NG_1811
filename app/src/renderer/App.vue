@@ -1,7 +1,7 @@
 <template>
     <div class="App">
         <Sidebar :blocks="candidate" @inputBlock="inputBlock" />
-        <Console :log="log" v-model="inputForm" @send="send" ref="console" />
+        <Console :log="log" v-model="inputForm" @send="send" ref="console" @inputBlock="inputBlock" />
         <ML :input="inputArr.join(' ')" @update="mlupdate" />
     </div>
 </template>
@@ -31,7 +31,8 @@ export default {
         inputForm: {
             deep: true,
             handler() {
-                this.inputArr =  this.formulaToArray(this.inputForm)
+                this.inputArr = this.formulaToArray(this.inputForm)
+                console.log(this.inputArr)
             }
         }
     },
@@ -69,7 +70,6 @@ export default {
         },
         send() {
             const f = JSON.parse(JSON.stringify(this.inputForm))
-            console.log(f)
 
             const ioobj = {
                 inputFormula: f,

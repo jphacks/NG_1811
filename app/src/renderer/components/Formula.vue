@@ -28,7 +28,7 @@
                 draggable="true"
             />
         </div>
-        <Editable :writable="writable" value="" ref="endEditable" v-model="text" />
+        <Editable :v-if="writable" :writable="writable" value="" ref="endEditable" v-model="text" @inputBlock="inputBlock" />
     </div>
 </template>
 
@@ -54,15 +54,21 @@ export default {
         send() {
             console.log(this.text)
             this.text = ""
+
             this.$emit("send")
         },
         focus() {
-            this.$nextTick(() => this.$refs.endEditable.$el.focus())
+            if (this.$refs.endEditable) {
+                this.$nextTick(() => this.$refs.endEditable.$el.focus())
+            }
         },
         dragStart() {
             console.log("dragstart")
-        }
-    }
+        },
+        inputBlock(block) {
+            this.$emit("inputBlock", block)
+        },
+    },
 }
 </script>
 
@@ -70,12 +76,12 @@ export default {
 <style scoped>
 .Formula {
     display: inline-block;
-    vertical-align:middle;
+    vertical-align: middle;
 }
 .Block {
     display: inline-block;
     margin-right: 5px;
-    vertical-align:middle;
+    vertical-align: middle;
 }
 
 .command {
