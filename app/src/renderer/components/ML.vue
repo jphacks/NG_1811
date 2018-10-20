@@ -52,7 +52,16 @@ const list = [
                 placeholder: "回数"
             }
         ]
-    }
+    },
+    {
+        type: "command",
+        val: "cat",
+        args: [
+            {
+                placeholder: "ファイル名"
+            }
+        ]
+    },
 ]
 export default {
     props: ["input"],
