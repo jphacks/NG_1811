@@ -2,7 +2,7 @@
     <div class="App">
         <Sidebar :blocks="candidate" @inputBlock="inputBlock" />
         <Console :log="log" v-model="inputForm" @send="send" ref="console" />
-        <ML :input="inputArr" @update="mlupdate" />
+        <ML :input="inputArr.join(' ')" @update="mlupdate" />
     </div>
 </template>
 
