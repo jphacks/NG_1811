@@ -48,6 +48,7 @@ export default {
     color: #fff;
     cursor: text;
     user-select: text;
+    overflow: scroll;
 }
 
 .Console-input {

@@ -1,5 +1,5 @@
 <template>
-    <div class="Formula" @keydown.enter="send">
+    <div class="Formula">
         <div v-for="(block, i) of value" class="Block">
             <!-- <Editable value="" :writable="writable" /> -->
             <Phrase
@@ -28,7 +28,7 @@
                 draggable="true"
             />
         </div>
-        <Editable :v-if="writable" :writable="writable" value="" ref="endEditable" v-model="text" @inputBlock="inputBlock" @deleteBlock="deleteBlock" />
+        <Editable :v-if="writable" :writable="writable" value="" ref="endEditable" v-model="text" @inputBlock="inputBlock" @deleteBlock="deleteBlock" @send="send" />
     </div>
 </template>
 

@@ -73,9 +73,8 @@ export default {
                 }
                 this.$emit("inputBlock", block)
                 setTimeout(() => {
-
                     this.$el.innerText = ""
-                this.val = ""
+                    this.val = ""
                 }, 0)
             }
         },
@@ -94,6 +93,9 @@ export default {
         },
         enter() {
             this.space()
+            setTimeout(() => {
+                this.$emit("send")
+            }, 10)
         },
         backspace() {
             const selection = window.getSelection()

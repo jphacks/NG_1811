@@ -34,7 +34,7 @@ export default {
     display: inline-block;
     color: rgb(255, 255, 255);
     background: rgb(255, 0, 140);
-    transition: all 0.15s ease;
+    transition: all 0.1s ease;
     z-index: 100;
     height: 20px;
     line-height: 20px;

@@ -1,8 +1,8 @@
 <template>
     <div class="App">
-        <Sidebar :blocks="candidate" @inputBlock="inputBlock" />
+        <Sidebar :blocks="candidate" v-model="searchWord" @inputBlock="inputBlock" />
         <Console :log="log" v-model="inputForm" @send="send" ref="console" />
-        <ML :input="inputArr.join(' ')" @update="mlupdate" />
+        <ML :input="inputArr.join(' ')" :searchWord="searchWord" @update="mlupdate" />
     </div>
 </template>
 
@@ -10,6 +10,7 @@
 import Console from "@/components/Console"
 import Sidebar from "@/components/Sidebar"
 import ML from "@/components/ML"
+import { setTimeout } from "timers"
 
 const child_process = require("child_process")
 
@@ -24,7 +25,8 @@ export default {
             candidate: [],
             log: [],
             inputForm: [],
-            inputArr: []
+            inputArr: [],
+            searchWord: "a"
         }
     },
     watch: {
@@ -40,6 +42,7 @@ export default {
         inputBlock(block) {
             this.inputForm.push(block)
             this.$refs.console.focus()
+            this.scrollToBottom()
         },
         formulaToArray(input) {
             let s = []
@@ -68,6 +71,11 @@ export default {
 
             return s.map(t => new String(t).trim()).filter(e => e !== "")
         },
+        scrollToBottom() {
+            const el = this.$refs.console.$el
+            console.log(el)
+            el.scrollTop = el.scrollHeight
+        },
         send() {
             const f = JSON.parse(JSON.stringify(this.inputForm))
 
@@ -79,15 +87,20 @@ export default {
             this.log.push(ioobj)
             this.inputForm.splice(0)
 
+            this.scrollToBottom()
+
             //const ls = child_process.spawn(a[0], a.slice(1))
+            // console.log(this.inputArr)
             const ls = child_process.exec(this.inputArr.join(" "))
 
             ls.stdout.on("data", data => {
                 ioobj.outputString += data
+                this.scrollToBottom()
             })
 
             ls.stderr.on("data", data => {
                 ioobj.outputString += data
+                this.scrollToBottom()
             })
 
             ls.on("close", code => {
