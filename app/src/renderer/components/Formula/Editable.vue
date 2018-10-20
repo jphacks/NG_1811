@@ -1,5 +1,14 @@
 <template>
-    <div class="Editable" :contenteditable="writable" @input="update" @paste="paste" :data-placeholder="placeholder" @keydown.enter.prevent="enter" @keydown.delete="backspace" @keydown.space.prevent="space"></div>
+    <div
+        class="Editable"
+        :contenteditable="writable"
+        @input="update"
+        @paste="paste"
+        :data-placeholder="placeholder"
+        @keydown.enter.prevent="enter"
+        @keydown.delete="backspace"
+        @keydown.space.prevent="space"
+    />
 </template>
 
 <script>
@@ -29,22 +38,27 @@ export default {
             this.val = this.value
         },
         val() {
+            // console.log(this.val)
+
             if (this.$el.innerText != this.val) {
                 if (this.val && this.val.length > 0) {
                     this.$el.innerText = this.val
                 } else {
                     this.$el.innerText = ""
                 }
+            } else {
             }
         }
     },
     methods: {
         space() {
             if (this.val.length > 0) {
-                this.$emit("inputBlock", {
-                    type: "command",
+                let block
+                block = {
+                    type: "phrase",
                     val: this.val
-                })
+                }
+                this.$emit("inputBlock", block)
 
                 this.val = ""
             }
@@ -52,11 +66,22 @@ export default {
         update(e) {
             this.val = e.target.innerText
             this.$emit("input", this.val)
+
+            if (this.val == "|") {
+                const block = {
+                    type: "pipe"
+                }
+                this.$emit("inputBlock", block)
+                setTimeout(() => {
+
+                    this.$el.innerText = ""
+                this.val = ""
+                }, 0)
+            }
         },
         paste(e) {
             e.preventDefault()
             const text = e.clipboardData.getData("text/plain")
-            console.log(2, text)
 
             const selection = window.getSelection()
             const range = selection.getRangeAt(0)
@@ -73,7 +98,7 @@ export default {
         backspace() {
             const selection = window.getSelection()
             const range = selection.getRangeAt(0)
-            if(range.endOffset == "0") {
+            if (range.endOffset == "0") {
                 this.$emit("deleteBlock")
             }
         }
