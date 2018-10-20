@@ -4,7 +4,7 @@
             <!-- <Editable value="" :writable="writable" /> -->
             <Phrase
                 v-if="block.type == 'command'"
-                :isOption="false"
+                type="command"
                 class="command"
                 :val="block.val"
                 v-model="block.args"
@@ -14,7 +14,7 @@
             />
             <Phrase
                 v-else-if="block.type == 'option'"
-                :isOption="true"
+                type="option"
                 class="option"
                 :val="block.val"
                 v-model="block.args"
@@ -22,13 +22,21 @@
                 :style="{'z-index': 99-i}"
                 :class="{optionwith: i>0&&value[i-1]!=undefined}"
             />
+            <Phrase
+                v-else-if="block.type == 'redirect'"
+                type="redirect"
+                class="redirect"
+                :val="block.val"
+                v-model="block.args"
+                :writable="writable"
+            />
             <Pipe
                 v-else-if="block.type == 'pipe'"
                 :writable="writable"
                 draggable="true"
             />
         </div>
-        <Editable :v-if="writable" :writable="writable" value="" ref="endEditable" v-model="text" @inputBlock="inputBlock" @deleteBlock="deleteBlock" @send="send" />
+        <Editable :v-if="writable" :writable="writable" ref="endEditable" v-model="text" @inputBlock="inputBlock" @deleteBlock="deleteBlock" @send="send" />
     </div>
 </template>
 
@@ -73,7 +81,7 @@ export default {
                     block.type = "option"
                 }
             }
-            console.log(block)
+            // console.log(block)
             this.value.push(block)
         },
         deleteBlock(e) {

@@ -15,7 +15,8 @@ import { setTimeout } from "timers"
 const child_process = require("child_process")
 const path = require("path")
 
-const HOMEDIR = process.env[process.platform == "win32" ? "USERPROFILE" : "HOME"]
+const HOMEDIR =
+    process.env[process.platform == "win32" ? "USERPROFILE" : "HOME"]
 
 export default {
     components: {
@@ -100,22 +101,6 @@ export default {
                 shell: true
             })
 
-            if (this.inputArr[0] == "cd") {
-                const p = this.inputArr[1]
-
-                let n = ""
-
-                if (p[0] == "~") {
-                    n = HOMEDIR + "/" + p.slice(1)
-                } else if (p[0] == "/") {
-                    n = p
-                } else {
-                    n = this.pwd + "/" + p
-                }
-
-                this.pwd = path.normalize(n)
-            }
-
             ls.stdout.on("data", data => {
                 ioobj.outputString += data
                 this.scrollToBottom()
@@ -127,6 +112,23 @@ export default {
             })
 
             ls.on("close", code => {
+                if (code === 0) {
+                    if (this.inputArr[0] == "cd") {
+                        const p = this.inputArr[1]
+
+                        let n = ""
+
+                        if (p[0] == "~") {
+                            n = HOMEDIR + "/" + p.slice(1)
+                        } else if (p[0] == "/") {
+                            n = p
+                        } else {
+                            n = this.pwd + "/" + p
+                        }
+
+                        this.pwd = path.normalize(n)
+                    }
+                }
                 // console.log(`child process exited with code ${code}`)
             })
         },

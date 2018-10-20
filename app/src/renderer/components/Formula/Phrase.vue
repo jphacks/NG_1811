@@ -1,5 +1,9 @@
 <template>
-  <span class="Phrase" :class="{Option: isOption}"  @mousedown.stop="click">
+  <span class="Phrase" :class="{
+      Command: type == 'command',
+      Option: type == 'option',
+      Redirect: type == 'redirect',
+    }" @mousedown.stop="click">
         <span class="Val">{{val}}</span><!-- 
          --><Editable class="Arg" v-for="arg of value" v-model="arg.val" :placeholder="arg.placeholder" :writable="writable" ref="arg" />
   </span>
@@ -12,7 +16,7 @@ export default {
     components: {
         Editable
     },
-    props: ["val", "value", "isOption", "writable"],
+    props: ["val", "value", "type", "writable"],
     data() {
         return {}
     },
@@ -47,6 +51,11 @@ export default {
 
 .Option {
     background: rgb(0, 219, 135);
+}
+
+.Redirect {
+    background: rgb(240, 255, 31);
+    color: black;
 }
 
 .Val {

@@ -5,7 +5,7 @@
             <span class="block" @click="clickItem(block)">
                 <Formula :value="[block]" />
             </span>
-        </div>
+            <span>{{block.description}}</span>
         </div>
     </div>
 </template>
@@ -42,12 +42,14 @@ export default {
     bottom: 0;
     left: 0;
     width: 240px;
-    background: blue;
+    background: #333;
     overflow: scroll;
 }
 
 .item {
-    margin: 10px;
+    margin: 2px 0;
+    padding: 10px;
+    background: blue;
 }
 .item .Formula {
     /* cursor: pointer; */
