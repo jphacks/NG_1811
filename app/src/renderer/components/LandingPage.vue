@@ -17,6 +17,7 @@ const HOMEDIR =
 export default {
     methods: {
         openMainWindow() {
+
             const mainWindow = new remote.BrowserWindow({
                 width: 1000,
                 height: 600,
@@ -28,6 +29,10 @@ export default {
             })
 
             mainWindow.loadURL(location.href + "main")
+
+
+            const window = remote.getCurrentWindow()
+            window.close()
         }
     }
 }
@@ -39,7 +44,7 @@ export default {
 }
 
 .subtitle {
-    font-size: 20px
+    font-size: 20px;
 }
 
 .button {
