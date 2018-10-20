@@ -21,7 +21,7 @@ export default {
 <style scoped>
 .Pipe {
     display: inline-block;
-    box-shadow: 0 0 3px rgb(0, 0, 0);
+    box-shadow: 0 1px 2px rgb(92, 92, 92);
     background: rgb(0, 183, 255);
     width: 3px;
     border-radius: 10px;

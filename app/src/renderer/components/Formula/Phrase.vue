@@ -53,18 +53,17 @@ export default {
     line-height: 20px;
     min-width: 24px;
     text-align: center;
-    box-shadow: 0 0 3px rgb(0, 0, 0);
+    box-shadow: 0 1px 2px rgb(92, 92, 92);
     z-index: 101;
     padding-left: 10px;
 }
 
 .Option {
-    background: rgb(0, 219, 135);
+    background: rgb(156, 223, 0);
 }
 
 .Redirect {
-    background: rgb(240, 255, 31);
-    color: black;
+    background: rgb(255, 136, 0);
 }
 
 .Val {

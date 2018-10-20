@@ -50,10 +50,9 @@ export default {
     margin: 5px 3px;
     border-radius: 8px;
     padding: 10px;
-    border: 1px solid #888;
+    /* border: 1px solid #888; */
     color: white;
     background: rgba(255, 255, 255, 0.11);
-    border: none;
 }
 .item .Formula {
     /* cursor: pointer; */
@@ -66,7 +65,7 @@ export default {
 .searchBox {
     margin: 10px auto;
     display: block;
-
+    border: none;
     margin-top: 38px;
     margin-bottom: 10px;
     border-radius: 6px;
@@ -74,11 +73,10 @@ export default {
     font-size: 11px;
     text-align: center;
     padding: 4px 5px;
-    border: 1px solid #888;
+    /* border: 1px solid #888; */
     color: white;
     background: rgba(255, 255, 255, 0.1);
     width: 180px;
-    border: none;
 }
 .searchBox::placeholder {
     color: rgba(255, 255, 255, 0.603);
