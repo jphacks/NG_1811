@@ -1,10 +1,10 @@
 <template>
-  <div class="Console">
+  <div class="Console" @mousedown="clickConsole">
     <div v-for="op of log">
       <div class="Console-input">
         $ <Formula v-model="op.inputFormula" />
       </div>
-      <div>{{op.outputString}}</div>
+      <div class="Console-output">{{op.outputString}}</div>
     </div>
     <div class="Input Console-input">
       $ <Formula v-model="value" writable @send="send" ref="inputForm" />
@@ -18,9 +18,18 @@ import Formula from "./Formula"
 export default {
     components: { Formula },
     props: ["log", "value"],
+    mounted() {
+        this.$refs.inputForm.focus()
+    },
     methods: {
         send() {
             this.$emit("send")
+            this.focus()
+        },
+        clickConsole() {
+          this.focus()
+        },
+        focus() {
             this.$refs.inputForm.focus()
         }
     }
@@ -43,5 +52,10 @@ export default {
 
 .Console-input {
     margin: 10px;
+}
+
+.Console-output {
+    margin: 10px;
+    white-space: pre-wrap;
 }
 </style>

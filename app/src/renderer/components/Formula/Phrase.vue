@@ -1,7 +1,7 @@
 <template>
-  <span class="Phrase" :class="{Option: isOption}">
+  <span class="Phrase" :class="{Option: isOption}"  @mousedown.stop="click">
         <span class="Val">{{val}}</span><!-- 
-         --><Editable class="Arg" v-for="arg of value" v-model="arg.val" :placeholder="arg.placeholder" :writable="writable" />
+         --><Editable class="Arg" v-for="arg of value" v-model="arg.val" :placeholder="arg.placeholder" :writable="writable" ref="arg" />
   </span>
 </template>
 
@@ -10,21 +10,22 @@ import Editable from "./Editable"
 
 export default {
     components: {
-        Editable,
+        Editable
     },
     props: ["val", "value", "isOption", "writable"],
     data() {
-      return {
-      }
+        return {}
+    },
+    mounted(){
+        // console.log(this.$refs.arg.focus())
     },
     methods: {
-
+        click(e) {}
     }
-  }
+}
 </script>
 
 <style scoped>
-
 .Phrase {
     position: relative;
     outline: none;
@@ -42,12 +43,10 @@ export default {
     box-shadow: 0 0 3px rgb(0, 0, 0);
     z-index: 101;
     padding-left: 10px;
-
 }
 
 .Option {
     background: rgb(0, 219, 135);
-
 }
 
 .Val {

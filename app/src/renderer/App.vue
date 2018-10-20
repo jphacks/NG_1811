@@ -1,62 +1,27 @@
 <template>
     <div class="App">
         <Sidebar :blocks="candidate" @inputBlock="inputBlock" />
-        <Console :log="log" v-model="inputForm" @send="send" />
+        <Console :log="log" v-model="inputForm" @send="send" ref="console" />
+        <ML :input="inputForm" @update="mlupdate" />
     </div>
 </template>
 
 <script>
 import Console from "@/components/Console"
 import Sidebar from "@/components/Sidebar"
+import ML from "@/components/ML"
+
+const child_process = require("child_process")
 
 export default {
     components: {
         Console,
-        Sidebar
+        Sidebar,
+        ML
     },
     data() {
         return {
-            candidate: [
-                {
-                    type: "command",
-                    val: "vi",
-                    args: [
-                        {
-                            placeholder: "ファイル名"
-                        },
-                        {
-                            placeholder: "ファイル名2"
-                        }
-                    ]
-                },
-                {
-                    type: "command",
-                    val: "vi",
-                    args: [
-                        {
-                            placeholder: "ファイル名",
-                            val: "README.txt"
-                        }
-                    ]
-                },
-                {
-                    type: "command",
-                    val: "sl"
-                },
-                {
-                    type: "option",
-                    val: "-l"
-                },
-                {
-                    type: "option",
-                    val: "-n",
-                    args: [
-                        {
-                            placeholder: "回数"
-                        }
-                    ]
-                }
-            ],
+            candidate: [],
             log: [],
             inputForm: []
         }
@@ -64,15 +29,67 @@ export default {
     methods: {
         inputBlock(block) {
             this.inputForm.push(block)
+            this.$refs.console.focus()
+        },
+        formulaToArray(input) {
+            let s = []
+
+            for (let block of input) {
+                switch (block.type) {
+                    case "command":
+                        s.push(block.val)
+                        break
+                    case "option":
+                        s.push(block.val)
+                        break
+                    case "text":
+                        s.push(block.val)
+                        break
+                    case "pipe":
+                        s.push("|")
+                        break
+                }
+                if (block.args) {
+                    for (let arg of block.args) {
+                        s.push(arg.val)
+                    }
+                }
+            }
+
+            return s.map(t => new String(t).trim()).filter(e => e !== "")
         },
         send() {
             const f = JSON.parse(JSON.stringify(this.inputForm))
             console.log(f)
-            this.log.push({
+
+            const ioobj = {
                 inputFormula: f,
-                outputString: "output sample"
-            })
+                outputString: ""
+            }
+
+            this.log.push(ioobj)
             this.inputForm.splice(0)
+
+            const a = this.formulaToArray(f)
+            console.log(a)
+
+            //const ls = child_process.spawn(a[0], a.slice(1))
+            const ls = child_process.exec(a.join(" "))
+
+            ls.stdout.on("data", data => {
+                ioobj.outputString += data
+            })
+
+            ls.stderr.on("data", data => {
+                ioobj.outputString += data
+            })
+
+            ls.on("close", code => {
+                console.log(`child process exited with code ${code}`)
+            })
+        },
+        mlupdate(list) {
+            this.candidate = list
         }
     }
 }
