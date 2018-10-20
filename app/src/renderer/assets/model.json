@@ -213,7 +213,7 @@
         },
         "next": {
           "|": {
-            "type": "option",
+            "type": "pipe",
             "count": 2,
             "description": "前のコマンドの結果を次に渡す",
             "cmd": {
@@ -240,7 +240,7 @@
     },
     "next": {
       "|": {
-        "type": "option",
+        "type": "pipe",
         "count": 2,
         "description": "前のコマンドの結果を次に渡す",
         "cmd": {
@@ -263,7 +263,7 @@
     }
   },
   "|": {
-    "type": "option",
+    "type": "pipe",
     "count": 3,
     "description": "前のコマンドの結果を次に渡す",
     "cmd": {
@@ -391,7 +391,7 @@
         "next": {}
       },
       "|": {
-        "type": "option",
+        "type": "pipe",
         "count": 1,
         "description": "前のコマンドの結果を次に渡す",
         "cmd": {
