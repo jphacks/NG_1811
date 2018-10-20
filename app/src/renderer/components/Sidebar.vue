@@ -47,11 +47,13 @@ export default {
 }
 
 .item {
-    margin: 2px 0;
+    margin: 5px 3px;
+    border-radius: 8px;
     padding: 10px;
     border: 1px solid #888;
     color: white;
     background: rgba(255, 255, 255, 0.11);
+    border: none;
 }
 .item .Formula {
     /* cursor: pointer; */
@@ -76,6 +78,7 @@ export default {
     color: white;
     background: rgba(255, 255, 255, 0.1);
     width: 180px;
+    border: none;
 }
 .searchBox::placeholder {
     color: rgba(255, 255, 255, 0.603);

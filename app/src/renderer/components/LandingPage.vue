@@ -1,8 +1,8 @@
 <template>
     <div class="LandingPage">
-        <div></div>
         <img src="@/assets/icon.svg" width="200">
-        <div @click="openMainWindow">ひらく！！！</div>
+        <div class="subtitle">Visual Design + Machine Learning</div>
+        <div @click="openMainWindow" class="button">開く</div>
     </div>
 </template>
 
@@ -21,7 +21,7 @@ export default {
                 width: 1000,
                 height: 600,
                 useContentSize: true,
-                titleBarStyle: "hidden",
+                titleBarStyle: "hiddenInset",
                 frame: false,
                 transparent: true,
                 vibrancy: "dark"
@@ -36,5 +36,17 @@ export default {
 <style scoped>
 .LandingPage {
     text-align: center;
+}
+
+.subtitle {
+    font-size: 20px
+}
+
+.button {
+    border: 2px solid #000;
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 10px;
+    font-size: 16px;
 }
 </style>

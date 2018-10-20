@@ -24,7 +24,7 @@ function createWindow() {
         width: 1000,
         height: 600,
         useContentSize: true,
-        titleBarStyle: "hidden",
+        titleBarStyle: "hiddenInset",
     })
 
     mainWindow.loadURL(winURL)
