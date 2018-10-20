@@ -1,6 +1,7 @@
 <template>
     <div class="LandingPage">
-        <img src="@/assets/icon.svg" width="200">
+        <img src="@/assets/icon.svg" class="appicon">
+        <div class="title">Eterm</div>
         <div class="subtitle">Visual Design + Machine Learning</div>
         <div @click="openMainWindow" class="button">開く</div>
     </div>
@@ -43,15 +44,29 @@ export default {
     text-align: center;
 }
 
+.appicon {
+    width: 120px;
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+.title {
+    font-size: 30px;
+    font-weight: bold;
+}
 .subtitle {
-    font-size: 20px;
+    margin-top: 10px;
+    font-size: 18px;
 }
 
 .button {
-    border: 2px solid #000;
+    /* border: 2px solid #444; */
     display: inline-block;
     padding: 4px 10px;
     border-radius: 10px;
-    font-size: 16px;
+    font-size: 20px;
+    cursor: pointer;
+    margin-top: 30px;
+    color: #3390db;
+    font-weight: bold;
 }
 </style>
