@@ -91,7 +91,8 @@ export default {
                     let obj = {
                         type:model[this.second]["next"][this.last]["next"][key]["type"],
                         val:model[this.second]["next"][this.last]["next"][key]["cmd"]["val"],
-                        args:model[this.second]["next"][this.last]["next"][key]["cmd"]["args"]
+                        args:model[this.second]["next"][this.last]["next"][key]["cmd"]["args"],
+                        description:model[this.second]["next"][this.last]["next"][key]["description"],
                     }
                     p.push(obj)
                 }
@@ -109,7 +110,8 @@ export default {
                     let obj = {
                         type:model[this.last]["next"][key]["type"],
                         val:model[this.last]["next"][key]["cmd"]["val"],
-                        args:model[this.last]["next"][key]["cmd"]["args"]
+                        args:model[this.last]["next"][key]["cmd"]["args"],
+                        description:model[this.last]["next"][key]["description"]
                     }
 
                     p.push(obj)
