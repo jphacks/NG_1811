@@ -21,13 +21,13 @@ function createWindow() {
      * Initial window options
      */
     mainWindow = new BrowserWindow({
-        height: 400,
+        height: 360,
         useContentSize: true,
-        width: 600,
+        width: 500,
         titleBarStyle: 'hiddenInset',
-        transparent: true,
-        frame: false,
-        vibrancy: 'light',
+        // transparent: true,
+        // frame: false,
+        // vibrancy: 'light',
     })
 
     mainWindow.loadURL(winURL)

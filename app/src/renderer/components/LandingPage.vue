@@ -1,9 +1,9 @@
 <template>
     <div class="LandingPage">
+        <div class="title">ようこそ、Etermへ</div>
         <img src="@/assets/icon.svg" class="appicon">
-        <div class="title">Eterm</div>
-        <div class="subtitle">Visual Design + Machine Learning</div>
-        <div @click="openMainWindow" class="button">開く</div>
+        <div class="subtitle">ここに何か説明を</div>
+        <div @click="openMainWindow" class="button">はじめる</div>
     </div>
 </template>
 
@@ -42,6 +42,9 @@ export default {
 <style scoped>
 .LandingPage {
     text-align: center;
+    font-family: "Helvetica Neue";
+    -webkit-user-select: none;
+    cursor: default;
 }
 
 .appicon {
@@ -50,23 +53,28 @@ export default {
     margin-bottom: 10px;
 }
 .title {
-    font-size: 30px;
+    font-size: 16px;
     font-weight: bold;
 }
 .subtitle {
-    margin-top: 10px;
-    font-size: 18px;
+    margin-top: 20px;
+    font-size: 30px;
 }
 
 .button {
     /* border: 2px solid #444; */
+    background: #222;
     display: inline-block;
-    padding: 4px 10px;
-    border-radius: 10px;
-    font-size: 20px;
+    padding: 6px 18px;
+    border-radius: 100px;
+    font-size: 16px;
     cursor: pointer;
     margin-top: 30px;
-    color: #3390db;
+    /* color: #3390db; */
+    color: #fff;
     font-weight: bold;
+}
+.button:hover {
+    background: #555;
 }
 </style>
