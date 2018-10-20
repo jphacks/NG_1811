@@ -1,11 +1,22 @@
-git add [PATH]
+git add [ファイル名]
 git push origin master
-git commit -m [String]
-git push origin [ブランチ名]
-git diff [PATH]
+git commit -m [コミットメッセージ]
+git push origin master
+git checkout [ブランチ名]
+git diff [ファイル名]
 git log
-find [PATH] -name [PATH]
-find [PATH] -name [PATH] | xargs cat
-cat [PATH] >> [PATH]
-cat [PATH] > [PATH]
-cat [PATH] | grep [String]
+find [検索箇所] -name [検索対象]
+find [検索箇所] -name [検索対象] | xargs cat
+find [検索箇所] -name [検索対象] | xargs rm
+cat [ファイル名] >> [追加対象]
+cat [ファイル名] > [上書き対象]
+cat [ファイル名] | grep [検索ワード]
+echo [表示文字] >> [追加対象]
+echo [表示文字] > [上書き対象]
+cd [移動先ディレクトリ]
+touch [ファイル名]
+rm [ファイル名]
+rm -r [ディレクトリ名]
+rm -f [ファイル名]
+clear
+pwd

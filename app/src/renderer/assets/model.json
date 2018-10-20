@@ -128,7 +128,7 @@
         "next": {
           "master": {
             "type": "option",
-            "count": 1,
+            "count": 2,
             "description": "masterブランチ",
             "cmd": {
               "val": "master",
@@ -142,7 +142,7 @@
   },
   "origin": {
     "type": "option",
-    "count": 1,
+    "count": 2,
     "description": "リモートリポジトリのURLの別名",
     "cmd": {
       "val": "origin",
@@ -151,7 +151,7 @@
     "next": {
       "master": {
         "type": "option",
-        "count": 1,
+        "count": 2,
         "description": "masterブランチ",
         "cmd": {
           "val": "master",
@@ -453,6 +453,45 @@
           "args": [
             {
               "placeholder": "上書き対象"
+            }
+          ]
+        },
+        "next": {}
+      }
+    }
+  },
+  "rm": {
+    "type": "command",
+    "count": 2,
+    "description": "ファイルを削除する",
+    "cmd": {
+      "val": "rm",
+      "args": []
+    },
+    "next": {
+      "-r": {
+        "type": "option",
+        "count": 1,
+        "description": "ディレクトリを削除",
+        "cmd": {
+          "val": "-r",
+          "args": [
+            {
+              "placeholder": "ディレクトリ名"
+            }
+          ]
+        },
+        "next": {}
+      },
+      "-f": {
+        "type": "option",
+        "count": 1,
+        "description": "エラーメッセージを表示しない",
+        "cmd": {
+          "val": "-f",
+          "args": [
+            {
+              "placeholder": "ファイル名"
             }
           ]
         },
