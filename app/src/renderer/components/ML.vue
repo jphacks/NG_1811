@@ -13,6 +13,14 @@ const list = [
         val: "git"
     },
     {
+        type: "command",
+        val: "find",
+        args: [
+        {
+          "placeholder": "[PATH]"
+        }]
+    },
+    {
         type: "option",
         val: "-l"
     },
@@ -64,11 +72,21 @@ const list = [
             }
         ]
     },
+    {
+        type: "redirect",
+        val: ">>",
+        args: [
+            {
+                placeholder: "[PATH]"
+            }
+        ]
+    },
 ]
 export default {
     props: ["input","searchWord"],
     data() {
         return {
+            cache:[]
         }
     },
     watch: {
@@ -91,10 +109,7 @@ export default {
     methods: {
         update() {
             var p = []
-
-            console.log("update")
-
-            
+        
             if(this.second in model && this.last in model[this.second]["next"]){
                 for(let key of Object.keys(model[this.second]["next"][this.last]["next"])){
                     let obj = {
@@ -108,11 +123,9 @@ export default {
             }
 
             if(p.length!=0){
-                console.log(p)
                 this.$emit("update", JSON.parse(JSON.stringify(p)))
                 return
             }
-
 
             if(this.last in model){
                 for(let key of Object.keys(model[this.last]["next"])){
@@ -149,10 +162,8 @@ export default {
                     searchList.push(obj)
                 }
             }
-
-            console.log(searchList)
-
-            if(searchList.length != 0 && this.searchWord != ""){
+            
+            if(this.searchWord != ""){
                 this.$emit("update",searchList)
             }
         }
