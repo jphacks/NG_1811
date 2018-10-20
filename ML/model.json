@@ -1,0 +1,355 @@
+{
+  "git": {
+    "type": "command",
+    "count": 6,
+    "description": "gitを使用するコマンド",
+    "cmd": "git",
+    "next": {
+      "push": {
+        "type": "command",
+        "count": 2,
+        "description": "リモートリポジトリに変更を更新するコマンド",
+        "cmd": "push",
+        "next": {
+          "origin": {
+            "type": "command",
+            "count": 2,
+            "description": "リモートリポジトリのURLの別名",
+            "cmd": "origin",
+            "next": {}
+          }
+        }
+      },
+      "add": {
+        "type": "command",
+        "count": 1,
+        "description": "変更をステージする",
+        "cmd": "add",
+        "next": {
+          "[PATH]": {
+            "type": "args",
+            "count": 1,
+            "description": "ファイルパス",
+            "cmd": "[PATH]",
+            "next": {}
+          }
+        }
+      },
+      "commit": {
+        "type": "command",
+        "count": 1,
+        "description": "変更をコミットする",
+        "cmd": "commit",
+        "next": {
+          "-m": {
+            "type": "option",
+            "count": 1,
+            "description": "コミットメッセージの追加",
+            "cmd": "-m",
+            "next": {}
+          }
+        }
+      },
+      "diff": {
+        "type": "command",
+        "count": 1,
+        "description": "gitの差分を表示する",
+        "cmd": "diff",
+        "next": {
+          "[PATH]": {
+            "type": "args",
+            "count": 1,
+            "description": "ファイルパス",
+            "cmd": "[PATH]",
+            "next": {}
+          }
+        }
+      },
+      "log": {
+        "type": "command",
+        "count": 1,
+        "description": "gitのlogを表示するコマンド",
+        "cmd": "log",
+        "next": {}
+      }
+    }
+  },
+  "push": {
+    "type": "command",
+    "count": 2,
+    "description": "リモートリポジトリに変更を更新するコマンド",
+    "cmd": "push",
+    "next": {
+      "origin": {
+        "type": "command",
+        "count": 2,
+        "description": "リモートリポジトリのURLの別名",
+        "cmd": "origin",
+        "next": {
+          "master": {
+            "type": "command",
+            "count": 1,
+            "description": "masterブランチ",
+            "cmd": "master",
+            "next": {}
+          },
+          "[ブランチ名]": {
+            "type": "args",
+            "count": 1,
+            "description": "ブランチ名",
+            "cmd": "[ブランチ名]",
+            "next": {}
+          }
+        }
+      }
+    }
+  },
+  "origin": {
+    "type": "command",
+    "count": 2,
+    "description": "リモートリポジトリのURLの別名",
+    "cmd": "origin",
+    "next": {
+      "master": {
+        "type": "command",
+        "count": 1,
+        "description": "masterブランチ",
+        "cmd": "master",
+        "next": {}
+      },
+      "[ブランチ名]": {
+        "type": "args",
+        "count": 1,
+        "description": "ブランチ名",
+        "cmd": "[ブランチ名]",
+        "next": {}
+      }
+    }
+  },
+  "add": {
+    "type": "command",
+    "count": 1,
+    "description": "変更をステージする",
+    "cmd": "add",
+    "next": {
+      "[PATH]": {
+        "type": "args",
+        "count": 1,
+        "description": "ファイルパス",
+        "cmd": "[PATH]",
+        "next": {}
+      }
+    }
+  },
+  "commit": {
+    "type": "command",
+    "count": 1,
+    "description": "変更をコミットする",
+    "cmd": "commit",
+    "next": {
+      "-m": {
+        "type": "option",
+        "count": 1,
+        "description": "コミットメッセージの追加",
+        "cmd": "-m",
+        "next": {
+          "[String]": {
+            "type": "args",
+            "count": 1,
+            "description": "任意の文字列",
+            "cmd": "[String]",
+            "next": {}
+          }
+        }
+      }
+    }
+  },
+  "-m": {
+    "type": "option",
+    "count": 1,
+    "description": "コミットメッセージの追加",
+    "cmd": "-m",
+    "next": {
+      "[String]": {
+        "type": "args",
+        "count": 1,
+        "description": "任意の文字列",
+        "cmd": "[String]",
+        "next": {}
+      }
+    }
+  },
+  "diff": {
+    "type": "command",
+    "count": 1,
+    "description": "gitの差分を表示する",
+    "cmd": "diff",
+    "next": {
+      "[PATH]": {
+        "type": "args",
+        "count": 1,
+        "description": "ファイルパス",
+        "cmd": "[PATH]",
+        "next": {}
+      }
+    }
+  },
+  "find": {
+    "type": "command",
+    "count": 2,
+    "description": "ファイルやディレクトリの検索をする",
+    "cmd": "find",
+    "next": {
+      "[PATH]": {
+        "type": "args",
+        "count": 2,
+        "description": "ファイルパス",
+        "cmd": "[PATH]",
+        "next": {
+          "-name": {
+            "type": "option",
+            "count": 2,
+            "description": "ファイルやディレクトリの名前の指定",
+            "cmd": "-name",
+            "next": {}
+          }
+        }
+      }
+    }
+  },
+  "[PATH]": {
+    "type": "args",
+    "count": 5,
+    "description": "ファイルパス",
+    "cmd": "[PATH]",
+    "next": {
+      "-name": {
+        "type": "option",
+        "count": 2,
+        "description": "ファイルやディレクトリの名前の指定",
+        "cmd": "-name",
+        "next": {
+          "[PATH]": {
+            "type": "args",
+            "count": 2,
+            "description": "ファイルパス",
+            "cmd": "[PATH]",
+            "next": {}
+          }
+        }
+      },
+      "xargs": {
+        "type": "command",
+        "count": 1,
+        "description": "標準入力やファイルからコマンドラインを作成して実行",
+        "cmd": "xargs",
+        "next": {}
+      },
+      ">>": {
+        "type": "command",
+        "count": 1,
+        "description": "コマンドの結果をファイルに書き込む(追加)",
+        "cmd": ">>",
+        "next": {
+          "[PATH]": {
+            "type": "args",
+            "count": 1,
+            "description": "ファイルパス",
+            "cmd": "[PATH]",
+            "next": {}
+          }
+        }
+      },
+      "grep": {
+        "type": "command",
+        "count": 1,
+        "description": "ファイルから文字列の検索",
+        "cmd": "grep",
+        "next": {}
+      }
+    }
+  },
+  "-name": {
+    "type": "option",
+    "count": 2,
+    "description": "ファイルやディレクトリの名前の指定",
+    "cmd": "-name",
+    "next": {
+      "[PATH]": {
+        "type": "args",
+        "count": 2,
+        "description": "ファイルパス",
+        "cmd": "[PATH]",
+        "next": {}
+      }
+    }
+  },
+  "xargs": {
+    "type": "command",
+    "count": 2,
+    "description": "標準入力やファイルからコマンドラインを作成して実行",
+    "cmd": "xargs",
+    "next": {
+      "cat": {
+        "type": "command",
+        "count": 2,
+        "description": "ファイルを出力",
+        "cmd": "cat",
+        "next": {}
+      }
+    }
+  },
+  "cat": {
+    "type": "command",
+    "count": 2,
+    "description": "ファイルを出力",
+    "cmd": "cat",
+    "next": {
+      "[PATH]": {
+        "type": "args",
+        "count": 2,
+        "description": "ファイルパス",
+        "cmd": "[PATH]",
+        "next": {
+          ">>": {
+            "type": "command",
+            "count": 1,
+            "description": "コマンドの結果をファイルに書き込む(追加)",
+            "cmd": ">>",
+            "next": {}
+          }
+        }
+      }
+    }
+  },
+  ">>": {
+    "type": "command",
+    "count": 1,
+    "description": "コマンドの結果をファイルに書き込む(追加)",
+    "cmd": ">>",
+    "next": {
+      "[PATH]": {
+        "type": "args",
+        "count": 1,
+        "description": "ファイルパス",
+        "cmd": "[PATH]",
+        "next": {}
+      }
+    }
+  },
+  "grep": {
+    "type": "command",
+    "count": 2,
+    "description": "ファイルから文字列の検索",
+    "cmd": "grep",
+    "next": {
+      "[String]": {
+        "type": "args",
+        "count": 2,
+        "description": "任意の文字列",
+        "cmd": "[String]",
+        "next": {}
+      }
+    }
+  }
+}
