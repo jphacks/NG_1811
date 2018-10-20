@@ -58,6 +58,9 @@ export default {
     text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
     padding-left: 10px;
 }
+.Phrase:active {
+    transform: translateY(2px);
+}
 
 .Option {
     background: rgb(0, 224, 86);
