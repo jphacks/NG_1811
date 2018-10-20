@@ -1,15 +1,18 @@
 <template>
   <div id="app">
+    <Titlebar />
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'my-project'
-  }
+import Titlebar from "@/components/Titlebar"
+
+export default {
+  components: {
+    Titlebar
+  },
+  name: 'Eterm'
+}
 </script>
 
-<style>
-  /* CSS */
-</style>
