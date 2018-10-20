@@ -52,7 +52,7 @@ export default {
     },
     methods: {
         send() {
-            console.log(this.text)
+            // console.log(this.text)
             this.text = ""
 
             this.$emit("send")

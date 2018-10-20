@@ -13,6 +13,9 @@ import ML from "@/components/ML"
 import { setTimeout } from "timers"
 
 const child_process = require("child_process")
+const path = require("path")
+
+const HOMEDIR = process.env[process.platform == "win32" ? "USERPROFILE" : "HOME"]
 
 export default {
     components: {
@@ -26,7 +29,8 @@ export default {
             log: [],
             inputForm: [],
             inputArr: [],
-            searchWord: "a"
+            searchWord: "",
+            pwd: HOMEDIR
         }
     },
     watch: {
@@ -34,13 +38,13 @@ export default {
             deep: true,
             handler() {
                 this.inputArr = this.formulaToArray(this.inputForm)
-                console.log(this.inputArr)
+                // console.log(this.inputArr)
             }
         }
     },
     methods: {
         inputBlock(block) {
-            this.inputForm.push(block)
+            this.inputForm.push(JSON.parse(JSON.stringify(block)))
             this.$refs.console.focus()
             this.scrollToBottom()
         },
@@ -73,7 +77,7 @@ export default {
         },
         scrollToBottom() {
             const el = this.$refs.console.$el
-            console.log(el)
+            // console.log(el)
             el.scrollTop = el.scrollHeight
         },
         send() {
@@ -91,7 +95,26 @@ export default {
 
             //const ls = child_process.spawn(a[0], a.slice(1))
             // console.log(this.inputArr)
-            const ls = child_process.exec(this.inputArr.join(" "))
+            const ls = child_process.exec(this.inputArr.join(" "), {
+                cwd: this.pwd,
+                shell: true
+            })
+
+            if (this.inputArr[0] == "cd") {
+                const p = this.inputArr[1]
+
+                let n = ""
+
+                if (p[0] == "~") {
+                    n = HOMEDIR + "/" + p.slice(1)
+                } else if (p[0] == "/") {
+                    n = p
+                } else {
+                    n = this.pwd + "/" + p
+                }
+
+                this.pwd = path.normalize(n)
+            }
 
             ls.stdout.on("data", data => {
                 ioobj.outputString += data
@@ -104,7 +127,7 @@ export default {
             })
 
             ls.on("close", code => {
-                console.log(`child process exited with code ${code}`)
+                // console.log(`child process exited with code ${code}`)
             })
         },
         mlupdate(list) {
