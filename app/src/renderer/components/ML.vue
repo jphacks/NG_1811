@@ -4,6 +4,8 @@
 
 <script>
 import model from "../assets/model.json"
+import cmdDescription from "../assets/cmdDescription.json"
+
 
 const list = [
     {
@@ -64,7 +66,7 @@ const list = [
     },
 ]
 export default {
-    props: ["input"],
+    props: ["input","searchWord"],
     data() {
         return {
         }
@@ -75,15 +77,22 @@ export default {
             handler() {
                 this.update()
             }
+        },
+        searchWord: {
+            deep: true,
+            handler() {
+                this.search()
+            }
         }
     },
     mounted() {
         this.update()
     },
     methods: {
-
         update() {
             var p = []
+
+            console.log("update")
 
             
             if(this.second in model && this.last in model[this.second]["next"]){
@@ -92,14 +101,14 @@ export default {
                         type:model[this.second]["next"][this.last]["next"][key]["type"],
                         val:model[this.second]["next"][this.last]["next"][key]["cmd"]["val"],
                         args:model[this.second]["next"][this.last]["next"][key]["cmd"]["args"],
-                        description:model[this.second]["next"][this.last]["next"][key]["description"],
+                        description:cmdDescription[key],
                     }
                     p.push(obj)
                 }
             }
 
-            console.log(p)
             if(p.length!=0){
+                console.log(p)
                 this.$emit("update", JSON.parse(JSON.stringify(p)))
                 return
             }
@@ -111,19 +120,41 @@ export default {
                         type:model[this.last]["next"][key]["type"],
                         val:model[this.last]["next"][key]["cmd"]["val"],
                         args:model[this.last]["next"][key]["cmd"]["args"],
-                        description:model[this.last]["next"][key]["description"]
+                        description:cmdDescription[key]
                     }
 
                     p.push(obj)
                 }
             }
-            console.log(p)
 
             if(p.length!=0){
+                console.log(p)
+
                 this.$emit("update", JSON.parse(JSON.stringify(p)))
                 return
             }
             this.$emit("update", list)
+        },
+        search(){
+            let searchList = []
+
+            for(let key of Object.keys(cmdDescription)){
+                if(this.searchWord.includes(key) || cmdDescription[key].includes(this.searchWord)){
+                    let obj = {
+                        type:"command",
+                        val:key,
+                        args:[],
+                        description:cmdDescription[key]
+                    }
+                    searchList.push(obj)
+                }
+            }
+
+            console.log(searchList)
+
+            if(searchList.length != 0 && this.searchWord != ""){
+                this.$emit("update",searchList)
+            }
         }
     },
     computed: {
