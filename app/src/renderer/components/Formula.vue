@@ -28,7 +28,7 @@
                 draggable="true"
             />
         </div>
-        <Editable :v-if="writable" :writable="writable" value="" ref="endEditable" v-model="text" @inputBlock="inputBlock" />
+        <Editable :v-if="writable" :writable="writable" value="" ref="endEditable" v-model="text" @inputBlock="inputBlock" @deleteBlock="deleteBlock" />
     </div>
 </template>
 
@@ -68,7 +68,10 @@ export default {
         inputBlock(block) {
             this.$emit("inputBlock", block)
         },
-    },
+        deleteBlock(e) {
+            this.$emit("deleteBlock")
+        }
+    }
 }
 </script>
 

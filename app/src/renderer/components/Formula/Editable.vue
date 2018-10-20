@@ -1,5 +1,5 @@
 <template>
-    <div class="Editable" :contenteditable="writable" @input="update" @paste="paste" :data-placeholder="placeholder" @keydown.enter="enter" @keydown.space.prevent="space"></div>
+    <div class="Editable" :contenteditable="writable" @input="update" @paste="paste" :data-placeholder="placeholder" @keydown.enter.prevent="enter" @keydown.delete="backspace" @keydown.space.prevent="space"></div>
 </template>
 
 <script>
@@ -12,7 +12,6 @@ export default {
     },
     mounted: function() {
         this.val = this.value
-
     },
     watch: {
         // value(text) {
@@ -30,19 +29,25 @@ export default {
             this.val = this.value
         },
         val() {
-            if(this.val && this.$el.innerText != this.val) {
-                this.$el.innerText = this.val
+            if (this.$el.innerText != this.val) {
+                if (this.val && this.val.length > 0) {
+                    this.$el.innerText = this.val
+                } else {
+                    this.$el.innerText = ""
+                }
             }
-        },
+        }
     },
     methods: {
         space() {
-            this.$emit("inputBlock", {
-                type: "command",
-                val: this.value
-            })
+            if (this.val.length > 0) {
+                this.$emit("inputBlock", {
+                    type: "command",
+                    val: this.val
+                })
 
-            this.val = ""
+                this.val = ""
+            }
         },
         update(e) {
             this.val = e.target.innerText
@@ -62,8 +67,15 @@ export default {
             selection.removeAllRanges()
             selection.addRange(range)
         },
-        enter(e) {
-            e.preventDefault()
+        enter() {
+            this.space()
+        },
+        backspace() {
+            const selection = window.getSelection()
+            const range = selection.getRangeAt(0)
+            if(range.endOffset == "0") {
+                this.$emit("deleteBlock")
+            }
         }
     }
 }
