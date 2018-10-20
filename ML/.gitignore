@@ -1,2 +1,6 @@
+# jupyter labの設定ファイル
 .ipynb_checkpoints
+
+# 作成後のモデル
+model.json
 
