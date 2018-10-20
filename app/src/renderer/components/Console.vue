@@ -7,7 +7,7 @@
       <div class="Console-output">{{op.outputString}}</div>
     </div>
     <div class="Input Console-input">
-      $ <Formula v-model="value" writable @send="send" ref="inputForm" @inputBlock="inputBlock" @deleteBlock="deleteBlock" />
+      $ <Formula v-model="value" writable @send="send" ref="inputForm" />
     </div>
   </div>
 </template>
@@ -32,12 +32,6 @@ export default {
         focus() {
             this.$refs.inputForm.focus()
         },
-        inputBlock(block) {
-            this.$emit("inputBlock", block)
-        },
-        deleteBlock(e) {
-            this.$emit("deleteBlock")
-        }
     }
 }
 </script>

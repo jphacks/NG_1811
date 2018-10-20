@@ -1,7 +1,7 @@
 <template>
     <div class="App">
         <Sidebar :blocks="candidate" @inputBlock="inputBlock" />
-        <Console :log="log" v-model="inputForm" @send="send" ref="console" @inputBlock="inputBlock" @deleteBlock="deleteBlock" />
+        <Console :log="log" v-model="inputForm" @send="send" ref="console" />
         <ML :input="inputArr.join(' ')" @update="mlupdate" />
     </div>
 </template>
@@ -40,10 +40,6 @@ export default {
         inputBlock(block) {
             this.inputForm.push(block)
             this.$refs.console.focus()
-        },
-        deleteBlock(e) {
-            console.log(1)
-            this.inputForm.splice(this.inputForm.length-1, 1)
         },
         formulaToArray(input) {
             let s = []

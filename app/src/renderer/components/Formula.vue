@@ -66,10 +66,18 @@ export default {
             console.log("dragstart")
         },
         inputBlock(block) {
-            this.$emit("inputBlock", block)
+            if (block.type == "phrase") {
+                if (this.value.length == 0 || this.value[this.value.length - 1].type == "pipe") {
+                    block.type = "command"
+                } else {
+                    block.type = "option"
+                }
+            }
+            console.log(block)
+            this.value.push(block)
         },
         deleteBlock(e) {
-            this.$emit("deleteBlock")
+            this.value.splice(this.value.length - 1, 1)
         }
     }
 }
