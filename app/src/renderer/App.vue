@@ -18,7 +18,7 @@ export default {
     components: {
         Titlebar
     },
-    name: "Eterm"
+    name: "eterm"
 }
 </script>
 
