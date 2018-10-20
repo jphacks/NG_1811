@@ -59,7 +59,7 @@ export default {
 }
 
 .Option {
-    background: rgb(156, 223, 0);
+    background: rgb(82, 223, 0);
 }
 
 .Redirect {
