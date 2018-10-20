@@ -30,7 +30,7 @@ export default {
             this.val = this.value
         },
         val() {
-            if(this.$el.innerText != this.val) {
+            if(this.val && this.$el.innerText != this.val) {
                 this.$el.innerText = this.val
             }
         },
