@@ -1,0 +1,25 @@
+<template>
+  <span class="Pipe">|</span>
+</template>
+
+<script>
+export default {
+    props: ["name", "witharg"],
+    data() {
+        return {}
+    }
+}
+</script>
+
+<style scoped>
+.Pipe {
+    display: inline-block;
+    box-shadow: 0 0 3px rgb(0, 0, 0);
+    background: rgb(0, 183, 255);
+    width: 3px;
+    border-radius: 10px;
+    height: 24px;
+    color: rgba(0, 0, 0, 0);
+    margin: 0 0px;
+}
+</style>
