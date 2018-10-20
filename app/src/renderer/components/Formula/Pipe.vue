@@ -1,6 +1,9 @@
 <template>
   <span class="Pipe"
         :draggable="clickable"
+        :class="{
+            clickable: clickable
+            }"
         @dragend="drop">|</span>
 </template>
 
@@ -28,5 +31,11 @@ export default {
     height: 24px;
     color: rgba(0, 0, 0, 0);
     margin: 0 0px;
+}
+.clickable {
+    cursor: pointer;
+}
+.clickable:active {
+    transform: translateY(3px);
 }
 </style>

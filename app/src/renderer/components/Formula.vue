@@ -38,9 +38,18 @@
                 v-else-if="block.type == 'pipe'"
                 :writable="writable"
                 @drop="drop"
+                :clickable="clickable"
             />
         </div>
-        <Editable :v-if="writable" :writable="writable" ref="endEditable" v-model="text" @inputBlock="inputBlock" @deleteBlock="deleteBlock" @send="send" />
+        <Editable
+            :v-if="writable"
+            :writable="writable"
+            ref="endEditable"
+            v-model="text"
+            @inputBlock="inputBlock"
+            @deleteBlock="deleteBlock"
+            @send="send"
+        />
     </div>
 </template>
 

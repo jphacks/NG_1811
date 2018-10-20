@@ -1,11 +1,15 @@
 <template>
     <div class="Sidebar">
-        <input type="text" :value="value" @input="updateText" placeholder="検索" class="searchBox" />
-        <div class="item" v-for="block of blocks">
-            <span class="block" @click="clickItem(block)">
-                <Formula :value="[block]" @drop="clickItem(block)" clickable="true" />
-            </span>
-            <span class="description">{{block.description}}</span>
+        <div class="header">
+            <input type="text" :value="value" @input="updateText" placeholder="検索" class="searchBox" />
+        </div>
+        <div class="contents">
+            <div class="item" v-for="block of blocks">
+                <span class="block" @click="clickItem(block)">
+                    <Formula :value="[block]" @drop="clickItem(block)" clickable="true" />
+                </span>
+                <span class="description">{{block.description}}</span>
+            </div>
         </div>
     </div>
 </template>
@@ -43,11 +47,26 @@ export default {
     left: 0;
     width: 240px;
     background: rgba(0, 0, 0, 0.2);
+}
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    overflow: scroll;
+}
+.contents {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    bottom: 0;
     overflow: scroll;
 }
 
 .item {
-    margin: 5px 3px;
+    margin: 0 3px;
+    margin-bottom: 5px;
     border-radius: 8px;
     padding: 10px;
     /* border: 1px solid #888; */
@@ -57,10 +76,6 @@ export default {
 .item .description {
     margin-top: 5px;
     display: block;
-}
-
-.block {
-    cursor: pointer;
 }
 
 .searchBox {
@@ -77,7 +92,7 @@ export default {
     /* border: 1px solid #888; */
     color: white;
     background: rgba(255, 255, 255, 0.1);
-    width: 180px;
+    width: 200px;
 }
 .searchBox::placeholder {
     color: rgba(255, 255, 255, 0.603);
