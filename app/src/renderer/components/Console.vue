@@ -44,7 +44,7 @@ export default {
     bottom: 0;
     left: 240px;
     right: 0;
-    background: black;
+    background: rgba(0, 0, 0, 0.6);
     color: #fff;
     cursor: text;
     user-select: text;

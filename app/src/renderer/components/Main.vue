@@ -1,5 +1,5 @@
 <template>
-    <div class="App">
+    <div class="Main">
         <Sidebar :blocks="candidate" v-model="searchWord" @inputBlock="inputBlock" />
         <Console :log="log" v-model="inputForm" @send="send" ref="console" />
         <ML :input="inputArr.join(' ')" :searchWord="searchWord" @update="mlupdate" />
@@ -144,7 +144,7 @@ export default {
 </script>
 
 <style scoped>
-.App {
+.Main {
     font-family: Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console",
         monospace, -apple-system, BlinkMacSystemFont, "Helvetica Neue",
         "Yu Gothic", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN,

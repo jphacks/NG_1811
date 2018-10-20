@@ -1,5 +1,7 @@
 <template>
-    <div class="App">
+    <div class="LandingPage">
+        <div></div>
+        <img src="@/assets/icon.svg" width="200">
         <div @click="openMainWindow">ひらく！！！</div>
     </div>
 </template>
@@ -7,8 +9,7 @@
 <script>
 const child_process = require("child_process")
 const path = require("path")
-const remote = require('electron').remote;
-
+const remote = require("electron").remote
 
 const HOMEDIR =
     process.env[process.platform == "win32" ? "USERPROFILE" : "HOME"]
@@ -17,9 +18,13 @@ export default {
     methods: {
         openMainWindow() {
             const mainWindow = new remote.BrowserWindow({
-                height: 563,
+                width: 1000,
+                height: 600,
                 useContentSize: true,
-                width: 1000
+                titleBarStyle: "hidden",
+                frame: false,
+                transparent: true,
+                vibrancy: "dark"
             })
 
             mainWindow.loadURL(location.href + "main")
@@ -29,13 +34,7 @@ export default {
 </script>
 
 <style scoped>
-.App {
-    font-family: Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console",
-        monospace, -apple-system, BlinkMacSystemFont, "Helvetica Neue",
-        "Yu Gothic", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN,
-        Arial, "メイリオ", Meiryo, sans-serif;
-    background: none;
-    -webkit-user-select: none;
-    font-size: 12px;
+.LandingPage {
+    text-align: center;
 }
 </style>

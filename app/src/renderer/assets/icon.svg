@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 479.594 381.11">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ff00d8"/>
+      <stop offset="1" stop-color="#00ff62"/>
+    </linearGradient>
+  </defs>
+  <g id="グループ化_1" data-name="グループ化 1" transform="translate(-9.407 -117.189)">
+    <rect id="長方形_14" data-name="長方形 14" class="cls-1" width="451.411" height="343.073" rx="24" transform="matrix(0.996, -0.087, 0.087, 0.996, 9.407, 156.532)"/>
+    <path id="パス_1" data-name="パス 1" d="M24,0H409.355a24,24,0,0,1,24,24V301.016a24,24,0,0,1-24,24H24a24,24,0,0,1-24-24V24A24,24,0,0,1,24,0Z" transform="matrix(0.996, -0.087, 0.087, 0.996, 19.188, 164.739)"/>
+    <rect id="長方形_4" data-name="長方形 4" class="cls-2" width="30" height="14.445" rx="7.223" transform="matrix(0.996, -0.087, 0.087, 0.996, 57.973, 224.785)"/>
+    <rect id="長方形_8" data-name="長方形 8" class="cls-2" width="30" height="14.445" rx="7.223" transform="matrix(0.996, -0.087, 0.087, 0.996, 62.852, 280.547)"/>
+    <rect id="長方形_11" data-name="長方形 11" class="cls-2" width="99.31" height="14.445" rx="7.223" transform="matrix(0.996, -0.087, 0.087, 0.996, 65.291, 308.428)"/>
+    <rect id="長方形_12" data-name="長方形 12" class="cls-2" width="99.31" height="14.445" rx="7.223" transform="matrix(0.996, -0.087, 0.087, 0.996, 55.534, 196.904)"/>
+    <rect id="長方形_13" data-name="長方形 13" class="cls-2" width="99.31" height="14.445" rx="7.223" transform="matrix(0.996, -0.087, 0.087, 0.996, 60.412, 252.666)"/>
+  </g>
+</svg>
