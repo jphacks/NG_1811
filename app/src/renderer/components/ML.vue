@@ -86,7 +86,6 @@ export default {
     props: ["input","searchWord"],
     data() {
         return {
-            cache:[]
         }
     },
     watch: {
@@ -141,8 +140,6 @@ export default {
             }
 
             if(p.length!=0){
-                console.log(p)
-
                 this.$emit("update", JSON.parse(JSON.stringify(p)))
                 return
             }
@@ -150,6 +147,10 @@ export default {
         },
         search(){
             let searchList = []
+
+            if(this.searchWord.length == 0 ){
+                this.update()
+            }
 
             for(let key of Object.keys(cmdDescription)){
                 if(this.searchWord.includes(key) || cmdDescription[key].includes(this.searchWord)){
