@@ -4,3 +4,5 @@
 # 作成後のモデル
 model.json
 
+# コマンドの説明のファイルの追加
+cmd_setumei.json
