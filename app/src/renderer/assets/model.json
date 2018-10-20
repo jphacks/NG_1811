@@ -16,7 +16,7 @@
           "val": "add",
           "args": [
             {
-              "placeholder": "[PATH]"
+              "placeholder": "ファイル名"
             }
           ]
         },
@@ -60,7 +60,7 @@
               "val": "-m",
               "args": [
                 {
-                  "placeholder": "[String]"
+                  "placeholder": "コミットメッセージ"
                 }
               ]
             },
@@ -76,7 +76,7 @@
           "val": "checkout",
           "args": [
             {
-              "placeholder": "[ブランチ名]"
+              "placeholder": "ブランチ名"
             }
           ]
         },
@@ -90,7 +90,7 @@
           "val": "diff",
           "args": [
             {
-              "placeholder": "[PATH]"
+              "placeholder": "ファイル名"
             }
           ]
         },
@@ -178,7 +178,7 @@
           "val": "-m",
           "args": [
             {
-              "placeholder": "[String]"
+              "placeholder": "コミットメッセージ"
             }
           ]
         },
@@ -194,7 +194,7 @@
       "val": "find",
       "args": [
         {
-          "placeholder": "[PATH]"
+          "placeholder": "検索箇所"
         }
       ]
     },
@@ -207,7 +207,7 @@
           "val": "-name",
           "args": [
             {
-              "placeholder": "[PATH]"
+              "placeholder": "検索対象"
             }
           ]
         },
@@ -234,7 +234,7 @@
       "val": "-name",
       "args": [
         {
-          "placeholder": "[PATH]"
+          "placeholder": "検索対象"
         }
       ]
     },
@@ -249,7 +249,7 @@
         },
         "next": {
           "xargs": {
-            "type": "option",
+            "type": "command",
             "count": 2,
             "description": "標準入力やファイルからコマンドラインを作成して実行",
             "cmd": {
@@ -272,7 +272,7 @@
     },
     "next": {
       "xargs": {
-        "type": "option",
+        "type": "command",
         "count": 2,
         "description": "標準入力やファイルからコマンドラインを作成して実行",
         "cmd": {
@@ -303,14 +303,14 @@
         }
       },
       "grep": {
-        "type": "option",
+        "type": "command",
         "count": 1,
         "description": "ファイルから文字列の検索",
         "cmd": {
           "val": "grep",
           "args": [
             {
-              "placeholder": "[String]"
+              "placeholder": "検索ワード"
             }
           ]
         },
@@ -357,7 +357,7 @@
       "val": "cat",
       "args": [
         {
-          "placeholder": "[PATH]"
+          "placeholder": "ファイル名"
         }
       ]
     },
@@ -370,7 +370,7 @@
           "val": ">>",
           "args": [
             {
-              "placeholder": "[PATH]"
+              "placeholder": "追加対象"
             }
           ]
         },
@@ -384,7 +384,7 @@
           "val": ">",
           "args": [
             {
-              "placeholder": "[PATH]"
+              "placeholder": "上書き対象"
             }
           ]
         },
@@ -400,14 +400,14 @@
         },
         "next": {
           "grep": {
-            "type": "option",
+            "type": "command",
             "count": 1,
             "description": "ファイルから文字列の検索",
             "cmd": {
               "val": "grep",
               "args": [
                 {
-                  "placeholder": "[String]"
+                  "placeholder": "検索ワード"
                 }
               ]
             },
@@ -425,7 +425,7 @@
       "val": "echo",
       "args": [
         {
-          "placeholder": "[String]"
+          "placeholder": "表示文字"
         }
       ]
     },
@@ -438,7 +438,7 @@
           "val": ">>",
           "args": [
             {
-              "placeholder": "[PATH]"
+              "placeholder": "追加対象"
             }
           ]
         },
@@ -452,7 +452,7 @@
           "val": ">",
           "args": [
             {
-              "placeholder": "[PATH]"
+              "placeholder": "上書き対象"
             }
           ]
         },
