@@ -8,11 +8,17 @@
 <script>
 import Titlebar from "@/components/Titlebar"
 
+// in renderer process
+import { webFrame } from "electron"
+
+// fix zoom at 100%
+webFrame.setVisualZoomLevelLimits(1, 1)
+
 export default {
-  components: {
-    Titlebar
-  },
-  name: 'Eterm'
+    components: {
+        Titlebar
+    },
+    name: "Eterm"
 }
 </script>
 

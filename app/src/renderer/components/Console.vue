@@ -1,13 +1,15 @@
 <template>
   <div class="Console" @mousedown="clickConsole">
-    <div v-for="op of log">
-      <div class="Console-input">
-        $ <Formula v-model="op.inputFormula" />
-      </div>
-      <div class="Console-output">{{op.outputString}}</div>
-    </div>
-    <div class="Input Console-input">
-      $ <Formula v-model="value" writable @send="send" ref="inputForm" />
+    <div class="Console-inner">
+        <div v-for="op of log">
+        <div class="Console-input">
+            $ <Formula v-model="op.inputFormula" />
+        </div>
+        <div class="Console-output">{{op.outputString}}</div>
+        </div>
+        <div class="Input Console-input">
+        $ <Formula v-model="value" writable @send="send" ref="inputForm" />
+        </div>
     </div>
   </div>
 </template>
@@ -27,11 +29,11 @@ export default {
             this.focus()
         },
         clickConsole() {
-          this.focus()
+            this.focus()
         },
         focus() {
             this.$refs.inputForm.focus()
-        },
+        }
     }
 }
 </script>
@@ -48,6 +50,13 @@ export default {
     color: #fff;
     cursor: text;
     user-select: text;
+}
+.Console-inner {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 30px;
     overflow: scroll;
 }
 
