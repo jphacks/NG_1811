@@ -1,12 +1,12 @@
 <template>
   <span class="Pipe"
-        draggable="true"
+        :draggable="clickable"
         @dragend="drop">|</span>
 </template>
 
 <script>
 export default {
-    props: ["name", "witharg"],
+    props: ["name", "witharg", "clickable"],
     data() {
         return {}
     },

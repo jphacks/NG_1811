@@ -5,9 +5,10 @@
             Command: type == 'command',
             Option: type == 'option',
             Redirect: type == 'redirect',
+            clickable: clickable
             }"
         @mousedown.stop="click"
-        draggable="true"
+        :draggable="clickable"
         @dragend="drop"
     >
         <span class="Val">{{val}}</span><!-- 
@@ -22,7 +23,7 @@ export default {
     components: {
         Editable
     },
-    props: ["val", "value", "type", "writable"],
+    props: ["val", "value", "type", "writable", "clickable"],
     data() {
         return {}
     },
@@ -58,8 +59,8 @@ export default {
     text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
     padding-left: 10px;
 }
-.Phrase:active {
-    transform: translateY(2px);
+.clickable:active {
+    transform: translateY(3px);
 }
 
 .Option {

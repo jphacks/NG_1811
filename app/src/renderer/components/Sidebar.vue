@@ -3,9 +3,9 @@
         <input type="text" :value="value" @input="updateText" placeholder="検索" class="searchBox" />
         <div class="item" v-for="block of blocks">
             <span class="block" @click="clickItem(block)">
-                <Formula :value="[block]" @drop="clickItem(block)" />
+                <Formula :value="[block]" @drop="clickItem(block)" clickable="true" />
             </span>
-            <span>{{block.description}}</span>
+            <span class="description">{{block.description}}</span>
         </div>
     </div>
 </template>
@@ -54,8 +54,9 @@ export default {
     color: white;
     background: rgba(255, 255, 255, 0.11);
 }
-.item .Formula {
-    /* cursor: pointer; */
+.item .description {
+    margin-top: 5px;
+    display: block;
 }
 
 .block {

@@ -10,6 +10,7 @@
                 v-model="block.args"
                 :writable="writable"
                 @drop="drop"
+                :clickable="clickable"
             />
             <Phrase
                 v-else-if="block.type == 'option'"
@@ -21,6 +22,7 @@
                 :style="{'z-index': 99-i}"
                 :class="{optionwith: i>0&&value[i-1]!=undefined}"
                 @drop="drop"
+                :clickable="clickable"
             />
             <Phrase
                 v-else-if="block.type == 'redirect'"
@@ -30,6 +32,7 @@
                 v-model="block.args"
                 :writable="writable"
                 @drop="drop"
+                :clickable="clickable"
             />
             <Pipe
                 v-else-if="block.type == 'pipe'"
@@ -52,7 +55,7 @@ export default {
         Editable,
         Pipe
     },
-    props: ["value", "writable"],
+    props: ["value", "writable", "clickable"],
     data() {
         return {
             args: ["ls"],
