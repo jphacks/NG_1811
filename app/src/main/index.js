@@ -12,25 +12,47 @@ let mainWindow
 const winURL = process.env.NODE_ENV === 'development'
   ? `http://localhost:9080`
   : `file://${__dirname}/index.html`
+  
+  const winURL2 = process.env.NODE_ENV === 'development'
+    ? `http://localhost:9080`
+    : `file://${__dirname}/index.html`
 
-function createWindow () {
-  /**
-   * Initial window options
-   */
-  mainWindow = new BrowserWindow({
-    height: 563,
-    useContentSize: true,
-    width: 1000
-  })
+  function createWindow () {
+    /**
+     * Initial window options
+     */
+    mainWindow = new BrowserWindow({
+      height: 563,
+      useContentSize: true,
+      width: 1000
+    })
+  
+    mainWindow.loadURL(winURL)
+  
+    mainWindow.on('closed', () => {
+      mainWindow = null
+    })
+  }
 
-  mainWindow.loadURL(winURL)
+  function createWindow2() {
+    /**
+     * Initial window options
+     */
+    mainWindow = new BrowserWindow({
+      height: 563,
+      useContentSize: true,
+      width: 1000
+    })
+  
+    mainWindow.loadURL(winURL)
+  
+    mainWindow.on('closed', () => {
+      mainWindow = null
+    })
+  }
 
-  mainWindow.on('closed', () => {
-    mainWindow = null
-  })
-}
-
-app.on('ready', createWindow)
+  app.on('ready', createWindow)
+  // app.on('ready', createWindow2)
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
