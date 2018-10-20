@@ -1,7 +1,7 @@
 {
   "git": {
     "type": "command",
-    "count": 6,
+    "count": 7,
     "description": "gitを使用するコマンド",
     "cmd": {
       "val": "git",
@@ -9,21 +9,21 @@
     },
     "next": {
       "add": {
-        "type": "command",
+        "type": "option",
         "count": 1,
         "description": "変更をステージする",
         "cmd": {
           "val": "add",
           "args": [
             {
-              "placeholder": "[PATH]"
+              "placeholder": "ファイル名"
             }
           ]
         },
         "next": {}
       },
       "push": {
-        "type": "command",
+        "type": "option",
         "count": 2,
         "description": "リモートリポジトリに変更を更新するコマンド",
         "cmd": {
@@ -32,7 +32,7 @@
         },
         "next": {
           "origin": {
-            "type": "command",
+            "type": "option",
             "count": 2,
             "description": "リモートリポジトリのURLの別名",
             "cmd": {
@@ -44,7 +44,7 @@
         }
       },
       "commit": {
-        "type": "command",
+        "type": "option",
         "count": 1,
         "description": "変更をコミットする",
         "cmd": {
@@ -60,7 +60,7 @@
               "val": "-m",
               "args": [
                 {
-                  "placeholder": "[String]"
+                  "placeholder": "コミットメッセージ"
                 }
               ]
             },
@@ -68,22 +68,36 @@
           }
         }
       },
+      "checkout": {
+        "type": "option",
+        "count": 1,
+        "description": "ブランチを切り替える",
+        "cmd": {
+          "val": "checkout",
+          "args": [
+            {
+              "placeholder": "ブランチ名"
+            }
+          ]
+        },
+        "next": {}
+      },
       "diff": {
-        "type": "command",
+        "type": "option",
         "count": 1,
         "description": "gitの差分を表示する",
         "cmd": {
           "val": "diff",
           "args": [
             {
-              "placeholder": "[PATH]"
+              "placeholder": "ファイル名"
             }
           ]
         },
         "next": {}
       },
       "log": {
-        "type": "command",
+        "type": "option",
         "count": 1,
         "description": "gitのlogを表示するコマンド",
         "cmd": {
@@ -95,7 +109,7 @@
     }
   },
   "push": {
-    "type": "command",
+    "type": "option",
     "count": 2,
     "description": "リモートリポジトリに変更を更新するコマンド",
     "cmd": {
@@ -104,7 +118,7 @@
     },
     "next": {
       "origin": {
-        "type": "command",
+        "type": "option",
         "count": 2,
         "description": "リモートリポジトリのURLの別名",
         "cmd": {
@@ -113,8 +127,8 @@
         },
         "next": {
           "master": {
-            "type": "command",
-            "count": 1,
+            "type": "option",
+            "count": 2,
             "description": "masterブランチ",
             "cmd": {
               "val": "master",
@@ -127,8 +141,8 @@
     }
   },
   "origin": {
-    "type": "command",
-    "count": 1,
+    "type": "option",
+    "count": 2,
     "description": "リモートリポジトリのURLの別名",
     "cmd": {
       "val": "origin",
@@ -136,8 +150,8 @@
     },
     "next": {
       "master": {
-        "type": "command",
-        "count": 1,
+        "type": "option",
+        "count": 2,
         "description": "masterブランチ",
         "cmd": {
           "val": "master",
@@ -148,7 +162,7 @@
     }
   },
   "commit": {
-    "type": "command",
+    "type": "option",
     "count": 1,
     "description": "変更をコミットする",
     "cmd": {
@@ -164,7 +178,7 @@
           "val": "-m",
           "args": [
             {
-              "placeholder": "[String]"
+              "placeholder": "コミットメッセージ"
             }
           ]
         },
@@ -174,33 +188,33 @@
   },
   "find": {
     "type": "command",
-    "count": 2,
+    "count": 3,
     "description": "ファイルやディレクトリの検索をする",
     "cmd": {
       "val": "find",
       "args": [
         {
-          "placeholder": "[PATH]"
+          "placeholder": "検索箇所"
         }
       ]
     },
     "next": {
       "-name": {
         "type": "option",
-        "count": 2,
+        "count": 3,
         "description": "ファイルやディレクトリの名前の指定",
         "cmd": {
           "val": "-name",
           "args": [
             {
-              "placeholder": "[PATH]"
+              "placeholder": "検索対象"
             }
           ]
         },
         "next": {
           "|": {
-            "type": "command",
-            "count": 1,
+            "type": "pipe",
+            "count": 2,
             "description": "前のコマンドの結果を次に渡す",
             "cmd": {
               "val": "|",
@@ -214,20 +228,20 @@
   },
   "-name": {
     "type": "option",
-    "count": 1,
+    "count": 2,
     "description": "ファイルやディレクトリの名前の指定",
     "cmd": {
       "val": "-name",
       "args": [
         {
-          "placeholder": "[PATH]"
+          "placeholder": "検索対象"
         }
       ]
     },
     "next": {
       "|": {
-        "type": "command",
-        "count": 1,
+        "type": "pipe",
+        "count": 2,
         "description": "前のコマンドの結果を次に渡す",
         "cmd": {
           "val": "|",
@@ -236,7 +250,7 @@
         "next": {
           "xargs": {
             "type": "command",
-            "count": 1,
+            "count": 2,
             "description": "標準入力やファイルからコマンドラインを作成して実行",
             "cmd": {
               "val": "xargs",
@@ -249,8 +263,8 @@
     }
   },
   "|": {
-    "type": "command",
-    "count": 2,
+    "type": "pipe",
+    "count": 3,
     "description": "前のコマンドの結果を次に渡す",
     "cmd": {
       "val": "|",
@@ -259,7 +273,7 @@
     "next": {
       "xargs": {
         "type": "command",
-        "count": 1,
+        "count": 2,
         "description": "標準入力やファイルからコマンドラインを作成して実行",
         "cmd": {
           "val": "xargs",
@@ -267,11 +281,21 @@
         },
         "next": {
           "cat": {
-            "type": "command",
+            "type": "option",
             "count": 1,
             "description": "ファイルを出力",
             "cmd": {
               "val": "cat",
+              "args": []
+            },
+            "next": {}
+          },
+          "rm": {
+            "type": "option",
+            "count": 1,
+            "description": "ファイルを削除する",
+            "cmd": {
+              "val": "rm",
               "args": []
             },
             "next": {}
@@ -286,7 +310,7 @@
           "val": "grep",
           "args": [
             {
-              "placeholder": "[String]"
+              "placeholder": "検索ワード"
             }
           ]
         },
@@ -296,7 +320,7 @@
   },
   "xargs": {
     "type": "command",
-    "count": 1,
+    "count": 2,
     "description": "標準入力やファイルからコマンドラインを作成して実行",
     "cmd": {
       "val": "xargs",
@@ -304,11 +328,21 @@
     },
     "next": {
       "cat": {
-        "type": "command",
+        "type": "option",
         "count": 1,
         "description": "ファイルを出力",
         "cmd": {
           "val": "cat",
+          "args": []
+        },
+        "next": {}
+      },
+      "rm": {
+        "type": "option",
+        "count": 1,
+        "description": "ファイルを削除する",
+        "cmd": {
+          "val": "rm",
           "args": []
         },
         "next": {}
@@ -323,41 +357,41 @@
       "val": "cat",
       "args": [
         {
-          "placeholder": "[PATH]"
+          "placeholder": "ファイル名"
         }
       ]
     },
     "next": {
       ">>": {
-        "type": "command",
+        "type": "redirect",
         "count": 1,
         "description": "コマンドの結果をファイルに書き込む(追加)",
         "cmd": {
           "val": ">>",
           "args": [
             {
-              "placeholder": "[PATH]"
+              "placeholder": "追加対象"
             }
           ]
         },
         "next": {}
       },
       ">": {
-        "type": "command",
+        "type": "redirect",
         "count": 1,
         "description": "ファイルの末尾に追加(上書き）",
         "cmd": {
           "val": ">",
           "args": [
             {
-              "placeholder": "[PATH]"
+              "placeholder": "上書き対象"
             }
           ]
         },
         "next": {}
       },
       "|": {
-        "type": "command",
+        "type": "pipe",
         "count": 1,
         "description": "前のコマンドの結果を次に渡す",
         "cmd": {
@@ -373,13 +407,95 @@
               "val": "grep",
               "args": [
                 {
-                  "placeholder": "[String]"
+                  "placeholder": "検索ワード"
                 }
               ]
             },
             "next": {}
           }
         }
+      }
+    }
+  },
+  "echo": {
+    "type": "command",
+    "count": 2,
+    "description": "文字列を表示する",
+    "cmd": {
+      "val": "echo",
+      "args": [
+        {
+          "placeholder": "表示文字"
+        }
+      ]
+    },
+    "next": {
+      ">>": {
+        "type": "redirect",
+        "count": 1,
+        "description": "コマンドの結果をファイルに書き込む(追加)",
+        "cmd": {
+          "val": ">>",
+          "args": [
+            {
+              "placeholder": "追加対象"
+            }
+          ]
+        },
+        "next": {}
+      },
+      ">": {
+        "type": "redirect",
+        "count": 1,
+        "description": "ファイルの末尾に追加(上書き）",
+        "cmd": {
+          "val": ">",
+          "args": [
+            {
+              "placeholder": "上書き対象"
+            }
+          ]
+        },
+        "next": {}
+      }
+    }
+  },
+  "rm": {
+    "type": "command",
+    "count": 2,
+    "description": "ファイルを削除する",
+    "cmd": {
+      "val": "rm",
+      "args": []
+    },
+    "next": {
+      "-r": {
+        "type": "option",
+        "count": 1,
+        "description": "ディレクトリを削除",
+        "cmd": {
+          "val": "-r",
+          "args": [
+            {
+              "placeholder": "ディレクトリ名"
+            }
+          ]
+        },
+        "next": {}
+      },
+      "-f": {
+        "type": "option",
+        "count": 1,
+        "description": "エラーメッセージを表示しない",
+        "cmd": {
+          "val": "-f",
+          "args": [
+            {
+              "placeholder": "ファイル名"
+            }
+          ]
+        },
+        "next": {}
       }
     }
   }

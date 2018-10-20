@@ -10,35 +10,38 @@ import cmdDescription from "../assets/cmdDescription.json"
 const list = [
     {
         type: "command",
-        val: "git"
-    },
-    {
-        type: "command",
-        val: "find",
+        val: "cd",
+        description:cmdDescription["cd"],
         args: [
         {
-          "placeholder": "[PATH]"
-        }]
-    },
-    {
-        type: "option",
-        val: "-l"
-    },
-    {
-        type: "pipe"
+          placeholder: "移動先ディレクトリ"
+        }
+        ]
     },
     {
         type: "command",
-        val: "grep",
-        args: [
+        val: "touch",
+        description:cmdDescription["touch"],
+        args:[
             {
-                placeholder: "ワード"
+                placeholder:"ファイル名"
+            }
+        ]
+    },
+    {
+        type: "command",
+        val:"find",
+        description:cmdDescription["find"],
+        args:[
+            {
+                placeholder:"検索箇所"
             }
         ]
     },
     {
         type: "command",
         val: "cat",
+        description:cmdDescription["cat"],
         args: [
             {
                 placeholder: "ファイル名"
@@ -46,41 +49,10 @@ const list = [
         ]
     },
     {
-        type: "command",
-        val: "ping",
-        args: [
-            {
-                placeholder: "ホスト名"
-            }
-        ]
-    },
-    {
-        type: "option",
-        val: "-n",
-        args: [
-            {
-                placeholder: "回数"
-            }
-        ]
-    },
-    {
-        type: "command",
-        val: "cat",
-        args: [
-            {
-                placeholder: "[PATH]"
-            }
-        ]
-    },
-    {
-        type: "redirect",
-        val: ">>",
-        args: [
-            {
-                placeholder: "[PATH]"
-            }
-        ]
-    },
+        type:"command",
+        description:cmdDescription["rm"],
+        val:"rm"
+    }
 ]
 export default {
     props: ["input","searchWord"],
