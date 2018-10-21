@@ -10,7 +10,6 @@
 import Console from "@/components/Console"
 import Sidebar from "@/components/Sidebar"
 import ML from "@/components/ML"
-import { setTimeout } from "timers"
 
 const child_process = require("child_process")
 const path = require("path")

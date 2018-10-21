@@ -27,10 +27,11 @@ export default {
         log: {
             deep: true,
             handler() {
-                setTimeout(() => {
-                    this.$refs.inner.scrollTop = this.$refs.inner.scrollHeight
-                }, 10)
+                this.scrollToBottom()
             }
+        },
+        value() {
+            this.scrollToBottom()
         }
     },
     methods: {
@@ -43,6 +44,11 @@ export default {
         },
         focus() {
             this.$refs.inputForm.focus()
+        },
+        scrollToBottom() {
+            this.$nextTick(() => {
+                this.$refs.inner.scrollTop = this.$refs.inner.scrollHeight
+            })
         }
     }
 }

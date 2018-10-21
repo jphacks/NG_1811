@@ -60,10 +60,10 @@ export default {
                     type: "pipe"
                 }
                 this.$emit("inputBlock", block)
-                setTimeout(() => {
+                this.$nextTick(() => {
                     this.$el.innerText = ""
                     this.val = ""
-                }, 0)
+                })
             }
         },
         paste(e) {
@@ -82,9 +82,9 @@ export default {
         enter() {
             if (this.endEditable) {
                 this.space()
-                setTimeout(() => {
+                this.$nextTick(() => {
                     this.$emit("send")
-                }, 10)
+                })
             } else {
                     // this.$emit("focusEnd")
             }
