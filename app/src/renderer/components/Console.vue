@@ -78,6 +78,7 @@ export default {
 
 .Console-input {
     margin: 10px;
+    line-height: 24px;
 }
 
 .Console-output {

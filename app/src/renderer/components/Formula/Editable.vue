@@ -78,6 +78,8 @@ export default {
             range.setEndAfter(node)
             selection.removeAllRanges()
             selection.addRange(range)
+
+            // this.update()
         },
         enter() {
             if (this.endEditable) {
