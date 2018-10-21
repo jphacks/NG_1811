@@ -18,5 +18,9 @@ touch [ファイル名]
 rm [ファイル名]
 rm -r [ディレクトリ名]
 rm -f [ファイル名]
+mkdir [ディレクトリ名]
+vim [ファイル名]
+less [ファイル名]
+more [ファイル名]
 clear
 pwd
