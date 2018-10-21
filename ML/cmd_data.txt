@@ -1,9 +1,11 @@
 git add [ファイル名]
-git push origin master
 git commit -m [コミットメッセージ]
 git push origin master
+git init
+git merge [コミット名]
 git checkout [ブランチ名]
 git diff [ファイル名]
+git push origin master
 git log
 find [検索箇所] -name [検索対象]
 find [検索箇所] -name [検索対象] | xargs cat
@@ -24,3 +26,16 @@ less [ファイル名]
 more [ファイル名]
 clear
 pwd
+ls -l | grep [検索ワード]
+ls -l -a
+ls -l -1
+ls -l -t
+ls -l -S
+ls -l -X
+ls -l -R
+ls -a
+ls -1
+ls -t
+ls -S
+ls -X
+ls -R
