@@ -30,16 +30,6 @@ const list = [
     },
     {
         type: "command",
-        val:"find",
-        description:cmdDescription["find"],
-        args:[
-            {
-                placeholder:"検索箇所"
-            }
-        ]
-    },
-    {
-        type: "command",
         val: "cat",
         description:cmdDescription["cat"],
         args: [
@@ -50,8 +40,38 @@ const list = [
     },
     {
         type:"command",
-        description:cmdDescription["rmm"],
+        description:cmdDescription["rm"],
         val:"rm"
+    },
+    {
+        type:"command",
+        description:cmdDescription["pwd"],
+        val:"pwd"
+    },
+    {
+        type: "command",
+        val:"find",
+        description:cmdDescription["find"],
+        args:[
+            {
+                placeholder:"検索箇所"
+            }
+        ]
+    },
+    {
+        type:"command",
+        description:cmdDescription["vim"],
+        val:"vim",
+        args: [
+            {
+                placeholder: "ファイル名"
+            }
+        ]
+    },
+    {
+        type:"command",
+        description:cmdDescription["git"],
+        val:"git"
     }
 ]
 export default {
