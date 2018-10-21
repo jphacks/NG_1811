@@ -1,8 +1,8 @@
 <template>
     <div class="LandingPage">
+        <img src="@/assets/logo.svg" class="appicon">
         <div class="title">Eterm</div>
-        <img src="@/assets/icon.svg" class="appicon">
-        <div class="subtitle">Best terminal for Education</div>
+        <div class="subtitle">Best Terminal for Education.</div>
         <div @click="openMainWindow" class="button">はじめる</div>
     </div>
 </template>
@@ -45,25 +45,26 @@ export default {
     font-family: "Helvetica Neue";
     -webkit-user-select: none;
     cursor: default;
-}
-
-.title {
-    font-size: 16px;
-    font-weight: bold;
+    padding: 20px;
 }
 
 .appicon {
-    width: 120px;
-    margin-top: 60px;
+    width: 100px;
+    margin-top: 30px;
+}
+
+.title {
+    margin-top: 20px;
+    font-size: 28px;
 }
 
 .subtitle {
-    margin-top: 20px;
-    font-size: 30px;
+    margin-top: 8px;
+    font-size: 18px;
 }
 
 .button {
-    margin-top: 40px;
+    margin-top: 30px;
     /* border: 2px solid #444; */
     background: #222;
     display: inline-block;

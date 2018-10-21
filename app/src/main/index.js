@@ -21,12 +21,13 @@ function createWindow() {
      * Initial window options
      */
     mainWindow = new BrowserWindow({
-        height: 380,
+        height: 360,
         useContentSize: true,
         width: 500,
-        titleBarStyle: 'hiddenInset',
+        // titleBarStyle: 'hidden',
         // transparent: true,
-        // frame: false,
+        frame: false,
+        titleBarStyle: "hidden",
         // vibrancy: 'light',
     })
 

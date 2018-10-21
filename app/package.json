@@ -17,7 +17,7 @@
     "postinstall": ""
   },
   "build": {
-    "productName": "eterm",
+    "productName": "Eterm",
     "appId": "com.jphacks.2018.ng-1811",
     "directories": {
       "output": "build"

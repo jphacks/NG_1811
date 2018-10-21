@@ -427,7 +427,7 @@
         }
       },
       "grep": {
-        "type": "option",
+        "type": "command",
         "count": 2,
         "description": "ファイルから文字列の検索",
         "cmd": {
@@ -520,7 +520,7 @@
         },
         "next": {
           "grep": {
-            "type": "option",
+            "type": "command",
             "count": 1,
             "description": "ファイルから文字列の検索",
             "cmd": {
@@ -605,7 +605,7 @@
     "next": {}
   },
   "grep": {
-    "type": "option",
+    "type": "command",
     "count": 2,
     "description": "ファイルから文字列の検索",
     "cmd": {
@@ -1024,7 +1024,7 @@
         },
         "next": {
           "grep": {
-            "type": "option",
+            "type": "command",
             "count": 1,
             "description": "ファイルから文字列の検索",
             "cmd": {
