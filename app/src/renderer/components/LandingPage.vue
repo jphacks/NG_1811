@@ -1,8 +1,8 @@
 <template>
     <div class="LandingPage">
-        <div class="title">ようこそ、Etermへ</div>
+        <div class="title">Eterm</div>
         <img src="@/assets/icon.svg" class="appicon">
-        <div class="subtitle">ここに何か説明を</div>
+        <div class="subtitle">Best terminal for Education</div>
         <div @click="openMainWindow" class="button">はじめる</div>
     </div>
 </template>
@@ -47,21 +47,23 @@ export default {
     cursor: default;
 }
 
-.appicon {
-    width: 120px;
-    margin-top: 50px;
-    margin-bottom: 10px;
-}
 .title {
     font-size: 16px;
     font-weight: bold;
 }
+
+.appicon {
+    width: 120px;
+    margin-top: 60px;
+}
+
 .subtitle {
     margin-top: 20px;
     font-size: 30px;
 }
 
 .button {
+    margin-top: 40px;
     /* border: 2px solid #444; */
     background: #222;
     display: inline-block;
@@ -69,7 +71,6 @@ export default {
     border-radius: 100px;
     font-size: 16px;
     cursor: pointer;
-    margin-top: 30px;
     /* color: #3390db; */
     color: #fff;
     font-weight: bold;
