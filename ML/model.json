@@ -108,6 +108,20 @@
       }
     }
   },
+  "add": {
+    "type": "option",
+    "count": 1,
+    "description": "変更をステージする",
+    "cmd": {
+      "val": "add",
+      "args": [
+        {
+          "placeholder": "ファイル名"
+        }
+      ]
+    },
+    "next": {}
+  },
   "push": {
     "type": "option",
     "count": 2,
@@ -161,6 +175,16 @@
       }
     }
   },
+  "master": {
+    "type": "option",
+    "count": 2,
+    "description": "masterブランチ",
+    "cmd": {
+      "val": "master",
+      "args": []
+    },
+    "next": {}
+  },
   "commit": {
     "type": "option",
     "count": 1,
@@ -185,6 +209,58 @@
         "next": {}
       }
     }
+  },
+  "-m": {
+    "type": "option",
+    "count": 1,
+    "description": "コミットメッセージの追加",
+    "cmd": {
+      "val": "-m",
+      "args": [
+        {
+          "placeholder": "コミットメッセージ"
+        }
+      ]
+    },
+    "next": {}
+  },
+  "checkout": {
+    "type": "option",
+    "count": 1,
+    "description": "ブランチを切り替える",
+    "cmd": {
+      "val": "checkout",
+      "args": [
+        {
+          "placeholder": "ブランチ名"
+        }
+      ]
+    },
+    "next": {}
+  },
+  "diff": {
+    "type": "command",
+    "count": 1,
+    "description": "gitの差分を表示する",
+    "cmd": {
+      "val": "diff",
+      "args": [
+        {
+          "placeholder": "ファイル名"
+        }
+      ]
+    },
+    "next": {}
+  },
+  "log": {
+    "type": "command",
+    "count": 1,
+    "description": "gitのlogを表示するコマンド",
+    "cmd": {
+      "val": "log",
+      "args": []
+    },
+    "next": {}
   },
   "find": {
     "type": "command",
@@ -228,7 +304,7 @@
   },
   "-name": {
     "type": "option",
-    "count": 2,
+    "count": 3,
     "description": "ファイルやディレクトリの名前の指定",
     "cmd": {
       "val": "-name",
@@ -351,15 +427,11 @@
   },
   "cat": {
     "type": "command",
-    "count": 3,
+    "count": 4,
     "description": "ファイルを出力",
     "cmd": {
       "val": "cat",
-      "args": [
-        {
-          "placeholder": "ファイル名"
-        }
-      ]
+      "args": []
     },
     "next": {
       ">>": {
@@ -417,6 +489,87 @@
       }
     }
   },
+  "rm": {
+    "type": "command",
+    "count": 4,
+    "description": "ファイルを削除する",
+    "cmd": {
+      "val": "rm",
+      "args": []
+    },
+    "next": {
+      "-r": {
+        "type": "option",
+        "count": 1,
+        "description": "ディレクトリを削除",
+        "cmd": {
+          "val": "-r",
+          "args": [
+            {
+              "placeholder": "ディレクトリ名"
+            }
+          ]
+        },
+        "next": {}
+      },
+      "-f": {
+        "type": "option",
+        "count": 1,
+        "description": "エラーメッセージを表示しない",
+        "cmd": {
+          "val": "-f",
+          "args": [
+            {
+              "placeholder": "ファイル名"
+            }
+          ]
+        },
+        "next": {}
+      }
+    }
+  },
+  ">>": {
+    "type": "redirect",
+    "count": 2,
+    "description": "コマンドの結果をファイルに書き込む(追加)",
+    "cmd": {
+      "val": ">>",
+      "args": [
+        {
+          "placeholder": "追加対象"
+        }
+      ]
+    },
+    "next": {}
+  },
+  ">": {
+    "type": "redirect",
+    "count": 2,
+    "description": "ファイルの末尾に追加(上書き）",
+    "cmd": {
+      "val": ">",
+      "args": [
+        {
+          "placeholder": "上書き対象"
+        }
+      ]
+    },
+    "next": {}
+  },
+  "grep": {
+    "type": "command",
+    "count": 1,
+    "description": "ファイルから文字列の検索",
+    "cmd": {
+      "val": "grep",
+      "args": [
+        {
+          "placeholder": "検索ワード"
+        }
+      ]
+    },
+    "next": {}
+  },
   "echo": {
     "type": "command",
     "count": 2,
@@ -460,43 +613,136 @@
       }
     }
   },
-  "rm": {
+  "cd": {
     "type": "command",
-    "count": 2,
-    "description": "ファイルを削除する",
+    "count": 1,
+    "description": "ディレクトリの移動",
     "cmd": {
-      "val": "rm",
+      "val": "cd",
+      "args": [
+        {
+          "placeholder": "移動先ディレクトリ"
+        }
+      ]
+    },
+    "next": {}
+  },
+  "touch": {
+    "type": "command",
+    "count": 1,
+    "description": "ファイルの作成",
+    "cmd": {
+      "val": "touch",
+      "args": [
+        {
+          "placeholder": "ファイル名"
+        }
+      ]
+    },
+    "next": {}
+  },
+  "-r": {
+    "type": "option",
+    "count": 1,
+    "description": "ディレクトリを削除",
+    "cmd": {
+      "val": "-r",
+      "args": [
+        {
+          "placeholder": "ディレクトリ名"
+        }
+      ]
+    },
+    "next": {}
+  },
+  "-f": {
+    "type": "option",
+    "count": 1,
+    "description": "エラーメッセージを表示しない",
+    "cmd": {
+      "val": "-f",
+      "args": [
+        {
+          "placeholder": "ファイル名"
+        }
+      ]
+    },
+    "next": {}
+  },
+  "mkdir": {
+    "type": "command",
+    "count": 1,
+    "description": "ディレクトリを作成",
+    "cmd": {
+      "val": "mkdir",
+      "args": [
+        {
+          "placeholder": "ディレクトリ名"
+        }
+      ]
+    },
+    "next": {}
+  },
+  "vim": {
+    "type": "command",
+    "count": 1,
+    "description": "ファイルをvimで編集",
+    "cmd": {
+      "val": "vim",
+      "args": [
+        {
+          "placeholder": "ファイル名"
+        }
+      ]
+    },
+    "next": {}
+  },
+  "less": {
+    "type": "command",
+    "count": 1,
+    "description": "ファイルを表示",
+    "cmd": {
+      "val": "less",
+      "args": [
+        {
+          "placeholder": "ファイル名"
+        }
+      ]
+    },
+    "next": {}
+  },
+  "more": {
+    "type": "command",
+    "count": 1,
+    "description": "ファイルを表示",
+    "cmd": {
+      "val": "more",
+      "args": [
+        {
+          "placeholder": "ファイル名"
+        }
+      ]
+    },
+    "next": {}
+  },
+  "clear": {
+    "type": "command",
+    "count": 1,
+    "description": "画面の表示を消去",
+    "cmd": {
+      "val": "clear",
       "args": []
     },
-    "next": {
-      "-r": {
-        "type": "option",
-        "count": 1,
-        "description": "ディレクトリを削除",
-        "cmd": {
-          "val": "-r",
-          "args": [
-            {
-              "placeholder": "ディレクトリ名"
-            }
-          ]
-        },
-        "next": {}
-      },
-      "-f": {
-        "type": "option",
-        "count": 1,
-        "description": "エラーメッセージを表示しない",
-        "cmd": {
-          "val": "-f",
-          "args": [
-            {
-              "placeholder": "ファイル名"
-            }
-          ]
-        },
-        "next": {}
-      }
-    }
+    "next": {}
+  },
+  "pwd": {
+    "type": "command",
+    "count": 1,
+    "description": "カレントディレクトリの表示",
+    "cmd": {
+      "val": "pwd",
+      "args": []
+    },
+    "next": {}
   }
 }
