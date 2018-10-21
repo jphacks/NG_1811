@@ -47,7 +47,6 @@ export default {
         inputBlock(block) {
             this.inputForm.push(JSON.parse(JSON.stringify(block)))
             this.$refs.console.focus()
-            this.scrollToBottom()
         },
         formulaToArray(input) {
             let s = []
@@ -76,11 +75,6 @@ export default {
 
             return s.map(t => new String(t).trim()).filter(e => e !== "")
         },
-        scrollToBottom() {
-            const el = this.$refs.console.$el
-            // console.log(el)
-            el.scrollTop = el.scrollHeight
-        },
         send() {
             const f = JSON.parse(JSON.stringify(this.inputForm))
 
@@ -91,8 +85,6 @@ export default {
 
             this.log.push(ioobj)
             this.inputForm.splice(0)
-
-            this.scrollToBottom()
 
             const arr = this.inputArr
 
@@ -105,12 +97,10 @@ export default {
 
             ls.stdout.on("data", data => {
                 ioobj.outputString += data
-                this.scrollToBottom()
             })
 
             ls.stderr.on("data", data => {
                 ioobj.outputString += data
-                this.scrollToBottom()
             })
 
             ls.on("close", code => {
@@ -135,6 +125,7 @@ export default {
                 }
                 // console.log(`child process exited with code ${code}`)
             })
+
         },
         mlupdate(list) {
             this.candidate = list

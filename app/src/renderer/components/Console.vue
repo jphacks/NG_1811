@@ -1,6 +1,6 @@
 <template>
   <div class="Console" @mousedown="clickConsole">
-    <div class="Console-inner">
+    <div class="Console-inner" ref="inner">
         <div v-for="op of log">
         <div class="Console-input">
             $ <Formula v-model="op.inputFormula" />
@@ -22,6 +22,16 @@ export default {
     props: ["log", "value"],
     mounted() {
         this.$refs.inputForm.focus()
+    },
+    watch: {
+        log: {
+            deep: true,
+            handler() {
+                setTimeout(() => {
+                    this.$refs.inner.scrollTop = this.$refs.inner.scrollHeight
+                }, 10)
+            }
+        }
     },
     methods: {
         send() {

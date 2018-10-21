@@ -13,7 +13,7 @@
 
 <script>
 export default {
-    props: ["value", "placeholder", "writable"],
+    props: ["value", "placeholder", "writable", "endEditable"],
     data() {
         return {
             val: ""
@@ -51,18 +51,6 @@ export default {
         }
     },
     methods: {
-        space() {
-            if (this.val.length > 0) {
-                let block
-                block = {
-                    type: "phrase",
-                    val: this.val
-                }
-                this.$emit("inputBlock", block)
-
-                this.val = ""
-            }
-        },
         update(e) {
             this.val = e.target.innerText
             this.$emit("input", this.val)
@@ -92,16 +80,36 @@ export default {
             selection.addRange(range)
         },
         enter() {
-            this.space()
-            setTimeout(() => {
-                this.$emit("send")
-            }, 10)
+            if (this.endEditable) {
+                this.space()
+                setTimeout(() => {
+                    this.$emit("send")
+                }, 10)
+            } else {
+                    // this.$emit("focusEnd")
+            }
+        },
+        space() {
+            if (this.endEditable) {
+                if (this.val.length > 0) {
+                    let block
+                    block = {
+                        type: "phrase",
+                        val: this.val
+                    }
+                    this.$emit("inputBlock", block)
+
+                    this.val = ""
+                }
+            }
         },
         backspace() {
-            const selection = window.getSelection()
-            const range = selection.getRangeAt(0)
-            if (range.endOffset == "0") {
-                this.$emit("deleteBlock")
+            if (this.endEditable) {
+                const selection = window.getSelection()
+                const range = selection.getRangeAt(0)
+                if (range.endOffset == "0") {
+                    this.$emit("deleteBlock")
+                }
             }
         }
     }

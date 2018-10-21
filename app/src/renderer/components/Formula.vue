@@ -11,6 +11,7 @@
                 :writable="writable"
                 @drop="drop"
                 :clickable="clickable"
+                @focus="focus"
             />
             <Phrase
                 v-else-if="block.type == 'option'"
@@ -23,6 +24,7 @@
                 :class="{optionwith: i>0&&value[i-1]!=undefined}"
                 @drop="drop"
                 :clickable="clickable"
+                @focus="focus"
             />
             <Phrase
                 v-else-if="block.type == 'redirect'"
@@ -33,6 +35,7 @@
                 :writable="writable"
                 @drop="drop"
                 :clickable="clickable"
+                @focus="focus"
             />
             <Pipe
                 v-else-if="block.type == 'pipe'"
@@ -44,6 +47,7 @@
         <Editable
             :v-if="writable"
             :writable="writable"
+            :endEditable="true"
             ref="endEditable"
             v-model="text"
             @inputBlock="inputBlock"
@@ -85,7 +89,10 @@ export default {
         },
         inputBlock(block) {
             if (block.type == "phrase") {
-                if (this.value.length == 0 || this.value[this.value.length - 1].type == "pipe") {
+                if (
+                    this.value.length == 0 ||
+                    this.value[this.value.length - 1].type == "pipe"
+                ) {
                     block.type = "command"
                 } else {
                     block.type = "option"
