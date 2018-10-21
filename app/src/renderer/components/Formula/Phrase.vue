@@ -12,7 +12,9 @@
         @dragend="drop"
     >
         <span class="Val">{{val}}</span><!-- 
-         --><Editable class="Arg" v-for="arg of value" v-model="arg.val" :placeholder="arg.placeholder" :writable="writable" ref="arg" />
+         --><Editable class="Arg" v-for="arg of value" v-model="arg.val" :placeholder="arg.placeholder" :writable="writable" ref="arg"
+            @focusEnd="focusEnd"
+         />
     </span>
 </template>
 
@@ -34,6 +36,9 @@ export default {
         click() {},
         drop() {
             this.$emit("drop")
+        },
+        focusEnd() {
+            this.$emit("focus")
         }
     }
 }
