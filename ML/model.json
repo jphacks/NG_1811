@@ -1,6 +1,6 @@
 {
   "git": {
-    "type": "command",
+    "type": "option",
     "count": 9,
     "description": "gitを使用するコマンド",
     "cmd": {
@@ -287,7 +287,7 @@
     "next": {}
   },
   "diff": {
-    "type": "command",
+    "type": "option",
     "count": 1,
     "description": "gitの差分を表示する",
     "cmd": {
@@ -301,7 +301,7 @@
     "next": {}
   },
   "log": {
-    "type": "command",
+    "type": "option",
     "count": 1,
     "description": "gitのlogを表示するコマンド",
     "cmd": {
@@ -311,7 +311,7 @@
     "next": {}
   },
   "find": {
-    "type": "command",
+    "type": "option",
     "count": 3,
     "description": "ファイルやディレクトリの検索をする",
     "cmd": {
@@ -373,7 +373,7 @@
         },
         "next": {
           "xargs": {
-            "type": "command",
+            "type": "option",
             "count": 2,
             "description": "標準入力やファイルからコマンドラインを作成して実行",
             "cmd": {
@@ -388,7 +388,7 @@
   },
   "|": {
     "type": "pipe",
-    "count": 4,
+    "count": 5,
     "description": "前のコマンドの結果を次に渡す",
     "cmd": {
       "val": "|",
@@ -396,7 +396,7 @@
     },
     "next": {
       "xargs": {
-        "type": "command",
+        "type": "option",
         "count": 2,
         "description": "標準入力やファイルからコマンドラインを作成して実行",
         "cmd": {
@@ -427,7 +427,7 @@
         }
       },
       "grep": {
-        "type": "command",
+        "type": "option",
         "count": 2,
         "description": "ファイルから文字列の検索",
         "cmd": {
@@ -443,7 +443,7 @@
     }
   },
   "xargs": {
-    "type": "command",
+    "type": "option",
     "count": 2,
     "description": "標準入力やファイルからコマンドラインを作成して実行",
     "cmd": {
@@ -474,7 +474,7 @@
     }
   },
   "cat": {
-    "type": "command",
+    "type": "option",
     "count": 4,
     "description": "ファイルを出力",
     "cmd": {
@@ -520,7 +520,7 @@
         },
         "next": {
           "grep": {
-            "type": "command",
+            "type": "option",
             "count": 1,
             "description": "ファイルから文字列の検索",
             "cmd": {
@@ -538,7 +538,7 @@
     }
   },
   "rm": {
-    "type": "command",
+    "type": "option",
     "count": 4,
     "description": "ファイルを削除する",
     "cmd": {
@@ -605,7 +605,7 @@
     "next": {}
   },
   "grep": {
-    "type": "command",
+    "type": "option",
     "count": 2,
     "description": "ファイルから文字列の検索",
     "cmd": {
@@ -619,7 +619,7 @@
     "next": {}
   },
   "echo": {
-    "type": "command",
+    "type": "option",
     "count": 2,
     "description": "文字列を表示する",
     "cmd": {
@@ -662,7 +662,7 @@
     }
   },
   "cd": {
-    "type": "command",
+    "type": "option",
     "count": 1,
     "description": "ディレクトリの移動",
     "cmd": {
@@ -676,7 +676,7 @@
     "next": {}
   },
   "touch": {
-    "type": "command",
+    "type": "option",
     "count": 1,
     "description": "ファイルの作成",
     "cmd": {
@@ -718,7 +718,7 @@
     "next": {}
   },
   "mkdir": {
-    "type": "command",
+    "type": "option",
     "count": 1,
     "description": "ディレクトリを作成",
     "cmd": {
@@ -732,7 +732,7 @@
     "next": {}
   },
   "vim": {
-    "type": "command",
+    "type": "option",
     "count": 1,
     "description": "ファイルをvimで編集",
     "cmd": {
@@ -746,7 +746,7 @@
     "next": {}
   },
   "less": {
-    "type": "command",
+    "type": "option",
     "count": 1,
     "description": "ファイルを表示",
     "cmd": {
@@ -760,7 +760,7 @@
     "next": {}
   },
   "more": {
-    "type": "command",
+    "type": "option",
     "count": 1,
     "description": "ファイルを表示",
     "cmd": {
@@ -774,7 +774,7 @@
     "next": {}
   },
   "clear": {
-    "type": "command",
+    "type": "option",
     "count": 1,
     "description": "画面の表示を消去",
     "cmd": {
@@ -784,7 +784,7 @@
     "next": {}
   },
   "pwd": {
-    "type": "command",
+    "type": "option",
     "count": 1,
     "description": "カレントディレクトリの表示",
     "cmd": {
@@ -794,17 +794,27 @@
     "next": {}
   },
   "ls": {
-    "type": "command",
-    "count": 13,
+    "type": "option",
+    "count": 19,
     "description": "ファイルやディレクトリの情報を表示",
     "cmd": {
       "val": "ls",
       "args": []
     },
     "next": {
+      "|": {
+        "type": "pipe",
+        "count": 1,
+        "description": "前のコマンドの結果を次に渡す",
+        "cmd": {
+          "val": "|",
+          "args": []
+        },
+        "next": {}
+      },
       "-l": {
         "type": "option",
-        "count": 7,
+        "count": 10,
         "description": "ファイルの詳細も表示",
         "cmd": {
           "val": "-l",
@@ -817,6 +827,16 @@
             "description": "前のコマンドの結果を次に渡す",
             "cmd": {
               "val": "|",
+              "args": []
+            },
+            "next": {}
+          },
+          "-F": {
+            "type": "option",
+            "count": 1,
+            "description": "情報の付加",
+            "cmd": {
+              "val": "-F",
               "args": []
             },
             "next": {}
@@ -880,100 +900,24 @@
               "args": []
             },
             "next": {}
-          }
-        }
-      },
-      "-a": {
-        "type": "option",
-        "count": 1,
-        "description": "全てのファイルを表示",
-        "cmd": {
-          "val": "-a",
-          "args": []
-        },
-        "next": {}
-      },
-      "-1": {
-        "type": "option",
-        "count": 1,
-        "description": "リストを縦に並べて表示",
-        "cmd": {
-          "val": "-1",
-          "args": []
-        },
-        "next": {}
-      },
-      "-t": {
-        "type": "option",
-        "count": 1,
-        "description": "更新時間順に並べて表示",
-        "cmd": {
-          "val": "-t",
-          "args": []
-        },
-        "next": {}
-      },
-      "-S": {
-        "type": "option",
-        "count": 1,
-        "description": "ファイルサイズ順に並べて表示",
-        "cmd": {
-          "val": "-S",
-          "args": []
-        },
-        "next": {}
-      },
-      "-X": {
-        "type": "option",
-        "count": 1,
-        "description": "拡張子が同じものをまとめて表示",
-        "cmd": {
-          "val": "-X",
-          "args": []
-        },
-        "next": {}
-      },
-      "-R": {
-        "type": "option",
-        "count": 1,
-        "description": "ディレクトリを再帰的に表示",
-        "cmd": {
-          "val": "-R",
-          "args": []
-        },
-        "next": {}
-      }
-    }
-  },
-  "-l": {
-    "type": "option",
-    "count": 7,
-    "description": "ファイルの詳細も表示",
-    "cmd": {
-      "val": "-l",
-      "args": []
-    },
-    "next": {
-      "|": {
-        "type": "pipe",
-        "count": 1,
-        "description": "前のコマンドの結果を次に渡す",
-        "cmd": {
-          "val": "|",
-          "args": []
-        },
-        "next": {
-          "grep": {
-            "type": "command",
+          },
+          "-q": {
+            "type": "option",
             "count": 1,
-            "description": "ファイルから文字列の検索",
+            "description": "表示不能な文字を?で表示",
             "cmd": {
-              "val": "grep",
-              "args": [
-                {
-                  "placeholder": "検索ワード"
-                }
-              ]
+              "val": "-q",
+              "args": []
+            },
+            "next": {}
+          },
+          "-v": {
+            "type": "option",
+            "count": 1,
+            "description": "自然数でソートして表示",
+            "cmd": {
+              "val": "-v",
+              "args": []
             },
             "next": {}
           }
@@ -1038,8 +982,164 @@
           "args": []
         },
         "next": {}
+      },
+      "-q": {
+        "type": "option",
+        "count": 1,
+        "description": "表示不能な文字を?で表示",
+        "cmd": {
+          "val": "-q",
+          "args": []
+        },
+        "next": {}
+      },
+      "-v": {
+        "type": "option",
+        "count": 1,
+        "description": "自然数でソートして表示",
+        "cmd": {
+          "val": "-v",
+          "args": []
+        },
+        "next": {}
       }
     }
+  },
+  "-l": {
+    "type": "option",
+    "count": 10,
+    "description": "ファイルの詳細も表示",
+    "cmd": {
+      "val": "-l",
+      "args": []
+    },
+    "next": {
+      "|": {
+        "type": "pipe",
+        "count": 1,
+        "description": "前のコマンドの結果を次に渡す",
+        "cmd": {
+          "val": "|",
+          "args": []
+        },
+        "next": {
+          "grep": {
+            "type": "option",
+            "count": 1,
+            "description": "ファイルから文字列の検索",
+            "cmd": {
+              "val": "grep",
+              "args": [
+                {
+                  "placeholder": "検索ワード"
+                }
+              ]
+            },
+            "next": {}
+          }
+        }
+      },
+      "-F": {
+        "type": "option",
+        "count": 1,
+        "description": "情報の付加",
+        "cmd": {
+          "val": "-F",
+          "args": []
+        },
+        "next": {}
+      },
+      "-a": {
+        "type": "option",
+        "count": 1,
+        "description": "全てのファイルを表示",
+        "cmd": {
+          "val": "-a",
+          "args": []
+        },
+        "next": {}
+      },
+      "-1": {
+        "type": "option",
+        "count": 1,
+        "description": "リストを縦に並べて表示",
+        "cmd": {
+          "val": "-1",
+          "args": []
+        },
+        "next": {}
+      },
+      "-t": {
+        "type": "option",
+        "count": 1,
+        "description": "更新時間順に並べて表示",
+        "cmd": {
+          "val": "-t",
+          "args": []
+        },
+        "next": {}
+      },
+      "-S": {
+        "type": "option",
+        "count": 1,
+        "description": "ファイルサイズ順に並べて表示",
+        "cmd": {
+          "val": "-S",
+          "args": []
+        },
+        "next": {}
+      },
+      "-X": {
+        "type": "option",
+        "count": 1,
+        "description": "拡張子が同じものをまとめて表示",
+        "cmd": {
+          "val": "-X",
+          "args": []
+        },
+        "next": {}
+      },
+      "-R": {
+        "type": "option",
+        "count": 1,
+        "description": "ディレクトリを再帰的に表示",
+        "cmd": {
+          "val": "-R",
+          "args": []
+        },
+        "next": {}
+      },
+      "-q": {
+        "type": "option",
+        "count": 1,
+        "description": "表示不能な文字を?で表示",
+        "cmd": {
+          "val": "-q",
+          "args": []
+        },
+        "next": {}
+      },
+      "-v": {
+        "type": "option",
+        "count": 1,
+        "description": "自然数でソートして表示",
+        "cmd": {
+          "val": "-v",
+          "args": []
+        },
+        "next": {}
+      }
+    }
+  },
+  "-F": {
+    "type": "option",
+    "count": 1,
+    "description": "情報の付加",
+    "cmd": {
+      "val": "-F",
+      "args": []
+    },
+    "next": {}
   },
   "-a": {
     "type": "option",
@@ -1097,6 +1197,26 @@
     "description": "ディレクトリを再帰的に表示",
     "cmd": {
       "val": "-R",
+      "args": []
+    },
+    "next": {}
+  },
+  "-q": {
+    "type": "option",
+    "count": 2,
+    "description": "表示不能な文字を?で表示",
+    "cmd": {
+      "val": "-q",
+      "args": []
+    },
+    "next": {}
+  },
+  "-v": {
+    "type": "option",
+    "count": 2,
+    "description": "自然数でソートして表示",
+    "cmd": {
+      "val": "-v",
       "args": []
     },
     "next": {}

@@ -26,16 +26,23 @@ less [ファイル名]
 more [ファイル名]
 clear
 pwd
+ls |
 ls -l | grep [検索ワード]
+ls -l -F
 ls -l -a
 ls -l -1
 ls -l -t
 ls -l -S
 ls -l -X
 ls -l -R
+ls -l -q
+ls -l -v
 ls -a
 ls -1
 ls -t
 ls -S
 ls -X
 ls -R
+ls -q
+ls -v
+
