@@ -50,7 +50,7 @@ const list = [
     },
     {
         type:"command",
-        description:cmdDescription["rm"],
+        description:cmdDescription["rmm"],
         val:"rm"
     }
 ]
@@ -80,6 +80,11 @@ export default {
     methods: {
         update() {
             var p = []
+
+            if(this.cmdSplit.length == 0){
+                this.$emit("update", JSON.parse(JSON.stringify(list)))
+                return
+            }
         
             if(this.second in model && this.last in model[this.second]["next"]){
                 for(let key of Object.keys(model[this.second]["next"][this.last]["next"])){
@@ -116,8 +121,9 @@ export default {
                 this.$emit("update", JSON.parse(JSON.stringify(p)))
                 return
             }
-
-            this.$emit("update", list)
+            else{
+                this.$emit("update", [])
+            }
         },
         search(){
             let searchList = []
