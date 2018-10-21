@@ -1,7 +1,7 @@
 {
   "git": {
     "type": "command",
-    "count": 7,
+    "count": 9,
     "description": "gitを使用するコマンド",
     "cmd": {
       "val": "git",
@@ -21,27 +21,6 @@
           ]
         },
         "next": {}
-      },
-      "push": {
-        "type": "option",
-        "count": 2,
-        "description": "リモートリポジトリに変更を更新するコマンド",
-        "cmd": {
-          "val": "push",
-          "args": []
-        },
-        "next": {
-          "origin": {
-            "type": "option",
-            "count": 2,
-            "description": "リモートリポジトリのURLの別名",
-            "cmd": {
-              "val": "origin",
-              "args": []
-            },
-            "next": {}
-          }
-        }
       },
       "commit": {
         "type": "option",
@@ -67,6 +46,51 @@
             "next": {}
           }
         }
+      },
+      "push": {
+        "type": "option",
+        "count": 2,
+        "description": "リモートリポジトリに変更を更新するコマンド",
+        "cmd": {
+          "val": "push",
+          "args": []
+        },
+        "next": {
+          "origin": {
+            "type": "option",
+            "count": 2,
+            "description": "リモートリポジトリのURLの別名",
+            "cmd": {
+              "val": "origin",
+              "args": []
+            },
+            "next": {}
+          }
+        }
+      },
+      "init": {
+        "type": "option",
+        "count": 1,
+        "description": "gitのリポジトリを初期化",
+        "cmd": {
+          "val": "init",
+          "args": []
+        },
+        "next": {}
+      },
+      "merge": {
+        "type": "option",
+        "count": 1,
+        "description": "ブランチをマージ",
+        "cmd": {
+          "val": "merge",
+          "args": [
+            {
+              "placeholder": "コミット名"
+            }
+          ]
+        },
+        "next": {}
       },
       "checkout": {
         "type": "option",
@@ -117,6 +141,45 @@
       "args": [
         {
           "placeholder": "ファイル名"
+        }
+      ]
+    },
+    "next": {}
+  },
+  "commit": {
+    "type": "option",
+    "count": 1,
+    "description": "変更をコミットする",
+    "cmd": {
+      "val": "commit",
+      "args": []
+    },
+    "next": {
+      "-m": {
+        "type": "option",
+        "count": 1,
+        "description": "コミットメッセージの追加",
+        "cmd": {
+          "val": "-m",
+          "args": [
+            {
+              "placeholder": "コミットメッセージ"
+            }
+          ]
+        },
+        "next": {}
+      }
+    }
+  },
+  "-m": {
+    "type": "option",
+    "count": 1,
+    "description": "コミットメッセージの追加",
+    "cmd": {
+      "val": "-m",
+      "args": [
+        {
+          "placeholder": "コミットメッセージ"
         }
       ]
     },
@@ -185,40 +248,25 @@
     },
     "next": {}
   },
-  "commit": {
+  "init": {
     "type": "option",
     "count": 1,
-    "description": "変更をコミットする",
+    "description": "gitのリポジトリを初期化",
     "cmd": {
-      "val": "commit",
+      "val": "init",
       "args": []
     },
-    "next": {
-      "-m": {
-        "type": "option",
-        "count": 1,
-        "description": "コミットメッセージの追加",
-        "cmd": {
-          "val": "-m",
-          "args": [
-            {
-              "placeholder": "コミットメッセージ"
-            }
-          ]
-        },
-        "next": {}
-      }
-    }
+    "next": {}
   },
-  "-m": {
+  "merge": {
     "type": "option",
     "count": 1,
-    "description": "コミットメッセージの追加",
+    "description": "ブランチをマージ",
     "cmd": {
-      "val": "-m",
+      "val": "merge",
       "args": [
         {
-          "placeholder": "コミットメッセージ"
+          "placeholder": "コミット名"
         }
       ]
     },
@@ -340,7 +388,7 @@
   },
   "|": {
     "type": "pipe",
-    "count": 3,
+    "count": 4,
     "description": "前のコマンドの結果を次に渡す",
     "cmd": {
       "val": "|",
@@ -380,7 +428,7 @@
       },
       "grep": {
         "type": "command",
-        "count": 1,
+        "count": 2,
         "description": "ファイルから文字列の検索",
         "cmd": {
           "val": "grep",
@@ -558,7 +606,7 @@
   },
   "grep": {
     "type": "command",
-    "count": 1,
+    "count": 2,
     "description": "ファイルから文字列の検索",
     "cmd": {
       "val": "grep",
@@ -741,6 +789,314 @@
     "description": "カレントディレクトリの表示",
     "cmd": {
       "val": "pwd",
+      "args": []
+    },
+    "next": {}
+  },
+  "ls": {
+    "type": "command",
+    "count": 13,
+    "description": "ファイルやディレクトリの情報を表示",
+    "cmd": {
+      "val": "ls",
+      "args": []
+    },
+    "next": {
+      "-l": {
+        "type": "option",
+        "count": 7,
+        "description": "ファイルの詳細も表示",
+        "cmd": {
+          "val": "-l",
+          "args": []
+        },
+        "next": {
+          "|": {
+            "type": "pipe",
+            "count": 1,
+            "description": "前のコマンドの結果を次に渡す",
+            "cmd": {
+              "val": "|",
+              "args": []
+            },
+            "next": {}
+          },
+          "-a": {
+            "type": "option",
+            "count": 1,
+            "description": "全てのファイルを表示",
+            "cmd": {
+              "val": "-a",
+              "args": []
+            },
+            "next": {}
+          },
+          "-1": {
+            "type": "option",
+            "count": 1,
+            "description": "リストを縦に並べて表示",
+            "cmd": {
+              "val": "-1",
+              "args": []
+            },
+            "next": {}
+          },
+          "-t": {
+            "type": "option",
+            "count": 1,
+            "description": "更新時間順に並べて表示",
+            "cmd": {
+              "val": "-t",
+              "args": []
+            },
+            "next": {}
+          },
+          "-S": {
+            "type": "option",
+            "count": 1,
+            "description": "ファイルサイズ順に並べて表示",
+            "cmd": {
+              "val": "-S",
+              "args": []
+            },
+            "next": {}
+          },
+          "-X": {
+            "type": "option",
+            "count": 1,
+            "description": "拡張子が同じものをまとめて表示",
+            "cmd": {
+              "val": "-X",
+              "args": []
+            },
+            "next": {}
+          },
+          "-R": {
+            "type": "option",
+            "count": 1,
+            "description": "ディレクトリを再帰的に表示",
+            "cmd": {
+              "val": "-R",
+              "args": []
+            },
+            "next": {}
+          }
+        }
+      },
+      "-a": {
+        "type": "option",
+        "count": 1,
+        "description": "全てのファイルを表示",
+        "cmd": {
+          "val": "-a",
+          "args": []
+        },
+        "next": {}
+      },
+      "-1": {
+        "type": "option",
+        "count": 1,
+        "description": "リストを縦に並べて表示",
+        "cmd": {
+          "val": "-1",
+          "args": []
+        },
+        "next": {}
+      },
+      "-t": {
+        "type": "option",
+        "count": 1,
+        "description": "更新時間順に並べて表示",
+        "cmd": {
+          "val": "-t",
+          "args": []
+        },
+        "next": {}
+      },
+      "-S": {
+        "type": "option",
+        "count": 1,
+        "description": "ファイルサイズ順に並べて表示",
+        "cmd": {
+          "val": "-S",
+          "args": []
+        },
+        "next": {}
+      },
+      "-X": {
+        "type": "option",
+        "count": 1,
+        "description": "拡張子が同じものをまとめて表示",
+        "cmd": {
+          "val": "-X",
+          "args": []
+        },
+        "next": {}
+      },
+      "-R": {
+        "type": "option",
+        "count": 1,
+        "description": "ディレクトリを再帰的に表示",
+        "cmd": {
+          "val": "-R",
+          "args": []
+        },
+        "next": {}
+      }
+    }
+  },
+  "-l": {
+    "type": "option",
+    "count": 7,
+    "description": "ファイルの詳細も表示",
+    "cmd": {
+      "val": "-l",
+      "args": []
+    },
+    "next": {
+      "|": {
+        "type": "pipe",
+        "count": 1,
+        "description": "前のコマンドの結果を次に渡す",
+        "cmd": {
+          "val": "|",
+          "args": []
+        },
+        "next": {
+          "grep": {
+            "type": "command",
+            "count": 1,
+            "description": "ファイルから文字列の検索",
+            "cmd": {
+              "val": "grep",
+              "args": [
+                {
+                  "placeholder": "検索ワード"
+                }
+              ]
+            },
+            "next": {}
+          }
+        }
+      },
+      "-a": {
+        "type": "option",
+        "count": 1,
+        "description": "全てのファイルを表示",
+        "cmd": {
+          "val": "-a",
+          "args": []
+        },
+        "next": {}
+      },
+      "-1": {
+        "type": "option",
+        "count": 1,
+        "description": "リストを縦に並べて表示",
+        "cmd": {
+          "val": "-1",
+          "args": []
+        },
+        "next": {}
+      },
+      "-t": {
+        "type": "option",
+        "count": 1,
+        "description": "更新時間順に並べて表示",
+        "cmd": {
+          "val": "-t",
+          "args": []
+        },
+        "next": {}
+      },
+      "-S": {
+        "type": "option",
+        "count": 1,
+        "description": "ファイルサイズ順に並べて表示",
+        "cmd": {
+          "val": "-S",
+          "args": []
+        },
+        "next": {}
+      },
+      "-X": {
+        "type": "option",
+        "count": 1,
+        "description": "拡張子が同じものをまとめて表示",
+        "cmd": {
+          "val": "-X",
+          "args": []
+        },
+        "next": {}
+      },
+      "-R": {
+        "type": "option",
+        "count": 1,
+        "description": "ディレクトリを再帰的に表示",
+        "cmd": {
+          "val": "-R",
+          "args": []
+        },
+        "next": {}
+      }
+    }
+  },
+  "-a": {
+    "type": "option",
+    "count": 2,
+    "description": "全てのファイルを表示",
+    "cmd": {
+      "val": "-a",
+      "args": []
+    },
+    "next": {}
+  },
+  "-1": {
+    "type": "option",
+    "count": 2,
+    "description": "リストを縦に並べて表示",
+    "cmd": {
+      "val": "-1",
+      "args": []
+    },
+    "next": {}
+  },
+  "-t": {
+    "type": "option",
+    "count": 2,
+    "description": "更新時間順に並べて表示",
+    "cmd": {
+      "val": "-t",
+      "args": []
+    },
+    "next": {}
+  },
+  "-S": {
+    "type": "option",
+    "count": 2,
+    "description": "ファイルサイズ順に並べて表示",
+    "cmd": {
+      "val": "-S",
+      "args": []
+    },
+    "next": {}
+  },
+  "-X": {
+    "type": "option",
+    "count": 2,
+    "description": "拡張子が同じものをまとめて表示",
+    "cmd": {
+      "val": "-X",
+      "args": []
+    },
+    "next": {}
+  },
+  "-R": {
+    "type": "option",
+    "count": 2,
+    "description": "ディレクトリを再帰的に表示",
+    "cmd": {
+      "val": "-R",
       "args": []
     },
     "next": {}
