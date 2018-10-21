@@ -30,6 +30,16 @@ const list = [
     },
     {
         type: "command",
+        val: "mkdir",
+        description:cmdDescription["mkdir"],
+        args:[
+            {
+                placeholder:"ディレクトリ名"
+            }
+        ]
+    },
+    {
+        type: "command",
         val: "cat",
         description:cmdDescription["cat"],
         args: [
@@ -47,6 +57,11 @@ const list = [
         type:"command",
         description:cmdDescription["pwd"],
         val:"pwd"
+    },
+    {
+        type:"command",
+        description:cmdDescription["ls"],
+        val:"ls"
     },
     {
         type: "command",
