@@ -1,6 +1,6 @@
 {
   "git": {
-    "type": "command",
+    "type": "option",
     "count": 7,
     "description": "gitを使用するコマンド",
     "cmd": {
@@ -187,7 +187,7 @@
     }
   },
   "find": {
-    "type": "command",
+    "type": "option",
     "count": 3,
     "description": "ファイルやディレクトリの検索をする",
     "cmd": {
@@ -303,7 +303,7 @@
         }
       },
       "grep": {
-        "type": "command",
+        "type": "option",
         "count": 1,
         "description": "ファイルから文字列の検索",
         "cmd": {
@@ -350,7 +350,7 @@
     }
   },
   "cat": {
-    "type": "command",
+    "type": "option",
     "count": 3,
     "description": "ファイルを出力",
     "cmd": {
@@ -400,7 +400,7 @@
         },
         "next": {
           "grep": {
-            "type": "command",
+            "type": "option",
             "count": 1,
             "description": "ファイルから文字列の検索",
             "cmd": {
@@ -418,7 +418,7 @@
     }
   },
   "echo": {
-    "type": "command",
+    "type": "option",
     "count": 2,
     "description": "文字列を表示する",
     "cmd": {
@@ -461,7 +461,7 @@
     }
   },
   "rm": {
-    "type": "command",
+    "type": "option",
     "count": 2,
     "description": "ファイルを削除する",
     "cmd": {
