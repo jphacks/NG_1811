@@ -1,5 +1,6 @@
 <template>
     <div class="Main">
+        <Titlebar />
         <Sidebar :blocks="candidate" v-model="searchWord" @inputBlock="inputBlock" />
         <Console :log="log" v-model="inputForm" @send="send" ref="console" />
         <ML :input="inputForm" :searchWord="searchWord" @update="mlupdate" />
@@ -7,6 +8,7 @@
 </template>
 
 <script>
+import Titlebar from "@/components/Titlebar"
 import Console from "@/components/Console"
 import Sidebar from "@/components/Sidebar"
 import ML from "@/components/ML"
@@ -21,7 +23,8 @@ export default {
     components: {
         Console,
         Sidebar,
-        ML
+        ML,
+        Titlebar
     },
     data() {
         return {
@@ -124,7 +127,6 @@ export default {
                 }
                 // console.log(`child process exited with code ${code}`)
             })
-
         },
         mlupdate(list) {
             this.candidate = list
