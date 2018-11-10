@@ -44,10 +44,12 @@ export default {
 
                 else if(target["val"] in path)
                     path = path[target["val"]]["next"]
+                else
+                    path = {}
+
             }
 
             for(let cmd in path){
-
                 if(path[cmd]["type"] == "arg"){
                     rec.push({
                         placeholder:path[cmd]["placeholder"],
@@ -63,15 +65,22 @@ export default {
                 }
             }
 
+            console.log(this.input.length)
             
             if(this.input.length == 0){
+                console.log("in")
                 this.$emit("update",JSON.parse(JSON.stringify(list)))
+                return
             }
             else if(rec.length != 0){
+                console.log("rec")
                 this.$emit("update", JSON.parse(JSON.stringify(rec)))
+                return
             }
             else{
-                this.$emit("update", [])
+                console.log("aa")
+                this.$emit("update", rec)
+                return
             }
         },
         search(){
