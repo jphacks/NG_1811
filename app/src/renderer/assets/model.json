@@ -9,7 +9,7 @@
         "type": "option",
         "weight": 1,
         "next": {
-          "ファイル名": {
+          "@place": {
             "placeholder": "ファイル名",
             "type": "arg",
             "weight": 1,
@@ -27,7 +27,7 @@
             "type": "option",
             "weight": 1,
             "next": {
-              "コミットメッセージ": {
+              "@place": {
                 "placeholder": "コミットメッセージ",
                 "type": "arg",
                 "weight": 1,
@@ -68,7 +68,7 @@
         "type": "option",
         "weight": 1,
         "next": {
-          "コミット名": {
+          "@place": {
             "placeholder": "コミット名",
             "type": "arg",
             "weight": 1,
@@ -81,7 +81,7 @@
         "type": "option",
         "weight": 1,
         "next": {
-          "ブランチ名": {
+          "@place": {
             "placeholder": "ブランチ名",
             "type": "arg",
             "weight": 1,
@@ -94,7 +94,7 @@
         "type": "option",
         "weight": 2,
         "next": {
-          "ファイル名": {
+          "@place": {
             "placeholder": "ファイル名",
             "type": "arg",
             "weight": 1,
@@ -115,37 +115,31 @@
     "type": "command",
     "weight": 3,
     "next": {
-      "検索箇所": {
+      "@place": {
         "placeholder": "検索箇所",
         "type": "arg",
-        "weight": 3,
+        "weight": 1,
         "next": {
           "-name": {
             "val": "-name",
             "type": "option",
-            "weight": 3,
+            "weight": 1,
             "next": {
-              "検索対象": {
+              "@place": {
                 "placeholder": "検索対象",
                 "type": "arg",
-                "weight": 3,
+                "weight": 1,
                 "next": {
                   "|": {
                     "val": "|",
                     "type": "pipe",
-                    "weight": 2,
+                    "weight": 1,
                     "next": {
                       "xargs": {
                         "val": "xargs",
                         "type": "command",
-                        "weight": 2,
+                        "weight": 1,
                         "next": {
-                          "cat": {
-                            "val": "cat",
-                            "type": "option",
-                            "weight": 1,
-                            "next": {}
-                          },
                           "rm": {
                             "val": "rm",
                             "type": "option",
@@ -169,37 +163,11 @@
     "type": "command",
     "weight": 3,
     "next": {
-      "ファイル名": {
+      "@place": {
         "placeholder": "ファイル名",
         "type": "arg",
-        "weight": 3,
+        "weight": 1,
         "next": {
-          ">>": {
-            "val": ">>",
-            "type": "redirect",
-            "weight": 1,
-            "next": {
-              "追加対象": {
-                "placeholder": "追加対象",
-                "type": "arg",
-                "weight": 1,
-                "next": {}
-              }
-            }
-          },
-          ">": {
-            "val": ">",
-            "type": "redirect",
-            "weight": 1,
-            "next": {
-              "上書き対象": {
-                "placeholder": "上書き対象",
-                "type": "arg",
-                "weight": 1,
-                "next": {}
-              }
-            }
-          },
           "|": {
             "val": "|",
             "type": "pipe",
@@ -210,7 +178,7 @@
                 "type": "command",
                 "weight": 1,
                 "next": {
-                  "検索ワード": {
+                  "@place": {
                     "placeholder": "検索ワード",
                     "type": "arg",
                     "weight": 1,
@@ -229,30 +197,17 @@
     "type": "command",
     "weight": 2,
     "next": {
-      "表示文字": {
+      "@place": {
         "placeholder": "表示文字",
         "type": "arg",
-        "weight": 2,
+        "weight": 1,
         "next": {
-          ">>": {
-            "val": ">>",
-            "type": "redirect",
-            "weight": 1,
-            "next": {
-              "追加対象": {
-                "placeholder": "追加対象",
-                "type": "arg",
-                "weight": 1,
-                "next": {}
-              }
-            }
-          },
           ">": {
             "val": ">",
             "type": "redirect",
             "weight": 1,
             "next": {
-              "上書き対象": {
+              "@place": {
                 "placeholder": "上書き対象",
                 "type": "arg",
                 "weight": 1,
@@ -269,7 +224,7 @@
     "type": "command",
     "weight": 1,
     "next": {
-      "移動先ディレクトリ": {
+      "@place": {
         "placeholder": "移動先ディレクトリ",
         "type": "arg",
         "weight": 1,
@@ -282,7 +237,7 @@
     "type": "command",
     "weight": 1,
     "next": {
-      "ファイル名": {
+      "@place": {
         "placeholder": "ファイル名",
         "type": "arg",
         "weight": 1,
@@ -295,7 +250,7 @@
     "type": "command",
     "weight": 3,
     "next": {
-      "ファイル名": {
+      "@place": {
         "placeholder": "ファイル名",
         "type": "arg",
         "weight": 1,
@@ -306,7 +261,7 @@
         "type": "option",
         "weight": 1,
         "next": {
-          "ディレクトリ名": {
+          "@place": {
             "placeholder": "ディレクトリ名",
             "type": "arg",
             "weight": 1,
@@ -319,7 +274,7 @@
         "type": "option",
         "weight": 1,
         "next": {
-          "ファイル名": {
+          "@place": {
             "placeholder": "ファイル名",
             "type": "arg",
             "weight": 1,
@@ -334,7 +289,7 @@
     "type": "command",
     "weight": 1,
     "next": {
-      "ディレクトリ名": {
+      "@place": {
         "placeholder": "ディレクトリ名",
         "type": "arg",
         "weight": 1,
@@ -347,7 +302,7 @@
     "type": "command",
     "weight": 1,
     "next": {
-      "ファイル名": {
+      "@place": {
         "placeholder": "ファイル名",
         "type": "arg",
         "weight": 1,
@@ -360,7 +315,7 @@
     "type": "command",
     "weight": 1,
     "next": {
-      "ファイル名": {
+      "@place": {
         "placeholder": "ファイル名",
         "type": "arg",
         "weight": 1,
@@ -373,7 +328,7 @@
     "type": "command",
     "weight": 1,
     "next": {
-      "ファイル名": {
+      "@place": {
         "placeholder": "ファイル名",
         "type": "arg",
         "weight": 1,
@@ -408,7 +363,7 @@
             "type": "command",
             "weight": 1,
             "next": {
-              "検索ワード": {
+              "@place": {
                 "placeholder": "検索ワード",
                 "type": "arg",
                 "weight": 1,
@@ -425,12 +380,12 @@
     "type": "command",
     "weight": 1,
     "next": {
-      "移動元": {
+      "@place": {
         "placeholder": "移動元",
         "type": "arg",
         "weight": 1,
         "next": {
-          "移動先": {
+          "@place": {
             "placeholder": "移動先",
             "type": "arg",
             "weight": 1,
