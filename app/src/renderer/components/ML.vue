@@ -39,12 +39,12 @@ export default {
             let path = model
             
             for(let target of this.input){
-                if(target["val"] in path){
-                    path = path[target["val"]]["next"]
-                }
-            }
+                if(target["type"] == "arg")
+                    path = path["@place"]["next"]
 
-            // console.log(path)
+                else if(target["val"] in path)
+                    path = path[target["val"]]["next"]
+            }
 
             for(let cmd in path){
 
@@ -61,12 +61,10 @@ export default {
                         type:path[cmd]["type"]
                     })
                 }
-
             }
 
-            console.log(rec)
             
-            if(this.cmdSplit.length == 0){
+            if(this.input.length == 0){
                 this.$emit("update",JSON.parse(JSON.stringify(list)))
             }
             else if(rec.length != 0){
@@ -84,15 +82,6 @@ export default {
             if(this.searchWord != ""){
                 this.$emit("update",searchList)
             }
-        }
-    },
-    computed: {
-        cmdSplit:function(){
-            let cmd = []
-            for(let item of this.input){
-                cmd.push(item.val)
-            }
-            return cmd
         }
     }
 }
