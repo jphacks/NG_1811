@@ -5,9 +5,10 @@
         @input="update"
         @paste="paste"
         :data-placeholder="placeholder"
-        @keydown.enter.prevent="enter"
         @keydown.delete="backspace"
-        @keydown.space.prevent="space"
+        @keydown="keydown"
+        @keydown.space.prevent
+        @keydown.enter.prevent
     />
 </template>
 
@@ -38,8 +39,6 @@ export default {
             this.val = this.value
         },
         val() {
-            // console.log(this.val)
-
             if (this.$el.innerText != this.val) {
                 if (this.val && this.val.length > 0) {
                     this.$el.innerText = this.val
@@ -88,7 +87,15 @@ export default {
                     this.$emit("send")
                 })
             } else {
-                    // this.$emit("focusEnd")
+                // this.$emit("focusEnd")
+            }
+        },
+        keydown(e) {
+            // console.log("suiso", e.keyCode)
+            if (e.keyCode == 32) { //space
+                this.space()
+            } else if (e.keyCode == 13) { //enter
+                this.enter()
             }
         },
         space() {

@@ -9,7 +9,7 @@
         @dragend="drop"
     >
         <!-- 
-         --><Editable class="Arg" v-model="val" @input="update" :placeholder="placeholder" :writable="writable" ref="arg" @focusEnd="focusEnd" />
+         --><Editable class="Edi" v-model="val" @input="update" :placeholder="placeholder" :writable="writable" ref="arg" @focusEnd="focusEnd" />
     </span>
 </template>
 
@@ -27,7 +27,6 @@ export default {
         }
     },
     created: function() {
-        console.log("mount:" + this.value)
         this.val = this.value
     },
     mounted() {
@@ -76,21 +75,11 @@ export default {
 }
 
 .Option {
-    background: rgb(0, 224, 86);
+    background: rgb(217, 255, 0);
 }
 
-.Redirect {
-    background: rgb(255, 136, 0);
-}
 
-.Val {
-    margin-right: 5px;
-}
-.Val:last-child {
-    margin-right: 10px;
-}
-
-.Arg {
+.Edi {
     color: #fff;
     background: rgba(0, 0, 0, 0.3);
     /* border: 1px solid rgb(255, 255, 255); */
@@ -100,5 +89,9 @@ export default {
     line-height: 20px;
     outline: none;
     min-width: 10px;
+
+
+    margin-left: -15px;
+    padding-left: 14px;
 }
 </style>

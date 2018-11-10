@@ -10,17 +10,18 @@
                 @drop="drop"
                 :clickable="clickable"
                 @focus="focus"
+                
             />
             <Phrase
                 v-else-if="block.type == 'option'"
                 type="option"
                 class="option"
                 :val="block.val"
-                :style="{'z-index': 99-i}"
                 :class="{optionwith: i>0&&value[i-1]!=undefined}"
                 @drop="drop"
                 :clickable="clickable"
                 @focus="focus"
+                :style="{'z-index': 99-i}"
             />
             <Phrase
                 v-else-if="block.type == 'redirect'"
@@ -30,6 +31,7 @@
                 @drop="drop"
                 :clickable="clickable"
                 @focus="focus"
+                
             />
             <Arg
                 v-else-if="block.type == 'arg'"
@@ -38,11 +40,11 @@
                 v-model="block.val"
                 :placeholder="block.placeholder"
                 :writable="writable"
-                :style="{'z-index': 99-i}"
                 :class="{optionwith: i>0&&value[i-1]!=undefined}"
                 @drop="drop"
                 :clickable="clickable"
                 @focus="focus"
+                :style="{'z-index': 99-i}"
             />
             <Pipe
                 v-else-if="block.type == 'pipe'"
@@ -54,7 +56,7 @@
         <Editable
             :v-if="writable"
             :writable="writable"
-            :endEditable="true"
+            endEditable="true"
             ref="endEditable"
             v-model="text"
             @inputBlock="inputBlock"
@@ -133,10 +135,9 @@ export default {
 }
 
 .command {
-    z-index: 100;
 }
 .optionwith {
-    margin-left: -17px;
+    margin-left: -20px;
     padding-left: 18px;
 }
 </style>
