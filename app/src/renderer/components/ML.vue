@@ -43,14 +43,16 @@ export default {
             let rec = []
             let path = this.recomended
 
+            // console.log(this.lastCmd)
+
             if(this.lastCmd["type"] == "option"){
-                if(! this.lastCmd["val"] in this.previous){
+                if(!(this.lastCmd["val"] in this.previous)){
                     for(let item in this.previous){
                         if(this.previous[item]["type"] == "arg"){
                             this.input[this.input.length-1]["type"] = "arg"
                             this.input[this.input.length-1]["placeholder"] = this.previous["@place"]["placeholder"]
                         }
-                    }              
+                    }                    
                 }
             }
 
