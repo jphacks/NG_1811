@@ -10,7 +10,7 @@
         "weight": 1,
         "next": {
           "ファイル名": {
-            "val": "ファイル名",
+            "placeholder": "ファイル名",
             "type": "arg",
             "weight": 1,
             "next": {}
@@ -28,7 +28,7 @@
             "weight": 1,
             "next": {
               "コミットメッセージ": {
-                "val": "コミットメッセージ",
+                "placeholder": "コミットメッセージ",
                 "type": "arg",
                 "weight": 1,
                 "next": {}
@@ -69,7 +69,7 @@
         "weight": 1,
         "next": {
           "コミット名": {
-            "val": "コミット名",
+            "placeholder": "コミット名",
             "type": "arg",
             "weight": 1,
             "next": {}
@@ -82,7 +82,7 @@
         "weight": 1,
         "next": {
           "ブランチ名": {
-            "val": "ブランチ名",
+            "placeholder": "ブランチ名",
             "type": "arg",
             "weight": 1,
             "next": {}
@@ -95,7 +95,7 @@
         "weight": 2,
         "next": {
           "ファイル名": {
-            "val": "ファイル名",
+            "placeholder": "ファイル名",
             "type": "arg",
             "weight": 1,
             "next": {}
@@ -116,7 +116,7 @@
     "weight": 3,
     "next": {
       "検索箇所": {
-        "val": "検索箇所",
+        "placeholder": "検索箇所",
         "type": "arg",
         "weight": 3,
         "next": {
@@ -126,7 +126,7 @@
             "weight": 3,
             "next": {
               "検索対象": {
-                "val": "検索対象",
+                "placeholder": "検索対象",
                 "type": "arg",
                 "weight": 3,
                 "next": {
@@ -170,7 +170,7 @@
     "weight": 3,
     "next": {
       "ファイル名": {
-        "val": "ファイル名",
+        "placeholder": "ファイル名",
         "type": "arg",
         "weight": 3,
         "next": {
@@ -180,7 +180,7 @@
             "weight": 1,
             "next": {
               "追加対象": {
-                "val": "追加対象",
+                "placeholder": "追加対象",
                 "type": "arg",
                 "weight": 1,
                 "next": {}
@@ -193,7 +193,7 @@
             "weight": 1,
             "next": {
               "上書き対象": {
-                "val": "上書き対象",
+                "placeholder": "上書き対象",
                 "type": "arg",
                 "weight": 1,
                 "next": {}
@@ -211,7 +211,7 @@
                 "weight": 1,
                 "next": {
                   "検索ワード": {
-                    "val": "検索ワード",
+                    "placeholder": "検索ワード",
                     "type": "arg",
                     "weight": 1,
                     "next": {}
@@ -230,7 +230,7 @@
     "weight": 2,
     "next": {
       "表示文字": {
-        "val": "表示文字",
+        "placeholder": "表示文字",
         "type": "arg",
         "weight": 2,
         "next": {
@@ -240,7 +240,7 @@
             "weight": 1,
             "next": {
               "追加対象": {
-                "val": "追加対象",
+                "placeholder": "追加対象",
                 "type": "arg",
                 "weight": 1,
                 "next": {}
@@ -253,7 +253,7 @@
             "weight": 1,
             "next": {
               "上書き対象": {
-                "val": "上書き対象",
+                "placeholder": "上書き対象",
                 "type": "arg",
                 "weight": 1,
                 "next": {}
@@ -270,7 +270,7 @@
     "weight": 1,
     "next": {
       "移動先ディレクトリ": {
-        "val": "移動先ディレクトリ",
+        "placeholder": "移動先ディレクトリ",
         "type": "arg",
         "weight": 1,
         "next": {}
@@ -283,7 +283,7 @@
     "weight": 1,
     "next": {
       "ファイル名": {
-        "val": "ファイル名",
+        "placeholder": "ファイル名",
         "type": "arg",
         "weight": 1,
         "next": {}
@@ -296,7 +296,7 @@
     "weight": 3,
     "next": {
       "ファイル名": {
-        "val": "ファイル名",
+        "placeholder": "ファイル名",
         "type": "arg",
         "weight": 1,
         "next": {}
@@ -307,7 +307,7 @@
         "weight": 1,
         "next": {
           "ディレクトリ名": {
-            "val": "ディレクトリ名",
+            "placeholder": "ディレクトリ名",
             "type": "arg",
             "weight": 1,
             "next": {}
@@ -320,7 +320,7 @@
         "weight": 1,
         "next": {
           "ファイル名": {
-            "val": "ファイル名",
+            "placeholder": "ファイル名",
             "type": "arg",
             "weight": 1,
             "next": {}
@@ -335,7 +335,7 @@
     "weight": 1,
     "next": {
       "ディレクトリ名": {
-        "val": "ディレクトリ名",
+        "placeholder": "ディレクトリ名",
         "type": "arg",
         "weight": 1,
         "next": {}
@@ -348,7 +348,7 @@
     "weight": 1,
     "next": {
       "ファイル名": {
-        "val": "ファイル名",
+        "placeholder": "ファイル名",
         "type": "arg",
         "weight": 1,
         "next": {}
@@ -361,7 +361,7 @@
     "weight": 1,
     "next": {
       "ファイル名": {
-        "val": "ファイル名",
+        "placeholder": "ファイル名",
         "type": "arg",
         "weight": 1,
         "next": {}
@@ -374,7 +374,7 @@
     "weight": 1,
     "next": {
       "ファイル名": {
-        "val": "ファイル名",
+        "placeholder": "ファイル名",
         "type": "arg",
         "weight": 1,
         "next": {}
@@ -409,7 +409,7 @@
             "weight": 1,
             "next": {
               "検索ワード": {
-                "val": "検索ワード",
+                "placeholder": "検索ワード",
                 "type": "arg",
                 "weight": 1,
                 "next": {}
@@ -426,12 +426,12 @@
     "weight": 1,
     "next": {
       "移動元": {
-        "val": "移動元",
+        "placeholder": "移動元",
         "type": "arg",
         "weight": 1,
         "next": {
           "移動先": {
-            "val": "移動先",
+            "placeholder": "移動先",
             "type": "arg",
             "weight": 1,
             "next": {}
