@@ -41,6 +41,7 @@ export default {
             deep: true,
             handler() {
                 this.inputArr = this.formulaToArray(this.inputForm)
+                console.log("水素の音:", this.inputForm)
                 // console.log(this.inputArr)
             }
         }
@@ -59,6 +60,9 @@ export default {
                         s.push(block.val)
                         break
                     case "option":
+                        s.push(block.val)
+                        break
+                    case "arg":
                         s.push(block.val)
                         break
                     case "text":

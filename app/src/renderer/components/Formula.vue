@@ -7,7 +7,6 @@
                 type="command"
                 class="command"
                 :val="block.val"
-                v-model="block.args"
                 :writable="writable"
                 @drop="drop"
                 :clickable="clickable"
@@ -18,7 +17,19 @@
                 type="option"
                 class="option"
                 :val="block.val"
-                v-model="block.args"
+                :writable="writable"
+                :style="{'z-index': 99-i}"
+                :class="{optionwith: i>0&&value[i-1]!=undefined}"
+                @drop="drop"
+                :clickable="clickable"
+                @focus="focus"
+            />
+            <Arg
+                v-else-if="block.type == 'arg'"
+                type="option"
+                class="option"
+                v-model="block.val"
+                :placeholder="block.placeholder"
                 :writable="writable"
                 :style="{'z-index': 99-i}"
                 :class="{optionwith: i>0&&value[i-1]!=undefined}"
@@ -59,12 +70,14 @@
 
 <script>
 import Phrase from "@/components/Formula/Phrase"
+import Arg from "@/components/Formula/Arg"
 import Editable from "@/components/Formula/Editable"
 import Pipe from "@/components/Formula/Pipe"
 
 export default {
     components: {
         Phrase,
+        Arg,
         Editable,
         Pipe
     },

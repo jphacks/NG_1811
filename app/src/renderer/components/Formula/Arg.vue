@@ -1,17 +1,15 @@
 <template>
     <span
-        class="Phrase"
+        class="Phrase Option"
         :class="{
-            Command: type == 'command',
-            Option: type == 'option',
-            Redirect: type == 'redirect',
             clickable: clickable
             }"
         @mousedown.stop="click"
         :draggable="clickable"
         @dragend="drop"
     >
-        <span class="Val">{{val}}</span>
+        <!-- 
+         --><Editable class="Arg" v-model="val" @input="update" :placeholder="placeholder" :writable="writable" ref="arg" @focusEnd="focusEnd" />
     </span>
 </template>
 
@@ -22,14 +20,22 @@ export default {
     components: {
         Editable
     },
-    props: ["val", "value", "type", "writable", "clickable"],
+    props: ["value", "type", "writable", "clickable", "placeholder"],
     data() {
-        return {}
+        return {
+            val: ""
+        }
+    },
+    mounted: function() {
+        this.val = this.value
     },
     mounted() {
         // console.log(this.$refs.arg.focus())
     },
     methods: {
+        update(e) {
+            this.$emit("input", this.val)
+        },
         click() {},
         drop() {
             this.$emit("drop")
@@ -83,4 +89,15 @@ export default {
     margin-right: 10px;
 }
 
+.Arg {
+    color: #fff;
+    background: rgba(0, 0, 0, 0.3);
+    /* border: 1px solid rgb(255, 255, 255); */
+    border-radius: 30px;
+    padding: 0px 8px;
+    margin-right: 2px;
+    line-height: 20px;
+    outline: none;
+    min-width: 10px;
+}
 </style>
