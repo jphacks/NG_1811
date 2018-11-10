@@ -1,7 +1,8 @@
 <template>
     <div class="Sidebar">
         <div class="header">
-            <input type="text" :value="value" @input="updateText" placeholder="検索" class="searchBox" />
+            <input type="text" :value="value" @input="updateText" placeholder="コマンドを検索" class="searchBox" />
+            <Menu />
         </div>
         <div class="contents">
             <div class="item" v-for="block of blocks">
@@ -17,9 +18,12 @@
 <script>
 import Formula from "./Formula"
 
+import Menu from "@/components/Menu"
+
 export default {
     components: {
-        Formula
+        Formula,
+        Menu
     },
     props: ["blocks", "value"],
     data() {
@@ -79,7 +83,7 @@ export default {
 }
 
 .searchBox {
-    margin: 10px auto;
+    margin: 10px 4px;
     display: block;
     border: none;
     margin-top: 38px;
@@ -92,7 +96,7 @@ export default {
     /* border: 1px solid #888; */
     color: white;
     background: rgba(255, 255, 255, 0.1);
-    width: 200px;
+    width: 190px;
 }
 .searchBox::placeholder {
     color: rgba(255, 255, 255, 0.603);

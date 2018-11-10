@@ -11,7 +11,6 @@
     left: 0;
     right: 0;
     z-index: 200;
-
     -webkit-app-region: drag;
 }
 
