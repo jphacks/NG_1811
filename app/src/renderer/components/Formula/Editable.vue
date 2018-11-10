@@ -19,7 +19,7 @@ export default {
             val: ""
         }
     },
-    mounted: function() {
+    created: function() {
         this.val = this.value
     },
     watch: {

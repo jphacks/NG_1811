@@ -26,7 +26,8 @@ export default {
             val: ""
         }
     },
-    mounted: function() {
+    created: function() {
+        console.log("mount:" + this.value)
         this.val = this.value
     },
     mounted() {
