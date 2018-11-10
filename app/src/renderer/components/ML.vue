@@ -47,11 +47,21 @@ export default {
             // console.log(path)
 
             for(let cmd in path){
-                rec.push({
-                    val:cmd,
-                    description:cmdDescription["git"],
-                    type:path[cmd]["type"]
-                })
+
+                if(path[cmd]["type"] == "arg"){
+                    rec.push({
+                        placeholder:path[cmd]["placeholder"],
+                        description:cmdDescription["git"],
+                        type:path[cmd]["type"]})
+                }
+                else{
+                    rec.push({
+                        val:cmd,
+                        description:cmdDescription["git"],
+                        type:path[cmd]["type"]
+                    })
+                }
+
             }
 
             console.log(rec)
