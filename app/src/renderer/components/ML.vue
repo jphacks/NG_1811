@@ -16,7 +16,7 @@ const list = [
 ]
 export default {
     props: ["input","searchWord"],
-    watch: {
+    watch:{
         input: {
             deep: true,
             handler() {
@@ -33,17 +33,10 @@ export default {
     mounted() {
         this.update()
     },
-    data:function(){
-        return {
-            previewPath:[]
-        }
-    },
     methods: {
         update() {
             let rec = []
             let path = this.recomended
-
-            // console.log(this.lastCmd)
 
             if(this.lastCmd["type"] == "option"){
                 if(!(this.lastCmd["val"] in this.previous)){
@@ -99,9 +92,9 @@ export default {
             for(let i = 0;i < this.input.length;i++){
                 target = this.input[i]
                 if(target["type"] == "arg")
-                    path = path["@place"]["next"]
+                    path = path["@place"]["@next"]
                 else if(target["val"] in path)
-                    path = path[target["val"]]["next"]
+                    path = path[target["val"]]["@next"]
                 else
                     path = {}
             }
@@ -113,9 +106,9 @@ export default {
             for(let i = 0;i < this.input.length - 1;i++){
                 target = this.input[i]
                 if(target["type"] == "arg")
-                    path = path["@place"]["next"]
+                    path = path["@place"]["@next"]
                 else if(target["val"] in path)
-                    path = path[target["val"]]["next"]
+                    path = path[target["val"]]["@next"]
                 else
                     path = {}
             }
