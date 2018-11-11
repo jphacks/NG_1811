@@ -5,7 +5,6 @@
 
 <script>
 import model from "../assets/model.json"
-import cmdDescription from "../assets/cmdDescription.json"
 
 const list = [
     {
