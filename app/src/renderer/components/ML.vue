@@ -51,7 +51,6 @@ export default {
 
 
             for(let cmd in path){
-                console.log(path[cmd])
                 if(path[cmd]["type"] == "arg"){
                     rec.push({
                         placeholder:path[cmd]["placeholder"],
