@@ -49,7 +49,6 @@ export default {
                 }
             }
 
-
             for(let cmd in path){
                 if(path[cmd]["type"] == "arg"){
                     rec.push({
@@ -78,9 +77,19 @@ export default {
         },
         search(){
             let searchList = []
-            return 
+            
+            if(this.searchWord.length == 0){
+                this.update() 
+            }
+        
             for(let cmd in model){
-                
+                if(model[cmd]["des"].includes(this.searchWord) || this.searchWord.includes(cmd)){
+                    searchList.push({
+                        val:cmd,
+                        description:model[cmd]["des"],
+                        type:model[cmd]["type"]
+                    })
+                }
             }
             if(this.searchWord != ""){
                 this.$emit("update",searchList)
