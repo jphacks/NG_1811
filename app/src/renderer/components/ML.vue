@@ -51,16 +51,17 @@ export default {
 
 
             for(let cmd in path){
+                console.log(path[cmd])
                 if(path[cmd]["type"] == "arg"){
                     rec.push({
                         placeholder:path[cmd]["placeholder"],
-                        description:cmdDescription["git"],
+                        description:path[cmd]["des"],
                         type:path[cmd]["type"]})
                 }
                 else{
                     rec.push({
                         val:cmd,
-                        description:cmdDescription["git"],
+                        description:path[cmd]["des"],
                         type:path[cmd]["type"]
                     })
                 }
@@ -70,7 +71,7 @@ export default {
                 this.$emit("update",JSON.parse(JSON.stringify(list)))
             }
             else if(rec.length != 0){
-                this.$emit("update", JSON.parse(JSON.stringify(rec)))
+                this.$emit("update", JSON.parse(JSON.stjringify(rec)))
             }
             else{
                 this.$emit("update", rec)
@@ -78,9 +79,10 @@ export default {
         },
         search(){
             let searchList = []
-
-            return
-            
+            return 
+            for(let cmd in model){
+                
+            }
             if(this.searchWord != ""){
                 this.$emit("update",searchList)
             }
