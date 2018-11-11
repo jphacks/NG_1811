@@ -9,7 +9,7 @@ import model from "../assets/model.json"
 const list = [
     {
         type:"command",
-        description:cmdDescription["git"],
+        description:model["git"]["des"],
         val:"git"
     }
 ]
