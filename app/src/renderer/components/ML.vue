@@ -71,7 +71,7 @@ export default {
                 this.$emit("update",JSON.parse(JSON.stringify(list)))
             }
             else if(rec.length != 0){
-                this.$emit("update", JSON.parse(JSON.stjringify(rec)))
+                this.$emit("update", JSON.parse(JSON.stringify(rec)))
             }
             else{
                 this.$emit("update", rec)
