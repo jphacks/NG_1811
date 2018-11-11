@@ -1,1224 +1,443 @@
 {
   "git": {
-    "type": "option",
-    "count": 9,
-    "description": "gitを使用するコマンド",
-    "cmd": {
-      "val": "git",
-      "args": []
-    },
+    "val": "git",
+    "type": "command",
+    "weight": 10,
     "next": {
       "add": {
+        "val": "add",
         "type": "option",
-        "count": 1,
-        "description": "変更をステージする",
-        "cmd": {
-          "val": "add",
-          "args": [
-            {
-              "placeholder": "ファイル名"
-            }
-          ]
-        },
-        "next": {}
+        "weight": 1,
+        "next": {
+          "ファイル名": {
+            "val": "ファイル名",
+            "type": "arg",
+            "weight": 1,
+            "next": {}
+          }
+        }
       },
       "commit": {
+        "val": "commit",
         "type": "option",
-        "count": 1,
-        "description": "変更をコミットする",
-        "cmd": {
-          "val": "commit",
-          "args": []
-        },
+        "weight": 1,
         "next": {
           "-m": {
+            "val": "-m",
             "type": "option",
-            "count": 1,
-            "description": "コミットメッセージの追加",
-            "cmd": {
-              "val": "-m",
-              "args": [
-                {
-                  "placeholder": "コミットメッセージ"
-                }
-              ]
-            },
-            "next": {}
+            "weight": 1,
+            "next": {
+              "コミットメッセージ": {
+                "val": "コミットメッセージ",
+                "type": "arg",
+                "weight": 1,
+                "next": {}
+              }
+            }
           }
         }
       },
       "push": {
+        "val": "push",
         "type": "option",
-        "count": 2,
-        "description": "リモートリポジトリに変更を更新するコマンド",
-        "cmd": {
-          "val": "push",
-          "args": []
-        },
+        "weight": 2,
         "next": {
           "origin": {
+            "val": "origin",
             "type": "option",
-            "count": 2,
-            "description": "リモートリポジトリのURLの別名",
-            "cmd": {
-              "val": "origin",
-              "args": []
-            },
-            "next": {}
+            "weight": 2,
+            "next": {
+              "master": {
+                "val": "master",
+                "type": "option",
+                "weight": 2,
+                "next": {}
+              }
+            }
           }
         }
       },
       "init": {
+        "val": "init",
         "type": "option",
-        "count": 1,
-        "description": "gitのリポジトリを初期化",
-        "cmd": {
-          "val": "init",
-          "args": []
-        },
+        "weight": 1,
         "next": {}
       },
       "merge": {
+        "val": "merge",
         "type": "option",
-        "count": 1,
-        "description": "ブランチをマージ",
-        "cmd": {
-          "val": "merge",
-          "args": [
-            {
-              "placeholder": "コミット名"
-            }
-          ]
-        },
-        "next": {}
+        "weight": 1,
+        "next": {
+          "コミット名": {
+            "val": "コミット名",
+            "type": "arg",
+            "weight": 1,
+            "next": {}
+          }
+        }
       },
       "checkout": {
+        "val": "checkout",
         "type": "option",
-        "count": 1,
-        "description": "ブランチを切り替える",
-        "cmd": {
-          "val": "checkout",
-          "args": [
-            {
-              "placeholder": "ブランチ名"
-            }
-          ]
-        },
-        "next": {}
+        "weight": 1,
+        "next": {
+          "ブランチ名": {
+            "val": "ブランチ名",
+            "type": "arg",
+            "weight": 1,
+            "next": {}
+          }
+        }
       },
       "diff": {
+        "val": "diff",
         "type": "option",
-        "count": 1,
-        "description": "gitの差分を表示する",
-        "cmd": {
-          "val": "diff",
-          "args": [
-            {
-              "placeholder": "ファイル名"
-            }
-          ]
-        },
-        "next": {}
+        "weight": 2,
+        "next": {
+          "ファイル名": {
+            "val": "ファイル名",
+            "type": "arg",
+            "weight": 1,
+            "next": {}
+          }
+        }
       },
       "log": {
+        "val": "log",
         "type": "option",
-        "count": 1,
-        "description": "gitのlogを表示するコマンド",
-        "cmd": {
-          "val": "log",
-          "args": []
-        },
+        "weight": 1,
         "next": {}
       }
     }
-  },
-  "add": {
-    "type": "option",
-    "count": 1,
-    "description": "変更をステージする",
-    "cmd": {
-      "val": "add",
-      "args": [
-        {
-          "placeholder": "ファイル名"
-        }
-      ]
-    },
-    "next": {}
-  },
-  "commit": {
-    "type": "option",
-    "count": 1,
-    "description": "変更をコミットする",
-    "cmd": {
-      "val": "commit",
-      "args": []
-    },
-    "next": {
-      "-m": {
-        "type": "option",
-        "count": 1,
-        "description": "コミットメッセージの追加",
-        "cmd": {
-          "val": "-m",
-          "args": [
-            {
-              "placeholder": "コミットメッセージ"
-            }
-          ]
-        },
-        "next": {}
-      }
-    }
-  },
-  "-m": {
-    "type": "option",
-    "count": 1,
-    "description": "コミットメッセージの追加",
-    "cmd": {
-      "val": "-m",
-      "args": [
-        {
-          "placeholder": "コミットメッセージ"
-        }
-      ]
-    },
-    "next": {}
-  },
-  "push": {
-    "type": "option",
-    "count": 2,
-    "description": "リモートリポジトリに変更を更新するコマンド",
-    "cmd": {
-      "val": "push",
-      "args": []
-    },
-    "next": {
-      "origin": {
-        "type": "option",
-        "count": 2,
-        "description": "リモートリポジトリのURLの別名",
-        "cmd": {
-          "val": "origin",
-          "args": []
-        },
-        "next": {
-          "master": {
-            "type": "option",
-            "count": 2,
-            "description": "masterブランチ",
-            "cmd": {
-              "val": "master",
-              "args": []
-            },
-            "next": {}
-          }
-        }
-      }
-    }
-  },
-  "origin": {
-    "type": "option",
-    "count": 2,
-    "description": "リモートリポジトリのURLの別名",
-    "cmd": {
-      "val": "origin",
-      "args": []
-    },
-    "next": {
-      "master": {
-        "type": "option",
-        "count": 2,
-        "description": "masterブランチ",
-        "cmd": {
-          "val": "master",
-          "args": []
-        },
-        "next": {}
-      }
-    }
-  },
-  "master": {
-    "type": "option",
-    "count": 2,
-    "description": "masterブランチ",
-    "cmd": {
-      "val": "master",
-      "args": []
-    },
-    "next": {}
-  },
-  "init": {
-    "type": "option",
-    "count": 1,
-    "description": "gitのリポジトリを初期化",
-    "cmd": {
-      "val": "init",
-      "args": []
-    },
-    "next": {}
-  },
-  "merge": {
-    "type": "option",
-    "count": 1,
-    "description": "ブランチをマージ",
-    "cmd": {
-      "val": "merge",
-      "args": [
-        {
-          "placeholder": "コミット名"
-        }
-      ]
-    },
-    "next": {}
-  },
-  "checkout": {
-    "type": "option",
-    "count": 1,
-    "description": "ブランチを切り替える",
-    "cmd": {
-      "val": "checkout",
-      "args": [
-        {
-          "placeholder": "ブランチ名"
-        }
-      ]
-    },
-    "next": {}
-  },
-  "diff": {
-    "type": "option",
-    "count": 1,
-    "description": "gitの差分を表示する",
-    "cmd": {
-      "val": "diff",
-      "args": [
-        {
-          "placeholder": "ファイル名"
-        }
-      ]
-    },
-    "next": {}
-  },
-  "log": {
-    "type": "option",
-    "count": 1,
-    "description": "gitのlogを表示するコマンド",
-    "cmd": {
-      "val": "log",
-      "args": []
-    },
-    "next": {}
   },
   "find": {
-    "type": "option",
-    "count": 3,
-    "description": "ファイルやディレクトリの検索をする",
-    "cmd": {
-      "val": "find",
-      "args": [
-        {
-          "placeholder": "検索箇所"
-        }
-      ]
-    },
+    "val": "find",
+    "type": "command",
+    "weight": 3,
     "next": {
-      "-name": {
-        "type": "option",
-        "count": 3,
-        "description": "ファイルやディレクトリの名前の指定",
-        "cmd": {
-          "val": "-name",
-          "args": [
-            {
-              "placeholder": "検索対象"
+      "検索箇所": {
+        "val": "検索箇所",
+        "type": "arg",
+        "weight": 3,
+        "next": {
+          "-name": {
+            "val": "-name",
+            "type": "option",
+            "weight": 3,
+            "next": {
+              "検索対象": {
+                "val": "検索対象",
+                "type": "arg",
+                "weight": 3,
+                "next": {
+                  "|": {
+                    "val": "|",
+                    "type": "pipe",
+                    "weight": 2,
+                    "next": {
+                      "xargs": {
+                        "val": "xargs",
+                        "type": "command",
+                        "weight": 2,
+                        "next": {
+                          "cat": {
+                            "val": "cat",
+                            "type": "option",
+                            "weight": 1,
+                            "next": {}
+                          },
+                          "rm": {
+                            "val": "rm",
+                            "type": "option",
+                            "weight": 1,
+                            "next": {}
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
             }
-          ]
-        },
-        "next": {
-          "|": {
-            "type": "pipe",
-            "count": 2,
-            "description": "前のコマンドの結果を次に渡す",
-            "cmd": {
-              "val": "|",
-              "args": []
-            },
-            "next": {}
           }
         }
-      }
-    }
-  },
-  "-name": {
-    "type": "option",
-    "count": 3,
-    "description": "ファイルやディレクトリの名前の指定",
-    "cmd": {
-      "val": "-name",
-      "args": [
-        {
-          "placeholder": "検索対象"
-        }
-      ]
-    },
-    "next": {
-      "|": {
-        "type": "pipe",
-        "count": 2,
-        "description": "前のコマンドの結果を次に渡す",
-        "cmd": {
-          "val": "|",
-          "args": []
-        },
-        "next": {
-          "xargs": {
-            "type": "option",
-            "count": 2,
-            "description": "標準入力やファイルからコマンドラインを作成して実行",
-            "cmd": {
-              "val": "xargs",
-              "args": []
-            },
-            "next": {}
-          }
-        }
-      }
-    }
-  },
-  "|": {
-    "type": "pipe",
-    "count": 5,
-    "description": "前のコマンドの結果を次に渡す",
-    "cmd": {
-      "val": "|",
-      "args": []
-    },
-    "next": {
-      "xargs": {
-        "type": "option",
-        "count": 2,
-        "description": "標準入力やファイルからコマンドラインを作成して実行",
-        "cmd": {
-          "val": "xargs",
-          "args": []
-        },
-        "next": {
-          "cat": {
-            "type": "option",
-            "count": 1,
-            "description": "ファイルを出力",
-            "cmd": {
-              "val": "cat",
-              "args": []
-            },
-            "next": {}
-          },
-          "rm": {
-            "type": "option",
-            "count": 1,
-            "description": "ファイルを削除する",
-            "cmd": {
-              "val": "rm",
-              "args": []
-            },
-            "next": {}
-          }
-        }
-      },
-      "grep": {
-        "type": "option",
-        "count": 2,
-        "description": "ファイルから文字列の検索",
-        "cmd": {
-          "val": "grep",
-          "args": [
-            {
-              "placeholder": "検索ワード"
-            }
-          ]
-        },
-        "next": {}
-      }
-    }
-  },
-  "xargs": {
-    "type": "option",
-    "count": 2,
-    "description": "標準入力やファイルからコマンドラインを作成して実行",
-    "cmd": {
-      "val": "xargs",
-      "args": []
-    },
-    "next": {
-      "cat": {
-        "type": "option",
-        "count": 1,
-        "description": "ファイルを出力",
-        "cmd": {
-          "val": "cat",
-          "args": []
-        },
-        "next": {}
-      },
-      "rm": {
-        "type": "option",
-        "count": 1,
-        "description": "ファイルを削除する",
-        "cmd": {
-          "val": "rm",
-          "args": []
-        },
-        "next": {}
       }
     }
   },
   "cat": {
-    "type": "option",
-    "count": 4,
-    "description": "ファイルを出力",
-    "cmd": {
-      "val": "cat",
-      "args": []
-    },
+    "val": "cat",
+    "type": "command",
+    "weight": 3,
     "next": {
-      ">>": {
-        "type": "redirect",
-        "count": 1,
-        "description": "コマンドの結果をファイルに書き込む(追加)",
-        "cmd": {
-          "val": ">>",
-          "args": [
-            {
-              "placeholder": "追加対象"
-            }
-          ]
-        },
-        "next": {}
-      },
-      ">": {
-        "type": "redirect",
-        "count": 1,
-        "description": "ファイルの末尾に追加(上書き）",
-        "cmd": {
-          "val": ">",
-          "args": [
-            {
-              "placeholder": "上書き対象"
-            }
-          ]
-        },
-        "next": {}
-      },
-      "|": {
-        "type": "pipe",
-        "count": 1,
-        "description": "前のコマンドの結果を次に渡す",
-        "cmd": {
-          "val": "|",
-          "args": []
-        },
+      "ファイル名": {
+        "val": "ファイル名",
+        "type": "arg",
+        "weight": 3,
         "next": {
-          "grep": {
-            "type": "option",
-            "count": 1,
-            "description": "ファイルから文字列の検索",
-            "cmd": {
-              "val": "grep",
-              "args": [
-                {
-                  "placeholder": "検索ワード"
+          ">>": {
+            "val": ">>",
+            "type": "redirect",
+            "weight": 1,
+            "next": {
+              "追加対象": {
+                "val": "追加対象",
+                "type": "arg",
+                "weight": 1,
+                "next": {}
+              }
+            }
+          },
+          ">": {
+            "val": ">",
+            "type": "redirect",
+            "weight": 1,
+            "next": {
+              "上書き対象": {
+                "val": "上書き対象",
+                "type": "arg",
+                "weight": 1,
+                "next": {}
+              }
+            }
+          },
+          "|": {
+            "val": "|",
+            "type": "pipe",
+            "weight": 1,
+            "next": {
+              "grep": {
+                "val": "grep",
+                "type": "command",
+                "weight": 1,
+                "next": {
+                  "検索ワード": {
+                    "val": "検索ワード",
+                    "type": "arg",
+                    "weight": 1,
+                    "next": {}
+                  }
                 }
-              ]
-            },
-            "next": {}
+              }
+            }
           }
         }
       }
     }
   },
-  "rm": {
-    "type": "option",
-    "count": 4,
-    "description": "ファイルを削除する",
-    "cmd": {
-      "val": "rm",
-      "args": []
-    },
-    "next": {
-      "-r": {
-        "type": "option",
-        "count": 1,
-        "description": "ディレクトリを削除",
-        "cmd": {
-          "val": "-r",
-          "args": [
-            {
-              "placeholder": "ディレクトリ名"
-            }
-          ]
-        },
-        "next": {}
-      },
-      "-f": {
-        "type": "option",
-        "count": 1,
-        "description": "エラーメッセージを表示しない",
-        "cmd": {
-          "val": "-f",
-          "args": [
-            {
-              "placeholder": "ファイル名"
-            }
-          ]
-        },
-        "next": {}
-      }
-    }
-  },
-  ">>": {
-    "type": "redirect",
-    "count": 2,
-    "description": "コマンドの結果をファイルに書き込む(追加)",
-    "cmd": {
-      "val": ">>",
-      "args": [
-        {
-          "placeholder": "追加対象"
-        }
-      ]
-    },
-    "next": {}
-  },
-  ">": {
-    "type": "redirect",
-    "count": 2,
-    "description": "ファイルの末尾に追加(上書き）",
-    "cmd": {
-      "val": ">",
-      "args": [
-        {
-          "placeholder": "上書き対象"
-        }
-      ]
-    },
-    "next": {}
-  },
-  "grep": {
-    "type": "option",
-    "count": 2,
-    "description": "ファイルから文字列の検索",
-    "cmd": {
-      "val": "grep",
-      "args": [
-        {
-          "placeholder": "検索ワード"
-        }
-      ]
-    },
-    "next": {}
-  },
   "echo": {
-    "type": "option",
-    "count": 2,
-    "description": "文字列を表示する",
-    "cmd": {
-      "val": "echo",
-      "args": [
-        {
-          "placeholder": "表示文字"
-        }
-      ]
-    },
+    "val": "echo",
+    "type": "command",
+    "weight": 2,
     "next": {
-      ">>": {
-        "type": "redirect",
-        "count": 1,
-        "description": "コマンドの結果をファイルに書き込む(追加)",
-        "cmd": {
-          "val": ">>",
-          "args": [
-            {
-              "placeholder": "追加対象"
+      "表示文字": {
+        "val": "表示文字",
+        "type": "arg",
+        "weight": 2,
+        "next": {
+          ">>": {
+            "val": ">>",
+            "type": "redirect",
+            "weight": 1,
+            "next": {
+              "追加対象": {
+                "val": "追加対象",
+                "type": "arg",
+                "weight": 1,
+                "next": {}
+              }
             }
-          ]
-        },
-        "next": {}
-      },
-      ">": {
-        "type": "redirect",
-        "count": 1,
-        "description": "ファイルの末尾に追加(上書き）",
-        "cmd": {
-          "val": ">",
-          "args": [
-            {
-              "placeholder": "上書き対象"
+          },
+          ">": {
+            "val": ">",
+            "type": "redirect",
+            "weight": 1,
+            "next": {
+              "上書き対象": {
+                "val": "上書き対象",
+                "type": "arg",
+                "weight": 1,
+                "next": {}
+              }
             }
-          ]
-        },
-        "next": {}
+          }
+        }
       }
     }
   },
   "cd": {
-    "type": "option",
-    "count": 1,
-    "description": "ディレクトリの移動",
-    "cmd": {
-      "val": "cd",
-      "args": [
-        {
-          "placeholder": "移動先ディレクトリ"
-        }
-      ]
-    },
-    "next": {}
+    "val": "cd",
+    "type": "command",
+    "weight": 1,
+    "next": {
+      "移動先ディレクトリ": {
+        "val": "移動先ディレクトリ",
+        "type": "arg",
+        "weight": 1,
+        "next": {}
+      }
+    }
   },
   "touch": {
-    "type": "option",
-    "count": 1,
-    "description": "ファイルの作成",
-    "cmd": {
-      "val": "touch",
-      "args": [
-        {
-          "placeholder": "ファイル名"
-        }
-      ]
-    },
-    "next": {}
+    "val": "touch",
+    "type": "command",
+    "weight": 1,
+    "next": {
+      "ファイル名": {
+        "val": "ファイル名",
+        "type": "arg",
+        "weight": 1,
+        "next": {}
+      }
+    }
   },
-  "-r": {
-    "type": "option",
-    "count": 1,
-    "description": "ディレクトリを削除",
-    "cmd": {
-      "val": "-r",
-      "args": [
-        {
-          "placeholder": "ディレクトリ名"
+  "rm": {
+    "val": "rm",
+    "type": "command",
+    "weight": 3,
+    "next": {
+      "ファイル名": {
+        "val": "ファイル名",
+        "type": "arg",
+        "weight": 1,
+        "next": {}
+      },
+      "-r": {
+        "val": "-r",
+        "type": "option",
+        "weight": 1,
+        "next": {
+          "ディレクトリ名": {
+            "val": "ディレクトリ名",
+            "type": "arg",
+            "weight": 1,
+            "next": {}
+          }
         }
-      ]
-    },
-    "next": {}
-  },
-  "-f": {
-    "type": "option",
-    "count": 1,
-    "description": "エラーメッセージを表示しない",
-    "cmd": {
-      "val": "-f",
-      "args": [
-        {
-          "placeholder": "ファイル名"
+      },
+      "-f": {
+        "val": "-f",
+        "type": "option",
+        "weight": 1,
+        "next": {
+          "ファイル名": {
+            "val": "ファイル名",
+            "type": "arg",
+            "weight": 1,
+            "next": {}
+          }
         }
-      ]
-    },
-    "next": {}
+      }
+    }
   },
   "mkdir": {
-    "type": "option",
-    "count": 1,
-    "description": "ディレクトリを作成",
-    "cmd": {
-      "val": "mkdir",
-      "args": [
-        {
-          "placeholder": "ディレクトリ名"
-        }
-      ]
-    },
-    "next": {}
+    "val": "mkdir",
+    "type": "command",
+    "weight": 1,
+    "next": {
+      "ディレクトリ名": {
+        "val": "ディレクトリ名",
+        "type": "arg",
+        "weight": 1,
+        "next": {}
+      }
+    }
   },
   "vim": {
-    "type": "option",
-    "count": 1,
-    "description": "ファイルをvimで編集",
-    "cmd": {
-      "val": "vim",
-      "args": [
-        {
-          "placeholder": "ファイル名"
-        }
-      ]
-    },
-    "next": {}
+    "val": "vim",
+    "type": "command",
+    "weight": 1,
+    "next": {
+      "ファイル名": {
+        "val": "ファイル名",
+        "type": "arg",
+        "weight": 1,
+        "next": {}
+      }
+    }
   },
   "less": {
-    "type": "option",
-    "count": 1,
-    "description": "ファイルを表示",
-    "cmd": {
-      "val": "less",
-      "args": [
-        {
-          "placeholder": "ファイル名"
-        }
-      ]
-    },
-    "next": {}
+    "val": "less",
+    "type": "command",
+    "weight": 1,
+    "next": {
+      "ファイル名": {
+        "val": "ファイル名",
+        "type": "arg",
+        "weight": 1,
+        "next": {}
+      }
+    }
   },
   "more": {
-    "type": "option",
-    "count": 1,
-    "description": "ファイルを表示",
-    "cmd": {
-      "val": "more",
-      "args": [
-        {
-          "placeholder": "ファイル名"
-        }
-      ]
-    },
-    "next": {}
+    "val": "more",
+    "type": "command",
+    "weight": 1,
+    "next": {
+      "ファイル名": {
+        "val": "ファイル名",
+        "type": "arg",
+        "weight": 1,
+        "next": {}
+      }
+    }
   },
   "clear": {
-    "type": "option",
-    "count": 1,
-    "description": "画面の表示を消去",
-    "cmd": {
-      "val": "clear",
-      "args": []
-    },
+    "val": "clear",
+    "type": "command",
+    "weight": 1,
     "next": {}
   },
   "pwd": {
-    "type": "option",
-    "count": 1,
-    "description": "カレントディレクトリの表示",
-    "cmd": {
-      "val": "pwd",
-      "args": []
-    },
+    "val": "pwd",
+    "type": "command",
+    "weight": 1,
     "next": {}
   },
   "ls": {
-    "type": "option",
-    "count": 19,
-    "description": "ファイルやディレクトリの情報を表示",
-    "cmd": {
-      "val": "ls",
-      "args": []
-    },
+    "val": "ls",
+    "type": "command",
+    "weight": 1,
     "next": {
       "|": {
+        "val": "|",
         "type": "pipe",
-        "count": 1,
-        "description": "前のコマンドの結果を次に渡す",
-        "cmd": {
-          "val": "|",
-          "args": []
-        },
-        "next": {}
-      },
-      "-l": {
-        "type": "option",
-        "count": 10,
-        "description": "ファイルの詳細も表示",
-        "cmd": {
-          "val": "-l",
-          "args": []
-        },
-        "next": {
-          "|": {
-            "type": "pipe",
-            "count": 1,
-            "description": "前のコマンドの結果を次に渡す",
-            "cmd": {
-              "val": "|",
-              "args": []
-            },
-            "next": {}
-          },
-          "-F": {
-            "type": "option",
-            "count": 1,
-            "description": "情報の付加",
-            "cmd": {
-              "val": "-F",
-              "args": []
-            },
-            "next": {}
-          },
-          "-a": {
-            "type": "option",
-            "count": 1,
-            "description": "全てのファイルを表示",
-            "cmd": {
-              "val": "-a",
-              "args": []
-            },
-            "next": {}
-          },
-          "-1": {
-            "type": "option",
-            "count": 1,
-            "description": "リストを縦に並べて表示",
-            "cmd": {
-              "val": "-1",
-              "args": []
-            },
-            "next": {}
-          },
-          "-t": {
-            "type": "option",
-            "count": 1,
-            "description": "更新時間順に並べて表示",
-            "cmd": {
-              "val": "-t",
-              "args": []
-            },
-            "next": {}
-          },
-          "-S": {
-            "type": "option",
-            "count": 1,
-            "description": "ファイルサイズ順に並べて表示",
-            "cmd": {
-              "val": "-S",
-              "args": []
-            },
-            "next": {}
-          },
-          "-X": {
-            "type": "option",
-            "count": 1,
-            "description": "拡張子が同じものをまとめて表示",
-            "cmd": {
-              "val": "-X",
-              "args": []
-            },
-            "next": {}
-          },
-          "-R": {
-            "type": "option",
-            "count": 1,
-            "description": "ディレクトリを再帰的に表示",
-            "cmd": {
-              "val": "-R",
-              "args": []
-            },
-            "next": {}
-          },
-          "-q": {
-            "type": "option",
-            "count": 1,
-            "description": "表示不能な文字を?で表示",
-            "cmd": {
-              "val": "-q",
-              "args": []
-            },
-            "next": {}
-          },
-          "-v": {
-            "type": "option",
-            "count": 1,
-            "description": "自然数でソートして表示",
-            "cmd": {
-              "val": "-v",
-              "args": []
-            },
-            "next": {}
-          }
-        }
-      },
-      "-a": {
-        "type": "option",
-        "count": 1,
-        "description": "全てのファイルを表示",
-        "cmd": {
-          "val": "-a",
-          "args": []
-        },
-        "next": {}
-      },
-      "-1": {
-        "type": "option",
-        "count": 1,
-        "description": "リストを縦に並べて表示",
-        "cmd": {
-          "val": "-1",
-          "args": []
-        },
-        "next": {}
-      },
-      "-t": {
-        "type": "option",
-        "count": 1,
-        "description": "更新時間順に並べて表示",
-        "cmd": {
-          "val": "-t",
-          "args": []
-        },
-        "next": {}
-      },
-      "-S": {
-        "type": "option",
-        "count": 1,
-        "description": "ファイルサイズ順に並べて表示",
-        "cmd": {
-          "val": "-S",
-          "args": []
-        },
-        "next": {}
-      },
-      "-X": {
-        "type": "option",
-        "count": 1,
-        "description": "拡張子が同じものをまとめて表示",
-        "cmd": {
-          "val": "-X",
-          "args": []
-        },
-        "next": {}
-      },
-      "-R": {
-        "type": "option",
-        "count": 1,
-        "description": "ディレクトリを再帰的に表示",
-        "cmd": {
-          "val": "-R",
-          "args": []
-        },
-        "next": {}
-      },
-      "-q": {
-        "type": "option",
-        "count": 1,
-        "description": "表示不能な文字を?で表示",
-        "cmd": {
-          "val": "-q",
-          "args": []
-        },
-        "next": {}
-      },
-      "-v": {
-        "type": "option",
-        "count": 1,
-        "description": "自然数でソートして表示",
-        "cmd": {
-          "val": "-v",
-          "args": []
-        },
-        "next": {}
-      }
-    }
-  },
-  "-l": {
-    "type": "option",
-    "count": 10,
-    "description": "ファイルの詳細も表示",
-    "cmd": {
-      "val": "-l",
-      "args": []
-    },
-    "next": {
-      "|": {
-        "type": "pipe",
-        "count": 1,
-        "description": "前のコマンドの結果を次に渡す",
-        "cmd": {
-          "val": "|",
-          "args": []
-        },
+        "weight": 1,
         "next": {
           "grep": {
-            "type": "option",
-            "count": 1,
-            "description": "ファイルから文字列の検索",
-            "cmd": {
-              "val": "grep",
-              "args": [
-                {
-                  "placeholder": "検索ワード"
-                }
-              ]
-            },
-            "next": {}
+            "val": "grep",
+            "type": "command",
+            "weight": 1,
+            "next": {
+              "検索ワード": {
+                "val": "検索ワード",
+                "type": "arg",
+                "weight": 1,
+                "next": {}
+              }
+            }
           }
         }
-      },
-      "-F": {
-        "type": "option",
-        "count": 1,
-        "description": "情報の付加",
-        "cmd": {
-          "val": "-F",
-          "args": []
-        },
-        "next": {}
-      },
-      "-a": {
-        "type": "option",
-        "count": 1,
-        "description": "全てのファイルを表示",
-        "cmd": {
-          "val": "-a",
-          "args": []
-        },
-        "next": {}
-      },
-      "-1": {
-        "type": "option",
-        "count": 1,
-        "description": "リストを縦に並べて表示",
-        "cmd": {
-          "val": "-1",
-          "args": []
-        },
-        "next": {}
-      },
-      "-t": {
-        "type": "option",
-        "count": 1,
-        "description": "更新時間順に並べて表示",
-        "cmd": {
-          "val": "-t",
-          "args": []
-        },
-        "next": {}
-      },
-      "-S": {
-        "type": "option",
-        "count": 1,
-        "description": "ファイルサイズ順に並べて表示",
-        "cmd": {
-          "val": "-S",
-          "args": []
-        },
-        "next": {}
-      },
-      "-X": {
-        "type": "option",
-        "count": 1,
-        "description": "拡張子が同じものをまとめて表示",
-        "cmd": {
-          "val": "-X",
-          "args": []
-        },
-        "next": {}
-      },
-      "-R": {
-        "type": "option",
-        "count": 1,
-        "description": "ディレクトリを再帰的に表示",
-        "cmd": {
-          "val": "-R",
-          "args": []
-        },
-        "next": {}
-      },
-      "-q": {
-        "type": "option",
-        "count": 1,
-        "description": "表示不能な文字を?で表示",
-        "cmd": {
-          "val": "-q",
-          "args": []
-        },
-        "next": {}
-      },
-      "-v": {
-        "type": "option",
-        "count": 1,
-        "description": "自然数でソートして表示",
-        "cmd": {
-          "val": "-v",
-          "args": []
-        },
-        "next": {}
       }
     }
   },
-  "-F": {
-    "type": "option",
-    "count": 1,
-    "description": "情報の付加",
-    "cmd": {
-      "val": "-F",
-      "args": []
-    },
-    "next": {}
-  },
-  "-a": {
-    "type": "option",
-    "count": 2,
-    "description": "全てのファイルを表示",
-    "cmd": {
-      "val": "-a",
-      "args": []
-    },
-    "next": {}
-  },
-  "-1": {
-    "type": "option",
-    "count": 2,
-    "description": "リストを縦に並べて表示",
-    "cmd": {
-      "val": "-1",
-      "args": []
-    },
-    "next": {}
-  },
-  "-t": {
-    "type": "option",
-    "count": 2,
-    "description": "更新時間順に並べて表示",
-    "cmd": {
-      "val": "-t",
-      "args": []
-    },
-    "next": {}
-  },
-  "-S": {
-    "type": "option",
-    "count": 2,
-    "description": "ファイルサイズ順に並べて表示",
-    "cmd": {
-      "val": "-S",
-      "args": []
-    },
-    "next": {}
-  },
-  "-X": {
-    "type": "option",
-    "count": 2,
-    "description": "拡張子が同じものをまとめて表示",
-    "cmd": {
-      "val": "-X",
-      "args": []
-    },
-    "next": {}
-  },
-  "-R": {
-    "type": "option",
-    "count": 2,
-    "description": "ディレクトリを再帰的に表示",
-    "cmd": {
-      "val": "-R",
-      "args": []
-    },
-    "next": {}
-  },
-  "-q": {
-    "type": "option",
-    "count": 2,
-    "description": "表示不能な文字を?で表示",
-    "cmd": {
-      "val": "-q",
-      "args": []
-    },
-    "next": {}
-  },
-  "-v": {
-    "type": "option",
-    "count": 2,
-    "description": "自然数でソートして表示",
-    "cmd": {
-      "val": "-v",
-      "args": []
-    },
-    "next": {}
+  "mv": {
+    "val": "mv",
+    "type": "command",
+    "weight": 1,
+    "next": {
+      "移動元": {
+        "val": "移動元",
+        "type": "arg",
+        "weight": 1,
+        "next": {
+          "移動先": {
+            "val": "移動先",
+            "type": "arg",
+            "weight": 1,
+            "next": {}
+          }
+        }
+      }
+    }
   }
 }
