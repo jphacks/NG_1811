@@ -39,8 +39,6 @@ export default {
 
             let rec = this._getNextRecommend()
 
-            console.log(rec)
-
 
             if(this.input.length == 0){
                 this.$emit("update",JSON.parse(JSON.stringify(list)))
