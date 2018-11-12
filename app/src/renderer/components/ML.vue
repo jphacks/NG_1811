@@ -6,13 +6,14 @@
 <script>
 import model from "../assets/model.json"
 
-const list = [
-    {
-        type:"command",
-        description:model["git"]["des"],
-        val:"git"
-    }
-]
+const list = []
+        for(let cmd in model){
+            list.push({
+                val:cmd,
+                description:model[cmd]["des"],
+                type:model[cmd]["type"]
+            })
+        }
 export default {
     props: ["input","searchWord"],
     watch:{
@@ -34,35 +35,12 @@ export default {
     },
     methods: {
         update() {
-            let rec = []
-            let path = this.recomended
+            this._changeInput()
 
-            if(this.lastCmd["type"] == "option"){
-                if(!(this.lastCmd["val"] in this.previous)){
-                    for(let item in this.previous){
-                        if(this.previous[item]["type"] == "arg"){
-                            this.input[this.input.length-1]["type"] = "arg"
-                            this.input[this.input.length-1]["placeholder"] = this.previous["@place"]["placeholder"]
-                        }
-                    }                    
-                }
-            }
+            let rec = this._getNextRecommend()
 
-            for(let cmd in path){
-                if(path[cmd]["type"] == "arg"){
-                    rec.push({
-                        placeholder:path[cmd]["placeholder"],
-                        description:path[cmd]["des"],
-                        type:path[cmd]["type"]})
-                }
-                else{
-                    rec.push({
-                        val:cmd,
-                        description:path[cmd]["des"],
-                        type:path[cmd]["type"]
-                    })
-                }
-            }
+            console.log(rec)
+
 
             if(this.input.length == 0){
                 this.$emit("update",JSON.parse(JSON.stringify(list)))
@@ -93,6 +71,46 @@ export default {
             if(this.searchWord != ""){
                 this.$emit("update",searchList)
             }
+        },
+        _changeInput(){
+            if(this.lastCmd["type"] == "option"){
+                if(!(this.lastCmd["val"] in this.previous)){
+                    for(let item in this.previous){
+                        if(this.previous[item]["type"] == "arg"){
+                            this.input[this.input.length-1]["type"] = "arg"
+                            this.input[this.input.length-1]["placeholder"] = this.previous["@place"]["placeholder"]
+                        }
+                    }                    
+                }
+            }
+        },
+        _getNextRecommend(){
+            let rec = []
+            let path = this.recomended
+
+            for(let cmd in path){
+                if(path[cmd]["type"] == "arg"){
+                    rec.push({
+                        placeholder:path[cmd]["placeholder"],
+                        description:path[cmd]["des"],
+                        type:path[cmd]["type"],
+                        weight:path[cmd]["weight"]
+                        })
+                }
+                else{
+                    rec.push({
+                        val:cmd,
+                        description:path[cmd]["des"],
+                        type:path[cmd]["type"],
+                        weight:path[cmd]["weight"]
+                    })
+                }
+            }
+            rec.sort(function(a,b){
+                return b["weight"] - a["weight"]
+            })
+
+            return rec
         }
     },
     computed:{
