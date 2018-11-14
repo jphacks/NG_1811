@@ -78,13 +78,15 @@ export default {
         },
         _changeInput(){
             if(this.lastCmd["type"] == "option"){
-                if(!(this.lastCmd["val"] in this.previous)){
+                if(this.lastCmd["val"] == ">>" || this.lastCmd["val"] == ">"){
+                    this.input[this.input.length-1]["type"] = "redirect"
+                    this.input[this.input.length-1]["val"] = this.lastCmd["val"]
+                }
+                else if(!(this.lastCmd["val"] in this.previous)){
                     if("@place" in this.previous){
                         this.input[this.input.length-1]["type"] = "arg"
                         this.input[this.input.length-1]["placeholder"] = this.previous["@place"]["placeholder"]
-                        
                     }    
-                
                 }
             }
         },
@@ -127,9 +129,9 @@ export default {
         },
         _pathTransition(path,target){
             let val = (target["type"] == "arg")?"@place":target["val"] 
-            
+
             if(val in path){
-                return (path[val]["predict"])?path[val]["@next"]:path
+                return (path[val]["predict"]) ? path[val]["@next"] : path
             }
             else{
                 return {}
@@ -143,7 +145,7 @@ export default {
                 let target = this.input[i]
 
                 path = this._pathTransition(path,target)
-                
+
                 if(i == this.input.length - 1){
                     this.previous = path
                 }
@@ -155,8 +157,6 @@ export default {
             let use = []
             for(let i = 0;i < this.input.length;i++){
                 let target = this.input[i]                
-
-
 
                 let val = target["type"] == "arg"?"@place":target["val"]
 
