@@ -7,15 +7,21 @@
 import model from "../assets/model.json"
 
 const list = []
-        for(let cmd in model){
-            list.push({
-                val:cmd,
-                description:model[cmd]["des"],
-                type:model[cmd]["type"]
-            })
-        }
+for(let cmd in model){
+    list.push({
+        val:cmd,
+        description:model[cmd]["des"],
+        type:model[cmd]["type"]
+    })
+}
+
 export default {
     props: ["input","searchWord"],
+    data:function(){
+        return{
+            previous:{}
+        }
+    },
     watch:{
         input: {
             deep: true,
@@ -38,8 +44,6 @@ export default {
             this._changeInput()
 
             let rec = this._getNextRecommend()
-
-            console.log(rec)
 
 
             if(this.input.length == 0){
@@ -74,13 +78,15 @@ export default {
         },
         _changeInput(){
             if(this.lastCmd["type"] == "option"){
-                if(!(this.lastCmd["val"] in this.previous)){
-                    for(let item in this.previous){
-                        if(this.previous[item]["type"] == "arg"){
-                            this.input[this.input.length-1]["type"] = "arg"
-                            this.input[this.input.length-1]["placeholder"] = this.previous["@place"]["placeholder"]
-                        }
-                    }                    
+                if(this.lastCmd["val"] == ">>" || this.lastCmd["val"] == ">"){
+                    this.input[this.input.length-1]["type"] = "redirect"
+                    this.input[this.input.length-1]["val"] = this.lastCmd["val"]
+                }
+                else if(!(this.lastCmd["val"] in this.previous)){
+                    if("@place" in this.previous){
+                        this.input[this.input.length-1]["type"] = "arg"
+                        this.input[this.input.length-1]["placeholder"] = this.previous["@place"]["placeholder"]
+                    }    
                 }
             }
         },
@@ -89,12 +95,18 @@ export default {
             let path = this.recomended
 
             for(let cmd in path){
+                
+                // 使われているオプションはスキップ
+                if(this._inUsed(cmd)){
+                    continue
+                }
+
                 if(path[cmd]["type"] == "arg"){
                     rec.push({
-                        placeholder:path[cmd]["placeholder"],
-                        description:path[cmd]["des"],
-                        type:path[cmd]["type"],
-                        weight:path[cmd]["weight"]
+                            placeholder:path[cmd]["placeholder"],
+                            description:path[cmd]["des"],
+                            type:path[cmd]["type"],
+                            weight:path[cmd]["weight"]
                         })
                 }
                 else{
@@ -111,44 +123,61 @@ export default {
             })
 
             return rec
+        },
+        _inUsed(val){
+            return this.used.indexOf(val) >= 0 ? true : false
+        },
+        _pathTransition(path,target){
+            let val = (target["type"] == "arg")?"@place":target["val"] 
+
+            if(val in path){
+                return (path[val]["predict"]) ? path[val]["@next"] : path
+            }
+            else{
+                return {}
+            }
         }
     },
     computed:{
         recomended:function(){
-            let path = model,target
+            let path = model
             for(let i = 0;i < this.input.length;i++){
-                target = this.input[i]
-                if(target["type"] == "arg")
-                    path = path["@place"]["@next"]
-                else if(target["val"] in path)
-                    path = path[target["val"]]["@next"]
-                else
-                    path = {}
-            }
+                let target = this.input[i]
 
+                path = this._pathTransition(path,target)
+
+                if(i == this.input.length - 1){
+                    this.previous = path
+                }
+            }
             return path
         },
-        previous:function(){
-            let path = model,target
-            for(let i = 0;i < this.input.length - 1;i++){
-                target = this.input[i]
-                if(target["type"] == "arg")
-                    path = path["@place"]["@next"]
-                else if(target["val"] in path)
-                    path = path[target["val"]]["@next"]
-                else
-                    path = {}
-            }
+        used:function(){
+            let path = model
+            let use = []
+            for(let i = 0;i < this.input.length;i++){
+                let target = this.input[i]                
 
-            return path
+                let val = target["type"] == "arg"?"@place":target["val"]
+
+                if("ignore" in path[val]){
+                    use = use.concat(path[val]["ignore"])
+                }
+
+                if(path[val]["predict"]){
+                    use = []
+                }
+                else{
+                    use.push(val)
+                }
+
+                path = this._pathTransition(path,target)
+
+            }
+            return use
         },
         lastCmd:function(){
-            if(this.input.length == 0){
-                return {}
-            }
-            else{
-                return this.input[this.input.length-1]
-            }
+            return this.input.length != 0 ? this.input[this.input.length-1] : {}
         }
     }
 }
