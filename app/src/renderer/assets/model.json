@@ -2,36 +2,42 @@
   "git": {
     "val": "git",
     "type": "command",
-    "weight": 10,
-    "next": {
+    "weight": 113,
+    "des": "gitを使用するコマンド",
+    "@next": {
       "add": {
         "val": "add",
         "type": "option",
-        "weight": 1,
-        "next": {
+        "weight": 14,
+        "des": "ファイルをステージ",
+        "@next": {
           "@place": {
             "placeholder": "ファイル名",
             "type": "arg",
-            "weight": 1,
-            "next": {}
+            "weight": 11,
+            "des": "ステージするファイル名",
+            "@next": {}
           }
         }
       },
       "commit": {
         "val": "commit",
         "type": "option",
-        "weight": 1,
-        "next": {
+        "weight": 11,
+        "des": "変更をコミット",
+        "@next": {
           "-m": {
             "val": "-m",
             "type": "option",
-            "weight": 1,
-            "next": {
+            "weight": 11,
+            "des": "コミットメッセージを追加",
+            "@next": {
               "@place": {
-                "placeholder": "コミットメッセージ",
+                "placeholder": "\"コミットメッセージ\"",
                 "type": "arg",
-                "weight": 1,
-                "next": {}
+                "weight": 11,
+                "des": "コミットメッセージ",
+                "@next": {}
               }
             }
           }
@@ -40,18 +46,21 @@
       "push": {
         "val": "push",
         "type": "option",
-        "weight": 2,
-        "next": {
+        "weight": 22,
+        "des": "リモートリポジトリに変更を送信",
+        "@next": {
           "origin": {
             "val": "origin",
             "type": "option",
-            "weight": 2,
-            "next": {
+            "weight": 22,
+            "des": "originって何ですか？",
+            "@next": {
               "master": {
                 "val": "master",
                 "type": "option",
-                "weight": 2,
-                "next": {}
+                "weight": 22,
+                "des": "マスターブランチ",
+                "@next": {}
               }
             }
           }
@@ -60,91 +69,113 @@
       "init": {
         "val": "init",
         "type": "option",
-        "weight": 1,
-        "next": {}
+        "weight": 11,
+        "des": "リポジトリを初期化",
+        "@next": {}
       },
       "merge": {
         "val": "merge",
         "type": "option",
-        "weight": 1,
-        "next": {
+        "weight": 11,
+        "des": "ブランチをマージ",
+        "@next": {
           "@place": {
             "placeholder": "コミット名",
             "type": "arg",
-            "weight": 1,
-            "next": {}
+            "weight": 11,
+            "des": "ブランチ名",
+            "@next": {}
           }
         }
       },
       "checkout": {
         "val": "checkout",
         "type": "option",
-        "weight": 1,
-        "next": {
+        "weight": 11,
+        "des": "ブランチを変更",
+        "@next": {
           "@place": {
             "placeholder": "ブランチ名",
             "type": "arg",
-            "weight": 1,
-            "next": {}
+            "weight": 11,
+            "des": "ブランチ名",
+            "@next": {}
           }
         }
       },
       "diff": {
         "val": "diff",
         "type": "option",
-        "weight": 2,
-        "next": {
+        "weight": 22,
+        "des": "変更の差分を表示",
+        "@next": {
           "@place": {
             "placeholder": "ファイル名",
             "type": "arg",
-            "weight": 1,
-            "next": {}
+            "weight": 11,
+            "des": "ファイル名",
+            "@next": {}
           }
         }
       },
       "log": {
         "val": "log",
         "type": "option",
-        "weight": 1,
-        "next": {}
+        "weight": 11,
+        "des": "変更のログを表示",
+        "@next": {}
       }
     }
   },
   "find": {
     "val": "find",
     "type": "command",
-    "weight": 3,
-    "next": {
+    "weight": 33,
+    "des": "ファイルやディレクトリの検索",
+    "@next": {
       "@place": {
         "placeholder": "検索箇所",
         "type": "arg",
-        "weight": 1,
-        "next": {
+        "weight": 31,
+        "des": "検索するディレクトリの指定",
+        "@next": {
           "-name": {
             "val": "-name",
             "type": "option",
-            "weight": 1,
-            "next": {
+            "weight": 30,
+            "des": "検索ワードの指定",
+            "@next": {
               "@place": {
                 "placeholder": "検索対象",
                 "type": "arg",
-                "weight": 1,
-                "next": {
+                "weight": 30,
+                "des": "",
+                "@next": {
                   "|": {
                     "val": "|",
                     "type": "pipe",
-                    "weight": 1,
-                    "next": {
+                    "weight": 20,
+                    "des": "前のコマンドの結果を次に受け渡す",
+                    "@next": {
                       "xargs": {
                         "val": "xargs",
                         "type": "command",
-                        "weight": 1,
-                        "next": {
+                        "weight": 20,
+                        "des": "前の結果からコマンドラインを新たに作成",
+                        "@next": {
+                          "cat": {
+                            "val": "cat",
+                            "type": "option",
+                            "weight": 10,
+                            "des": "ファイルの中身の表示",
+                            "@next": {}
+                          },
                           "rm": {
                             "val": "rm",
                             "type": "option",
-                            "weight": 1,
-                            "next": {}
+                            "weight": 10,
+                            "des": "ファイルやディレクトリの削除",
+                            "@next": {}
                           }
                         }
                       }
@@ -161,28 +192,63 @@
   "cat": {
     "val": "cat",
     "type": "command",
-    "weight": 3,
-    "next": {
+    "weight": 30,
+    "des": "ファイルの中身の表示",
+    "@next": {
       "@place": {
         "placeholder": "ファイル名",
         "type": "arg",
-        "weight": 1,
-        "next": {
+        "weight": 30,
+        "des": "",
+        "@next": {
+          ">>": {
+            "val": ">>",
+            "type": "redirect",
+            "weight": 10,
+            "des": "前のコマンドの結果を次のファイルに書き込む(追加)",
+            "@next": {
+              "@place": {
+                "placeholder": "追加対象",
+                "type": "arg",
+                "weight": 10,
+                "des": "追加するファイル",
+                "@next": {}
+              }
+            }
+          },
+          ">": {
+            "val": ">",
+            "type": "redirect",
+            "weight": 10,
+            "des": "前のコマンドの結果を次のファイルに追加(上書き)",
+            "@next": {
+              "@place": {
+                "placeholder": "上書き対象",
+                "type": "arg",
+                "weight": 10,
+                "des": "結果を格納するファイル",
+                "@next": {}
+              }
+            }
+          },
           "|": {
             "val": "|",
             "type": "pipe",
-            "weight": 1,
-            "next": {
+            "weight": 10,
+            "des": "前のコマンドの結果を次に受け渡す",
+            "@next": {
               "grep": {
                 "val": "grep",
                 "type": "command",
-                "weight": 1,
-                "next": {
+                "weight": 10,
+                "des": "前のコマンドの結果から文字列を検索",
+                "@next": {
                   "@place": {
                     "placeholder": "検索ワード",
                     "type": "arg",
-                    "weight": 1,
-                    "next": {}
+                    "weight": 10,
+                    "des": "",
+                    "@next": {}
                   }
                 }
               }
@@ -195,23 +261,42 @@
   "echo": {
     "val": "echo",
     "type": "command",
-    "weight": 2,
-    "next": {
+    "weight": 19,
+    "des": "文字を標準出力",
+    "@next": {
       "@place": {
         "placeholder": "表示文字",
         "type": "arg",
-        "weight": 1,
-        "next": {
+        "weight": 19,
+        "des": "表示させる文字列",
+        "@next": {
+          ">>": {
+            "val": ">>",
+            "type": "redirect",
+            "weight": 9,
+            "des": "前のコマンドの結果を次のファイルに追加(追加)",
+            "@next": {
+              "@place": {
+                "placeholder": "追加対象",
+                "type": "arg",
+                "weight": 9,
+                "des": "追加対象",
+                "@next": {}
+              }
+            }
+          },
           ">": {
             "val": ">",
             "type": "redirect",
-            "weight": 1,
-            "next": {
+            "weight": 9,
+            "des": "前のコマンドの結果を次のファイルに追加(上書き)",
+            "@next": {
               "@place": {
                 "placeholder": "上書き対象",
                 "type": "arg",
-                "weight": 1,
-                "next": {}
+                "weight": 9,
+                "des": "",
+                "@next": {}
               }
             }
           }
@@ -222,50 +307,58 @@
   "cd": {
     "val": "cd",
     "type": "command",
-    "weight": 1,
-    "next": {
+    "weight": 9,
+    "des": "ディレクトリの移動",
+    "@next": {
       "@place": {
         "placeholder": "移動先ディレクトリ",
         "type": "arg",
-        "weight": 1,
-        "next": {}
+        "weight": 9,
+        "des": "ディレクトリのパス",
+        "@next": {}
       }
     }
   },
   "touch": {
     "val": "touch",
     "type": "command",
-    "weight": 1,
-    "next": {
+    "weight": 9,
+    "des": "ファイルの最終更新日の更新",
+    "@next": {
       "@place": {
         "placeholder": "ファイル名",
         "type": "arg",
-        "weight": 1,
-        "next": {}
+        "weight": 9,
+        "des": "",
+        "@next": {}
       }
     }
   },
   "rm": {
     "val": "rm",
     "type": "command",
-    "weight": 3,
-    "next": {
+    "weight": 24,
+    "des": "ファイルやディレクトリの削除",
+    "@next": {
       "@place": {
         "placeholder": "ファイル名",
         "type": "arg",
-        "weight": 1,
-        "next": {}
+        "weight": 32,
+        "des": "",
+        "@next": {}
       },
       "-r": {
         "val": "-r",
         "type": "option",
         "weight": 1,
-        "next": {
+        "des": "ディレクトリを削除",
+        "@next": {
           "@place": {
             "placeholder": "ディレクトリ名",
             "type": "arg",
             "weight": 1,
-            "next": {}
+            "des": "",
+            "@next": {}
           }
         }
       },
@@ -273,12 +366,14 @@
         "val": "-f",
         "type": "option",
         "weight": 1,
-        "next": {
+        "des": "強制的に削除",
+        "@next": {
           "@place": {
             "placeholder": "ファイル名",
             "type": "arg",
             "weight": 1,
-            "next": {}
+            "des": "",
+            "@next": {}
           }
         }
       }
@@ -287,87 +382,101 @@
   "mkdir": {
     "val": "mkdir",
     "type": "command",
-    "weight": 1,
-    "next": {
+    "weight": 6,
+    "des": "ディレクトリの作成",
+    "@next": {
       "@place": {
         "placeholder": "ディレクトリ名",
         "type": "arg",
-        "weight": 1,
-        "next": {}
+        "weight": 6,
+        "des": "",
+        "@next": {}
       }
     }
   },
   "vim": {
     "val": "vim",
     "type": "command",
-    "weight": 1,
-    "next": {
+    "weight": 6,
+    "des": "vimの起動",
+    "@next": {
       "@place": {
         "placeholder": "ファイル名",
         "type": "arg",
-        "weight": 1,
-        "next": {}
+        "weight": 6,
+        "des": "",
+        "@next": {}
       }
     }
   },
   "less": {
     "val": "less",
     "type": "command",
-    "weight": 1,
-    "next": {
+    "weight": 6,
+    "des": "ファイルの中身の表示",
+    "@next": {
       "@place": {
         "placeholder": "ファイル名",
         "type": "arg",
-        "weight": 1,
-        "next": {}
+        "weight": 6,
+        "des": "",
+        "@next": {}
       }
     }
   },
   "more": {
     "val": "more",
     "type": "command",
-    "weight": 1,
-    "next": {
+    "weight": 6,
+    "des": "ファイルの中身の表示",
+    "@next": {
       "@place": {
         "placeholder": "ファイル名",
         "type": "arg",
-        "weight": 1,
-        "next": {}
+        "weight": 6,
+        "des": "",
+        "@next": {}
       }
     }
   },
   "clear": {
     "val": "clear",
     "type": "command",
-    "weight": 1,
-    "next": {}
+    "weight": 6,
+    "des": "画面をクリアにする",
+    "@next": {}
   },
   "pwd": {
     "val": "pwd",
     "type": "command",
-    "weight": 1,
-    "next": {}
+    "weight": 6,
+    "des": "現在のディレクトリの表示",
+    "@next": {}
   },
   "ls": {
     "val": "ls",
     "type": "command",
     "weight": 1,
-    "next": {
+    "des": "カレントディクトリのファイルとフォルダを表示",
+    "@next": {
       "|": {
         "val": "|",
         "type": "pipe",
         "weight": 1,
-        "next": {
+        "des": "前のコマンドの結果を次に受け渡す",
+        "@next": {
           "grep": {
             "val": "grep",
             "type": "command",
             "weight": 1,
-            "next": {
+            "des": "カレントディレクトリからファイル名やディレクトリ名で検索",
+            "@next": {
               "@place": {
                 "placeholder": "検索ワード",
                 "type": "arg",
                 "weight": 1,
-                "next": {}
+                "des": "",
+                "@next": {}
               }
             }
           }
@@ -379,17 +488,20 @@
     "val": "mv",
     "type": "command",
     "weight": 1,
-    "next": {
+    "des": "ファイルやディレクトリの移動やリネーム",
+    "@next": {
       "@place": {
         "placeholder": "移動元",
         "type": "arg",
         "weight": 1,
-        "next": {
+        "des": "",
+        "@next": {
           "@place": {
             "placeholder": "移動先",
             "type": "arg",
             "weight": 1,
-            "next": {}
+            "des": "",
+            "@next": {}
           }
         }
       }
