@@ -1,8 +1,8 @@
 <template>
     <div class="Main">
         <Titlebar />
-        <Sidebar :blocks="candidate" v-model="searchWord" @inputBlock="inputBlock" />
-        <!-- <Bottombar :blocks="candidate" v-model="searchWord" @inputBlock="inputBlock" :suggestY="suggestY" /> -->
+        <!-- <Sidebar :blocks="candidate" v-model="searchWord" @inputBlock="inputBlock" /> -->
+        <Bottombar :blocks="candidate" v-model="searchWord" @inputBlock="inputBlock" :suggestY="suggestY" />
         <Console :log="log" v-model="inputForm" @send="send" ref="console" @y="y" />
         <ML :input="inputForm" :searchWord="searchWord" @update="mlupdate" />
     </div>
