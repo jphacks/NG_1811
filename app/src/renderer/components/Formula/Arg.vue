@@ -9,7 +9,8 @@
         @dragend="drop"
     >
         <!-- 
-         --><Editable class="Edi" v-model="val" @input="update" :placeholder="placeholder" :writable="writable" ref="arg" @focusEnd="focusEnd" />
+         --><Editable class="Edi" v-model="val" @input="update" :placeholder="placeholder" :writable="writable" ref="arg" 
+            @send="send" @focusEnd="focusEnd" />
     </span>
 </template>
 
@@ -42,6 +43,9 @@ export default {
         },
         focusEnd() {
             this.$emit("focus")
+        },
+        send() {
+            this.$emit("send")
         }
     }
 }

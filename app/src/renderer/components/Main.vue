@@ -2,7 +2,8 @@
     <div class="Main">
         <Titlebar />
         <Sidebar :blocks="candidate" v-model="searchWord" @inputBlock="inputBlock" />
-        <Console :log="log" v-model="inputForm" @send="send" ref="console" />
+        <!-- <Bottombar :blocks="candidate" v-model="searchWord" @inputBlock="inputBlock" :suggestY="suggestY" /> -->
+        <Console :log="log" v-model="inputForm" @send="send" ref="console" @y="y" />
         <ML :input="inputForm" :searchWord="searchWord" @update="mlupdate" />
     </div>
 </template>
@@ -11,6 +12,7 @@
 import Titlebar from "@/components/Titlebar"
 import Console from "@/components/Console"
 import Sidebar from "@/components/Sidebar"
+import Bottombar from "@/components/Bottombar"
 import ML from "@/components/ML"
 
 const child_process = require("child_process")
@@ -23,6 +25,7 @@ export default {
     components: {
         Console,
         Sidebar,
+        Bottombar,
         ML,
         Titlebar
     },
@@ -33,7 +36,9 @@ export default {
             inputForm: [],
             inputArr: [],
             searchWord: "",
-            pwd: HOMEDIR
+            pwd: HOMEDIR,
+
+            suggestY: 0
         }
     },
     watch: {
@@ -47,6 +52,9 @@ export default {
         }
     },
     methods: {
+        y(r) {
+            this.suggestY = r
+        },
         inputBlock(block) {
             this.inputForm.push(JSON.parse(JSON.stringify(block)))
             this.$refs.console.focus()

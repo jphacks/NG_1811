@@ -13,6 +13,10 @@ export default new Router({
       path: '/main',
       component: require('@/components/Main').default
     },
+    // {
+    //   path: '/store',
+    //   component: require('@/components/Store').default
+    // },
     {
       path: '*',
       redirect: '/'

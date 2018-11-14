@@ -45,6 +45,7 @@
                 :clickable="clickable"
                 @focus="focus"
                 :style="{'z-index': 99-i}"
+                @send="send"
             />
             <Pipe
                 v-else-if="block.type == 'pipe'"
@@ -62,6 +63,7 @@
             @inputBlock="inputBlock"
             @deleteBlock="deleteBlock"
             @send="send"
+            @y="y"
         />
     </div>
 </template>
@@ -99,6 +101,8 @@ export default {
             }
         },
         inputBlock(block) {
+            console.log(this.$refs.endEditable.$refs.ediv.getBoundingClientRect())
+
             if (block.type == "phrase") {
                 if (
                     this.value.length == 0 ||
@@ -117,6 +121,9 @@ export default {
         },
         drop() {
             this.$emit("drop")
+        },
+        y(r) {
+            this.$emit("y", r)
         }
     }
 }

@@ -8,7 +8,7 @@
         <div class="Console-output">{{op.outputString}}</div>
         </div>
         <div class="Input Console-input">
-        $ <Formula v-model="value" writable @send="send" ref="inputForm" />
+        $ <Formula v-model="value" writable @send="send" ref="inputForm" @y="y" />
         </div>
     </div>
   </div>
@@ -22,6 +22,7 @@ export default {
     props: ["log", "value"],
     mounted() {
         this.$refs.inputForm.focus()
+
     },
     watch: {
         log: {
@@ -49,6 +50,9 @@ export default {
             this.$nextTick(() => {
                 this.$refs.inner.scrollTop = this.$refs.inner.scrollHeight
             })
+        },
+        y(r) {
+            this.$emit("y", r)
         }
     }
 }

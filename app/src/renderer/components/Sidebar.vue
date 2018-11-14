@@ -2,7 +2,7 @@
     <div class="Sidebar">
         <div class="header">
             <input type="text" :value="value" @input="updateText" placeholder="コマンドを検索" class="searchBox" />
-            <Menu />
+            <!-- <Menu /> -->
         </div>
         <div class="contents">
             <div class="item" v-for="block of blocks">
@@ -96,7 +96,7 @@ export default {
     /* border: 1px solid #888; */
     color: white;
     background: rgba(255, 255, 255, 0.1);
-    width: 190px;
+    width: 222px;
 }
 .searchBox::placeholder {
     color: rgba(255, 255, 255, 0.603);

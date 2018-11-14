@@ -9,6 +9,7 @@
         @keydown="keydown"
         @keydown.space.prevent
         @keydown.enter.prevent
+        ref="ediv"
     />
 </template>
 
@@ -39,6 +40,8 @@ export default {
             this.val = this.value
         },
         val() {
+            this.updateY()
+
             if (this.$el.innerText != this.val) {
                 if (this.val && this.val.length > 0) {
                     this.$el.innerText = this.val
@@ -50,6 +53,9 @@ export default {
         }
     },
     methods: {
+        updateY() {
+            this.$emit("y", this.$refs.ediv.getBoundingClientRect())
+        },
         update(e) {
             this.val = e.target.innerText
             this.$emit("input", this.val)
@@ -64,6 +70,8 @@ export default {
                     this.val = ""
                 })
             }
+
+            // console.log(this.$refs.ediv.getBoundingClientRect())
         },
         paste(e) {
             e.preventDefault()
@@ -87,14 +95,18 @@ export default {
                     this.$emit("send")
                 })
             } else {
-                // this.$emit("focusEnd")
+                this.$nextTick(() => {
+                    this.$emit("send")
+                })
             }
         },
         keydown(e) {
             // console.log("suiso", e.keyCode)
-            if (e.keyCode == 32) { //space
+            if (e.keyCode == 32) {
+                //space
                 this.space()
-            } else if (e.keyCode == 13) { //enter
+            } else if (e.keyCode == 13) {
+                //enter
                 this.enter()
             }
         },
@@ -110,6 +122,8 @@ export default {
 
                     this.val = ""
                 }
+            } else {
+                this.$emit("focusEnd")
             }
         },
         backspace() {
@@ -120,6 +134,9 @@ export default {
                     this.$emit("deleteBlock")
                 }
             }
+            this.$nextTick(() => {
+                this.updateY()
+            })
         }
     }
 }

@@ -1,10 +1,12 @@
 <template>
-    <div class="Menu">
-    </div>
+    <router-link class="Menu" to="/store">
+    </router-link>
 </template>
 
 <script>
 import Formula from "./Formula"
+
+const remote = require("electron").remote
 
 export default {
     components: {
@@ -22,7 +24,7 @@ export default {
         },
         updateText(e) {
             this.$emit("input", e.target.value)
-        }
+        },
     }
 }
 </script>
