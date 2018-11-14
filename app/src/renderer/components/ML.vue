@@ -19,7 +19,6 @@ export default {
     props: ["input","searchWord"],
     data:function(){
         return{
-            previous:{}
         }
     },
     watch:{
@@ -45,7 +44,6 @@ export default {
 
             let rec = this._getNextRecommend()
 
-
             if(this.input.length == 0){
                 this.$emit("update",JSON.parse(JSON.stringify(list)))
             }
@@ -53,7 +51,7 @@ export default {
                 this.$emit("update", JSON.parse(JSON.stringify(rec)))
             }
             else{
-                this.$emit("update", rec)
+                this.$emit("update", JSON.parse(JSON.stringify(rec)))
             }
         },
         search(){
@@ -77,7 +75,11 @@ export default {
             }
         },
         _changeInput(){
-            if(this.lastCmd["type"] == "option"){
+            if(this.lastCmd["type"] == "pipe"){
+                this.input[this.input.length-1]["type"] = "pipe"
+                this.input[this.input.length-1]["val"] = "|"
+            }
+            else if(this.lastCmd["type"] == "option"){
                 if(this.lastCmd["val"] == ">>" || this.lastCmd["val"] == ">"){
                     this.input[this.input.length-1]["type"] = "redirect"
                     this.input[this.input.length-1]["val"] = this.lastCmd["val"]
@@ -146,9 +148,6 @@ export default {
 
                 path = this._pathTransition(path,target)
 
-                if(i == this.input.length - 1){
-                    this.previous = path
-                }
             }
             return path
         },
@@ -178,6 +177,15 @@ export default {
         },
         lastCmd:function(){
             return this.input.length != 0 ? this.input[this.input.length-1] : {}
+        },
+        previous:function(){
+            let path = model
+            for(let i = 0;i < this.input.length-1;i++){
+                let target = this.input[i]
+
+                path = this._pathTransition(path,target)
+            }
+            return path
         }
     }
 }
