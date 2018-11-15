@@ -69,7 +69,7 @@ export default {
 }
 
 .Option {
-    background: rgb(0, 224, 86);
+    background: rgb(0, 224, 67);
 }
 
 .Redirect {
@@ -82,5 +82,4 @@ export default {
 .Val:last-child {
     margin-right: 10px;
 }
-
 </style>

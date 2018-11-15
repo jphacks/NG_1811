@@ -146,3 +146,14 @@ export default {
     }
 }
 </script>
+
+<style>
+.Main {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+ /* background: linear-gradient(#FF00D8, #00FF62); */
+}
+</style>
