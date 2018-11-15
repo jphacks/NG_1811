@@ -10,6 +10,8 @@
         @keydown.space.prevent
         @keydown.enter.prevent
         ref="ediv"
+        @focus="onfocus"
+        @blur="onblur"
     />
 </template>
 
@@ -137,6 +139,12 @@ export default {
             this.$nextTick(() => {
                 this.updateY()
             })
+        },
+        onfocus() {
+            this.$emit("onfocus")
+        },
+        onblur() {
+            this.$emit("onblur")
         }
     }
 }

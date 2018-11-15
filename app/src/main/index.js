@@ -118,3 +118,11 @@ ipcMain.on('setSubWindowBounds', (event, r) => {
     const a = mainWindow.getPosition();
     subWindow.setPosition(Math.ceil(r.x + a[0] - 17), Math.ceil(r.y + a[1] + 24));
 })
+
+
+ipcMain.on('onfocus', (event) => {
+    subWindow.showInactive();
+})
+ipcMain.on('onblur', (event) => {
+    subWindow.hide();
+})

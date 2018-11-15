@@ -8,7 +8,11 @@
         <div class="Console-output">{{op.outputString}}</div>
         </div>
         <div class="Input Console-input">
-        $ <Formula v-model="value" writable @send="send" ref="inputForm" @y="y" />
+        $ <Formula v-model="value" writable @send="send" ref="inputForm" @y="y" 
+
+            @onfocus="onfocus"
+            @onblur="onblur"
+         />
         </div>
     </div>
   </div>
@@ -53,6 +57,12 @@ export default {
         },
         y(r) {
             this.$emit("y", r)
+        },
+        onfocus() {
+            this.$emit("onfocus")
+        },
+        onblur() {
+            this.$emit("onblur")
         }
     }
 }

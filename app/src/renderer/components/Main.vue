@@ -3,7 +3,10 @@
         <Titlebar />
         <!-- <Sidebar :blocks="candidate" v-model="searchWord" @inputBlock="inputBlock" /> -->
         <!-- <Bottombar :blocks="candidate" v-model="searchWord" @inputBlock="inputBlock" :suggestY="suggestY" /> -->
-        <Console :log="log" v-model="inputForm" @send="send" ref="console" @y="y" />
+        <Console :log="log" v-model="inputForm" @send="send" ref="console" @y="y"
+        
+        @onfocus="onfocus"
+        @onblur="onblur" />
         <ML :input="inputForm" :searchWord="searchWord" @update="mlupdate" />
     </div>
 </template>
@@ -41,7 +44,7 @@ export default {
             searchWord: "",
             pwd: HOMEDIR,
 
-            suggestY: 0
+            suggestY: 0,
         }
     },
     watch: {
@@ -61,6 +64,12 @@ export default {
         })
     },
     methods: {
+        onfocus() {
+            ipcRenderer.send("onfocus")
+        },
+        onblur() {
+            ipcRenderer.send("onblur")
+        },
         y(r) {
             this.suggestY = r
             if (r.top > 1) {

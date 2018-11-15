@@ -67,6 +67,8 @@
             @deleteBlock="deleteBlock"
             @send="send"
             @y="y"
+            @onfocus="onfocus"
+            @onblur="onblur"
         />
     </div>
 </template>
@@ -89,6 +91,14 @@ export default {
         return {
             args: ["ls"],
             text: ""
+        }
+    },
+    watch: {
+        value() {
+
+            this.$nextTick(() => {
+                this.$refs.endEditable.updateY()
+            })
         }
     },
     methods: {
@@ -118,6 +128,7 @@ export default {
             }
             // console.log(block)
             this.value.push(block)
+
         },
         deleteBlock(e) {
             this.value.splice(this.value.length - 1, 1)
@@ -127,6 +138,12 @@ export default {
         },
         y(r) {
             this.$emit("y", r)
+        },
+        onfocus() {
+            this.$emit("onfocus")
+        },
+        onblur() {
+            this.$emit("onblur")
         }
     }
 }
