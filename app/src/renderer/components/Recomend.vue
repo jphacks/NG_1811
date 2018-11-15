@@ -4,16 +4,8 @@
 </template>
 
 <script>
-import model from "../assets/model.json"
-
-const list = []
-for(let cmd in model){
-    list.push({
-        val:cmd,
-        description:model[cmd]["des"],
-        type:model[cmd]["type"]
-    })
-}
+// let fs = require("fs")
+import model from "@/assets/model.json"
 
 export default {
     props: ["input","searchWord"],
@@ -44,15 +36,8 @@ export default {
 
             let rec = this._getNextRecommend()
 
-            if(this.input.length == 0){
-                this.$emit("update",JSON.parse(JSON.stringify(list)))
-            }
-            else if(rec.length != 0){
-                this.$emit("update", JSON.parse(JSON.stringify(rec)))
-            }
-            else{
-                this.$emit("update", JSON.parse(JSON.stringify(rec)))
-            }
+            this.$emit("update", JSON.parse(JSON.stringify(rec)))
+
         },
         search(){
             let searchList = []
@@ -159,6 +144,9 @@ export default {
 
                 let val = target["type"] == "arg"?"@place":target["val"]
 
+                // if(path[val]["use"]){
+                //     continue
+                // }
                 if(path[val]["repeat"]){
                     continue
                 }
@@ -192,6 +180,21 @@ export default {
             return path
         }
     }
+    // created:function(){
+    //     let path = "/Users/maitake/Desktop/model/"
+    //     let _this = this
+    //     fs.readdir(path, (err, files) => {
+    //         if (err) throw err;
+    //         let fileList = files.filter(function(file){
+    //             return fs.statSync(path + file).isFile() && /.*\.json$/.test(file);
+    //         })
+    //         for(let item of fileList){
+    //             let json = JSON.parse(fs.readFileSync(path + item, 'utf8'));
+    //             model = Object.assign(model,json)
+    //         }
+    //         this.update()
+    //     })
+    // }
 }
 </script> 
 
