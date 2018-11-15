@@ -1,5 +1,5 @@
 <template>
-    <div class="Bottomber" :style="{ top: suggestY.y + 28 + 'px', left: suggestY.x - 16 + 'px' }">
+    <div class="Bottomber" astyle="{ top: suggestY.y + 28 + 'px', left: suggestY.x - 16 + 'px' }">
 
             <div class="item" v-for="block of blocks">
                 <span class="block" @click="clickItem(block)">
@@ -47,10 +47,10 @@ export default {
     z-index: 100;
     display: inline-block;
     /* border:1px solid #000000; */
-    box-shadow: 0px 9px 34px -6px #030303;
-    background: rgba(49, 49, 49, 0.884);
+    /* box-shadow: 0px 9px 34px -6px #030303; */
+    /* background: rgba(49, 49, 49, 0.884); */
     padding: 0 7px;
-    border: 1px solid #222;
+    /* border: 1px solid #222; */
     border-radius: 5px;
 }
 

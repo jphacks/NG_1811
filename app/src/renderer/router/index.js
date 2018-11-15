@@ -13,6 +13,10 @@ export default new Router({
       path: '/main',
       component: require('@/components/Main').default
     },
+    {
+      path: '/sub',
+      component: require('@/components/Subwindow').default
+    },
     // {
     //   path: '/store',
     //   component: require('@/components/Store').default

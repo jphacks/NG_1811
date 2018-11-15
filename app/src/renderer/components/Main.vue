@@ -2,7 +2,7 @@
     <div class="Main">
         <Titlebar />
         <!-- <Sidebar :blocks="candidate" v-model="searchWord" @inputBlock="inputBlock" /> -->
-        <Bottombar :blocks="candidate" v-model="searchWord" @inputBlock="inputBlock" :suggestY="suggestY" />
+        <!-- <Bottombar :blocks="candidate" v-model="searchWord" @inputBlock="inputBlock" :suggestY="suggestY" /> -->
         <Console :log="log" v-model="inputForm" @send="send" ref="console" @y="y" />
         <ML :input="inputForm" :searchWord="searchWord" @update="mlupdate" />
     </div>
@@ -14,6 +14,9 @@ import Console from "@/components/Console"
 import Sidebar from "@/components/Sidebar"
 import Bottombar from "@/components/Bottombar"
 import ML from "@/components/ML"
+
+// レンダラープロセスでやりとりするipcRenderer
+const { ipcRenderer } = require("electron")
 
 const child_process = require("child_process")
 const path = require("path")
@@ -50,6 +53,12 @@ export default {
                 // console.log(this.inputArr)
             }
         }
+    },
+    created() {
+        // 受信処理
+        ipcRenderer.on("inputBlock", (event, block) => {
+            this.inputBlock(block)
+        })
     },
     methods: {
         y(r) {
@@ -142,6 +151,9 @@ export default {
         },
         mlupdate(list) {
             this.candidate = list
+
+            // 非同期
+            ipcRenderer.send("candidateList", list)
         }
     }
 }
@@ -154,6 +166,6 @@ export default {
     bottom: 0;
     left: 0;
     right: 0;
- /* background: linear-gradient(#FF00D8, #00FF62); */
+    /* background: linear-gradient(#FF00D8, #00FF62); */
 }
 </style>
