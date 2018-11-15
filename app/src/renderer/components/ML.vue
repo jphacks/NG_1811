@@ -159,6 +159,10 @@ export default {
 
                 let val = target["type"] == "arg"?"@place":target["val"]
 
+                if(path[val]["repeat"]){
+                    continue
+                }
+
                 if("ignore" in path[val]){
                     use = use.concat(path[val]["ignore"])
                 }
