@@ -1,47 +1,13 @@
 <template>
     <div class="Bottomber" astyle="{ top: suggestY.y + 28 + 'px', left: suggestY.x - 16 + 'px' }">
-            
-        <div class="item" v-for="block of candidate">
-            <span class="block" @click="inputBlock(block)">
+        <div class="item" v-for="block of candidate" @click="inputBlock(block)">
+            <span class="block">
                 <Formula :value="[block]" @drop="inputBlock(block)" clickable="true" />
             </span>
             <span class="description">{{block.description}}</span>
         </div>
     </div>
 </template>
-
-<script>
-import Formula from "@/components/Formula"
-
-const child_process = require("child_process")
-const path = require("path")
-const { ipcRenderer } = require("electron")
-
-export default {
-    components: {
-        Formula
-    },
-    data() {
-        return {
-            candidate: []
-        }
-    },
-    created() {
-        // 受信処理
-        ipcRenderer.on("candidateList", (event, list) => {
-            // "ping"が出力される
-            this.candidate = list
-            // console.log("a", list)
-        })
-    },
-    methods: {
-        inputBlock(block) {
-            // 非同期
-            ipcRenderer.send("inputBlock", block)
-        }
-    }
-}
-</script>
 
 <style scoped>
 .Bottomber {
@@ -69,3 +35,32 @@ export default {
     line-height: 26px;
 }
 </style>
+
+<script>
+import Formula from "@/components/Formula"
+
+const child_process = require("child_process")
+const path = require("path")
+const { ipcRenderer } = require("electron")
+
+export default {
+    components: {
+        Formula
+    },
+    data() {
+        return {
+            candidate: []
+        }
+    },
+    created() {
+        ipcRenderer.on("candidateList", (event, list) => {
+            this.candidate = list
+        })
+    },
+    methods: {
+        inputBlock(block) {
+            ipcRenderer.send("inputBlock", block)
+        }
+    }
+}
+</script>

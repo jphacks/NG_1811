@@ -12,8 +12,23 @@
         ref="ediv"
         @focus="onfocus"
         @blur="onblur"
+        @click="onclick"
     />
 </template>
+
+<style scoped>
+.Editable {
+    display: inline-block;
+    text-align: left;
+    outline: none;
+    min-width: 1px;
+}
+.Editable:empty::before {
+    content: attr(data-placeholder);
+    opacity: 0.5;
+}
+</style>
+
 
 <script>
 export default {
@@ -90,17 +105,17 @@ export default {
 
             // this.update()
         },
+        onclick(e) {
+            // console.log("w", this.writable)
+            // if(this.writable) {
+            //     e.stopPropagation()
+            // }
+        },
         enter() {
-            if (this.endEditable) {
-                this.space()
-                this.$nextTick(() => {
-                    this.$emit("send")
-                })
-            } else {
-                this.$nextTick(() => {
-                    this.$emit("send")
-                })
-            }
+            this.space()
+            this.$nextTick(() => {
+                this.$emit("send")
+            })
         },
         keydown(e) {
             // console.log("suiso", e.keyCode)
@@ -150,17 +165,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-.Editable {
-    display: inline-block;
-    text-align: left;
-    outline: none;
-    min-width: 1px;
-}
-.Editable:empty::before {
-    content: attr(data-placeholder);
-    opacity: 0.5;
-}
-</style>
-

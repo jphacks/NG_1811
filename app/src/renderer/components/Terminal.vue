@@ -2,7 +2,7 @@
     <div class="Main">
         <div class="Titlebar" />
 
-        <div class="Console" @mousedown="clickConsole">
+        <div class="Console" @click="clickConsole">
             <div class="Console-inner" ref="inner">
                 <div v-for="op of log">
                 <div class="Console-input">
@@ -12,7 +12,6 @@
                 </div>
                 <div class="Input Console-input">
                 $ <Formula v-model="inputForm" writable @send="send" ref="inputForm" @y="y" 
-
                     @onfocus="onfocus"
                     @onblur="onblur"
                 />
@@ -23,6 +22,58 @@
         <ML :input="inputForm" :searchWord="searchWord" @update="mlupdate" />
     </div>
 </template>
+
+<style>
+.Main {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* background: linear-gradient(#FF00D8, #00FF62); */
+}
+
+.Titlebar {
+    position: fixed;
+    height: 36px;
+    top: 0px;
+    left: 0;
+    right: 0;
+    z-index: 200;
+    -webkit-app-region: drag;
+}
+
+.Console {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background: rgba(0, 0, 0, 0.8);
+    /* border-radius: 3px; */
+    color: #fff;
+    cursor: text;
+    user-select: text;
+}
+.Console-inner {
+    position: absolute;
+    bottom: 0;
+    left: 4px;
+    right: 4px;
+    top: 32px;
+    overflow: scroll;
+}
+
+.Console-input {
+    margin: 10px;
+    line-height: 24px;
+}
+
+.Console-output {
+    margin: 10px;
+    white-space: pre-wrap;
+}
+</style>
 
 <script>
 import ML from "@/components/ML"
@@ -205,55 +256,3 @@ export default {
     }
 }
 </script>
-
-<style>
-.Main {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    /* background: linear-gradient(#FF00D8, #00FF62); */
-}
-
-.Titlebar {
-    position: fixed;
-    height: 36px;
-    top: 0px;
-    left: 0;
-    right: 0;
-    z-index: 200;
-    -webkit-app-region: drag;
-}
-
-.Console {
-    position: absolute;
-    top: 0px;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-    background: rgba(0, 0, 0, 0.8);
-    /* border-radius: 3px; */
-    color: #fff;
-    cursor: text;
-    user-select: text;
-}
-.Console-inner {
-    position: absolute;
-    bottom: 0;
-    left: 4px;
-    right: 4px;
-    top: 32px;
-    overflow: scroll;
-}
-
-.Console-input {
-    margin: 10px;
-    line-height: 24px;
-}
-
-.Console-output {
-    margin: 10px;
-    white-space: pre-wrap;
-}
-</style>
