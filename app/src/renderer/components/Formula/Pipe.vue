@@ -4,7 +4,9 @@
         :class="{
             clickable: clickable
             }"
-        @dragend="drop">|</span>
+        @dragend="drop">
+        <span class="Val">|</span>
+        </span>
 </template>
 
 <script>
@@ -29,13 +31,17 @@ export default {
     width: 3px;
     border-radius: 10px;
     height: 24px;
-    color: rgba(0, 0, 0, 0);
     margin: 0 0px;
+    color: rgba(0,0,0,0);
 }
 .clickable {
     cursor: pointer;
 }
 .clickable:active {
     transform: translateY(3px);
+}
+
+.Val {
+    margin-left: -2px;
 }
 </style>

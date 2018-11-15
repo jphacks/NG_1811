@@ -62,11 +62,12 @@ export default {
 <style scoped>
 .Console {
     position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(0, 0, 0, 0.6);
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background: rgba(0, 0, 0, 0.8);
+    /* border-radius: 3px; */
     color: #fff;
     cursor: text;
     user-select: text;
@@ -74,9 +75,9 @@ export default {
 .Console-inner {
     position: absolute;
     bottom: 0;
-    left: 0;
-    right: 0;
-    top: 30px;
+    left: 4px;
+    right: 4px;
+    top: 32px;
     overflow: scroll;
 }
 

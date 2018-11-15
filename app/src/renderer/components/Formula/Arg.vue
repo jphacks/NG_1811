@@ -69,7 +69,7 @@ export default {
     box-shadow: 0 1px 2px rgb(92, 92, 92);
     z-index: 101;
     text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
-    padding-left: 10px;
+    padding-left: 2px;
 }
 .clickable {
     cursor: pointer;
@@ -93,9 +93,10 @@ export default {
     line-height: 20px;
     outline: none;
     min-width: 10px;
+}
 
-
+.optionwith .Edi {
     margin-left: -15px;
-    padding-left: 14px;
+    padding-left: 15px;
 }
 </style>

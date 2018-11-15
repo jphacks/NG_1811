@@ -10,25 +10,24 @@ if (process.env.NODE_ENV !== "development") {
         .replace(/\\/g, "\\\\")
 }
 
-let mainWindow
 const winURL =
     process.env.NODE_ENV === "development"
         ? `http://localhost:9080`
         : `file://${__dirname}/index.html`
 
+let mainWindow
 function createWindow() {
     /**
      * Initial window options
      */
     mainWindow = new BrowserWindow({
-        height: 360,
+        width: 700,
+        height: 500,
         useContentSize: true,
-        width: 500,
-        // titleBarStyle: 'hidden',
-        // transparent: true,
+        titleBarStyle: "hiddenInset",
         frame: false,
-        titleBarStyle: "hidden",
-        // vibrancy: 'light',
+        transparent: true,
+        vibrancy: "dark"
     })
 
     mainWindow.loadURL(winURL)
@@ -38,7 +37,31 @@ function createWindow() {
     })
 }
 
+let subWindow
+function createSubWindow() {
+    /**
+     * Initial window options
+     */
+    subWindow = new BrowserWindow({
+        width: 400,
+        height: 300,
+        useContentSize: true,
+        // titleBarStyle: "hidden",
+        alwaysOnTop: true,
+        frame: false,
+        transparent: true,
+        vibrancy: "dark"
+    })
+
+    subWindow.loadURL(winURL + "#/sub")
+
+    subWindow.on("closed", () => {
+        mainWindow = null
+    })
+}
+
 app.on("ready", createWindow)
+app.on("ready", createSubWindow)
 
 app.on("window-all-closed", () => {
     if (process.platform !== "darwin") {
@@ -49,6 +72,9 @@ app.on("window-all-closed", () => {
 app.on("activate", () => {
     if (mainWindow === null) {
         createWindow()
+    }
+    if (subWindow === null) {
+        subWindow()
     }
 })
 
@@ -71,3 +97,24 @@ app.on('ready', () => {
   if (process.env.NODE_ENV === 'production') autoUpdater.checkForUpdates()
 })
  */
+
+
+
+ // メインプロセスでやりとりするipcMain
+const {ipcMain} = require('electron');
+
+ipcMain.on('candidateList', (event, list) => {
+    subWindow.webContents.send('candidateList', list);
+
+
+})
+
+ipcMain.on('inputBlock', (event, block) => {
+    mainWindow.webContents.send('inputBlock', block);
+})
+
+
+ipcMain.on('setSubWindowBounds', (event, r) => {
+    const a = mainWindow.getPosition();
+    subWindow.setPosition(Math.ceil(r.x + a[0] - 17), Math.ceil(r.y + a[1] + 24));
+})

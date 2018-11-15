@@ -7,11 +7,15 @@ export default new Router({
   routes: [
     {
       path: '/',
-      component: require('@/components/LandingPage').default
+      component: require('@/components/Main').default
     },
     {
       path: '/main',
       component: require('@/components/Main').default
+    },
+    {
+      path: '/sub',
+      component: require('@/components/Subwindow').default
     },
     // {
     //   path: '/store',

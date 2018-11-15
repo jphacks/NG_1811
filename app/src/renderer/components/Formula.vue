@@ -30,7 +30,9 @@
                 :val="block.val"
                 @drop="drop"
                 :clickable="clickable"
+                :class="{optionwith: i>0&&value[i-1]!=undefined}"
                 @focus="focus"
+                :style="{'z-index': 99-i}"
                 
             />
             <Arg
@@ -52,10 +54,11 @@
                 :writable="writable"
                 @drop="drop"
                 :clickable="clickable"
+                :style="{'z-index': 99-i}"
             />
         </div>
         <Editable
-            :v-if="writable"
+            cv-if="writable"
             :writable="writable"
             endEditable="true"
             ref="endEditable"
@@ -101,7 +104,7 @@ export default {
             }
         },
         inputBlock(block) {
-            console.log(this.$refs.endEditable.$refs.ediv.getBoundingClientRect())
+            // console.log(this.$refs.endEditable.$refs.ediv.getBoundingClientRect())
 
             if (block.type == "phrase") {
                 if (
@@ -141,8 +144,6 @@ export default {
     vertical-align: middle;
 }
 
-.command {
-}
 .optionwith {
     margin-left: -20px;
     padding-left: 18px;
