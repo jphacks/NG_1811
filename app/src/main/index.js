@@ -43,17 +43,20 @@ function createSubWindow() {
      * Initial window options
      */
     subWindow = new BrowserWindow({
-        width: 400,
-        height: 300,
+        width: 300,
+        height: 260,
         useContentSize: true,
         // titleBarStyle: "hidden",
         alwaysOnTop: true,
         frame: false,
         transparent: true,
-        vibrancy: "dark"
+        vibrancy: "dark",
+        focusable: false,
+        resizable: false,
+        // alwaysOnTop: true,
     })
 
-    subWindow.loadURL(winURL + "#/sub")
+    subWindow.loadURL(winURL + "#/hint")
 
     subWindow.on("closed", () => {
         mainWindow = null

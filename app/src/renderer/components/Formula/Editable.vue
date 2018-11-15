@@ -141,6 +141,7 @@ export default {
             })
         },
         onfocus() {
+            this.updateY()
             this.$emit("onfocus")
         },
         onblur() {

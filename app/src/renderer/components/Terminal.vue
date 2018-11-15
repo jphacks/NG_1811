@@ -1,26 +1,34 @@
 <template>
     <div class="Main">
-        <Titlebar />
-        <!-- <Sidebar :blocks="candidate" v-model="searchWord" @inputBlock="inputBlock" /> -->
-        <!-- <Bottombar :blocks="candidate" v-model="searchWord" @inputBlock="inputBlock" :suggestY="suggestY" /> -->
-        <Console :log="log" v-model="inputForm" @send="send" ref="console" @y="y"
-        
-        @onfocus="onfocus"
-        @onblur="onblur" />
+        <div class="Titlebar" />
+
+        <div class="Console" @mousedown="clickConsole">
+            <div class="Console-inner" ref="inner">
+                <div v-for="op of log">
+                <div class="Console-input">
+                    $ <Formula v-model="op.inputFormula" />
+                </div>
+                <div class="Console-output">{{op.outputString}}</div>
+                </div>
+                <div class="Input Console-input">
+                $ <Formula v-model="inputForm" writable @send="send" ref="inputForm" @y="y" 
+
+                    @onfocus="onfocus"
+                    @onblur="onblur"
+                />
+                </div>
+            </div>
+        </div>
+
         <ML :input="inputForm" :searchWord="searchWord" @update="mlupdate" />
     </div>
 </template>
 
 <script>
-import Titlebar from "@/components/Titlebar"
-import Console from "@/components/Console"
-import Sidebar from "@/components/Sidebar"
-import Bottombar from "@/components/Bottombar"
 import ML from "@/components/ML"
 
-// レンダラープロセスでやりとりするipcRenderer
+import Formula from "./Formula"
 const { ipcRenderer } = require("electron")
-
 const child_process = require("child_process")
 const path = require("path")
 
@@ -29,11 +37,11 @@ const HOMEDIR =
 
 export default {
     components: {
-        Console,
-        Sidebar,
-        Bottombar,
         ML,
-        Titlebar
+        Formula
+    },
+    mounted() {
+        this.$refs.inputForm.focus()
     },
     data() {
         return {
@@ -44,7 +52,7 @@ export default {
             searchWord: "",
             pwd: HOMEDIR,
 
-            suggestY: 0,
+            suggestY: 0
         }
     },
     watch: {
@@ -55,6 +63,15 @@ export default {
                 // console.log("水素の音:", this.inputForm)
                 // console.log(this.inputArr)
             }
+        },
+        log: {
+            deep: true,
+            handler() {
+                this.scrollToBottom()
+            }
+        },
+        value() {
+            this.scrollToBottom()
         }
     },
     created() {
@@ -64,6 +81,21 @@ export default {
         })
     },
     methods: {
+        send() {
+            this.$emit("send")
+            this.focus()
+        },
+        clickConsole() {
+            this.focus()
+        },
+        focus() {
+            this.$refs.inputForm.focus()
+        },
+        scrollToBottom() {
+            this.$nextTick(() => {
+                this.$refs.inner.scrollTop = this.$refs.inner.scrollHeight
+            })
+        },
         onfocus() {
             ipcRenderer.send("onfocus")
         },
@@ -81,7 +113,7 @@ export default {
         },
         inputBlock(block) {
             this.inputForm.push(JSON.parse(JSON.stringify(block)))
-            this.$refs.console.focus()
+            this.$refs.inputForm.focus()
         },
         formulaToArray(input) {
             let s = []
@@ -182,5 +214,46 @@ export default {
     left: 0;
     right: 0;
     /* background: linear-gradient(#FF00D8, #00FF62); */
+}
+
+.Titlebar {
+    position: fixed;
+    height: 36px;
+    top: 0px;
+    left: 0;
+    right: 0;
+    z-index: 200;
+    -webkit-app-region: drag;
+}
+
+.Console {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background: rgba(0, 0, 0, 0.8);
+    /* border-radius: 3px; */
+    color: #fff;
+    cursor: text;
+    user-select: text;
+}
+.Console-inner {
+    position: absolute;
+    bottom: 0;
+    left: 4px;
+    right: 4px;
+    top: 32px;
+    overflow: scroll;
+}
+
+.Console-input {
+    margin: 10px;
+    line-height: 24px;
+}
+
+.Console-output {
+    margin: 10px;
+    white-space: pre-wrap;
 }
 </style>

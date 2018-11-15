@@ -7,15 +7,11 @@ export default new Router({
   routes: [
     {
       path: '/',
-      component: require('@/components/Main').default
+      component: require('@/components/Terminal').default
     },
     {
-      path: '/main',
-      component: require('@/components/Main').default
-    },
-    {
-      path: '/sub',
-      component: require('@/components/Subwindow').default
+      path: '/hint',
+      component: require('@/components/Hint').default
     },
     // {
     //   path: '/store',
