@@ -73,6 +73,14 @@
                 "@next": {}
               }
             }
+          },
+          "@place": {
+            "type": "arg",
+            "val": "@place",
+            "repeat": true,
+            "predict": false,
+            "placeholder": "ファイル名",
+            "weight": 10
           }
         }
       }
@@ -281,7 +289,7 @@
           "@place": {
             "type": "arg",
             "weight": 10,
-            "predict": false,
+            "predict": true,
             "placeholder": "ディレクトリ名",
             "@next": {}
           }
@@ -314,9 +322,17 @@
       "@place": {
         "type": "arg",
         "weight": 10,
-        "predict": false,
+        "predict": true,
         "placeholder": "ファイル名",
-        "@next": {}
+        "@next": {
+          "@place": {
+            "type": "arg",
+            "weight": 10,
+            "predict": false,
+            "repeat": true,
+            "placeholder": "ファイル名"
+          }
+        }
       }
     }
   },
@@ -331,6 +347,7 @@
         "type": "arg",
         "weight": 10,
         "predict": false,
+        "repeat":true,
         "placeholder": "ファイル名",
         "@next": {}
       }
