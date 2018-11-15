@@ -19,7 +19,7 @@
             </div>
         </div>
 
-        <ML :input="inputForm" :searchWord="searchWord" @update="mlupdate" />
+        <Recomend :input="inputForm" :searchWord="searchWord" @update="mlupdate" />
     </div>
 </template>
 
@@ -76,7 +76,7 @@
 </style>
 
 <script>
-import ML from "@/components/ML"
+import Recomend from "@/components/Recomend"
 
 import Formula from "./Formula"
 const { ipcRenderer } = require("electron")
@@ -88,7 +88,7 @@ const HOMEDIR =
 
 export default {
     components: {
-        ML,
+        Recomend,
         Formula
     },
     mounted() {

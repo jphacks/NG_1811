@@ -43,16 +43,16 @@ function createSubWindow() {
      * Initial window options
      */
     subWindow = new BrowserWindow({
-        width: 300,
-        height: 260,
+        width: 500,
+        height: 360,
         useContentSize: true,
         // titleBarStyle: "hidden",
         alwaysOnTop: true,
         frame: false,
         transparent: true,
-        vibrancy: "dark",
         focusable: false,
         resizable: false,
+        hasShadow: false,
         // alwaysOnTop: true,
     })
 
@@ -61,6 +61,8 @@ function createSubWindow() {
     subWindow.on("closed", () => {
         mainWindow = null
     })
+
+    // subWindow.setIgnoreMouseEvents(true)
 }
 
 app.on("ready", createWindow)

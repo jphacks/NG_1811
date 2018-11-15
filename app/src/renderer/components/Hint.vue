@@ -1,21 +1,26 @@
 <template>
-    <div class="Bottomber" astyle="{ top: suggestY.y + 28 + 'px', left: suggestY.x - 16 + 'px' }">
+    <div class="Hint" astyle="{ top: suggestY.y + 28 + 'px', left: suggestY.x - 16 + 'px' }">
         <div class="item" v-for="block of candidate" @click="inputBlock(block)">
             <span class="block">
                 <Formula :value="[block]" @drop="inputBlock(block)" clickable="true" />
             </span>
             <span class="description">{{block.description}}</span>
         </div>
+        <div class="item" v-if="candidate.length == 0">
+            候補がありません
+        </div>
     </div>
 </template>
 
 <style scoped>
-.Bottomber {
-    /* box-shadow: 0px 9px 34px -6px #030303; */
-    /* background: rgba(49, 49, 49, 0.884); */
+.Hint {
+    /* margin-top: 10px; */
+    box-shadow: 0px 9px 34px -6px #030303;
+    background: rgba(49, 49, 49, 0.884);
     padding: 0 7px;
-    /* border: 1px solid #222; */
+    border: 1px solid #222;
     border-radius: 5px;
+    display: inline-block;
 }
 
 .block {
