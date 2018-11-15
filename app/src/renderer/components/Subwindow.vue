@@ -1,6 +1,6 @@
 <template>
     <div class="Store">
-        <Titlebar />
+        <!-- <Titlebar /> -->
         
         <Bottombar :blocks="candidate" @inputBlock="inputBlock" />
 

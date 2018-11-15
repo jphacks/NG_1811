@@ -63,6 +63,12 @@ export default {
     methods: {
         y(r) {
             this.suggestY = r
+            if (r.top > 1) {
+                ipcRenderer.send("setSubWindowBounds", {
+                    x: r.left,
+                    y: r.top
+                })
+            }
         },
         inputBlock(block) {
             this.inputForm.push(JSON.parse(JSON.stringify(block)))

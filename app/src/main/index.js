@@ -105,8 +105,16 @@ const {ipcMain} = require('electron');
 
 ipcMain.on('candidateList', (event, list) => {
     subWindow.webContents.send('candidateList', list);
+
+
 })
 
 ipcMain.on('inputBlock', (event, block) => {
     mainWindow.webContents.send('inputBlock', block);
+})
+
+
+ipcMain.on('setSubWindowBounds', (event, r) => {
+    const a = mainWindow.getPosition();
+    subWindow.setPosition(Math.ceil(r.x + a[0]), Math.ceil(r.y + a[1] + 20));
 })
