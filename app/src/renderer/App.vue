@@ -5,8 +5,6 @@
 </template>
 
 <script>
-import Titlebar from "@/components/Titlebar"
-
 // in renderer process
 import { webFrame } from "electron"
 
@@ -14,14 +12,15 @@ import { webFrame } from "electron"
 webFrame.setVisualZoomLevelLimits(1, 1)
 
 export default {
-    components: {
-        Titlebar
-    },
     name: "eterm"
 }
 </script>
 
 <style>
+body {
+    margin: 0;
+}
+
 #app {
     font-family: Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console",
         monospace, -apple-system, BlinkMacSystemFont, "Helvetica Neue",

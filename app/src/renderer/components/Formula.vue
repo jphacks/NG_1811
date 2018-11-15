@@ -1,60 +1,17 @@
 <template>
     <div class="Formula">
         <div v-for="(block, i) of value" class="Block">
-            <!-- <Editable value="" :writable="writable" /> -->
-            <Phrase
-                v-if="block.type == 'command'"
-                type="command"
-                class="command"
-                :val="block.val"
-                @drop="drop"
-                :clickable="clickable"
-                @focus="focus"
-                
-            />
-            <Phrase
-                v-else-if="block.type == 'option'"
-                type="option"
-                class="option"
-                :val="block.val"
-                :class="{optionwith: i>0&&value[i-1]!=undefined}"
-                @drop="drop"
-                :clickable="clickable"
-                @focus="focus"
-                :style="{'z-index': 99-i}"
-            />
-            <Phrase
-                v-else-if="block.type == 'redirect'"
-                type="redirect"
-                class="redirect"
-                :val="block.val"
-                @drop="drop"
-                :clickable="clickable"
-                :class="{optionwith: i>0&&value[i-1]!=undefined}"
-                @focus="focus"
-                :style="{'z-index': 99-i}"
-                
-            />
-            <Arg
-                v-else-if="block.type == 'arg'"
-                type="option"
-                class="option"
+            <Block
+                :type="block.type"
                 v-model="block.val"
                 :placeholder="block.placeholder"
                 :writable="writable"
-                :class="{optionwith: i>0&&value[i-1]!=undefined}"
-                @drop="drop"
+                :class="{optionwith: block.type!='pipe'&&i>0&&value[i-1]!=undefined}"
+                :style="{'z-index': 99-i}"  
                 :clickable="clickable"
+                @drop="drop"
                 @focus="focus"
-                :style="{'z-index': 99-i}"
                 @send="send"
-            />
-            <Pipe
-                v-else-if="block.type == 'pipe'"
-                :writable="writable"
-                @drop="drop"
-                :clickable="clickable"
-                :style="{'z-index': 99-i}"
             />
         </div>
         <Editable
@@ -73,18 +30,31 @@
     </div>
 </template>
 
+<style scoped>
+.Formula {
+    display: inline-block;
+    vertical-align: middle;
+}
+.Block {
+    display: inline-block;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.optionwith {
+    margin-left: -20px;
+    padding-left: 18px;
+}
+</style>
+
 <script>
-import Phrase from "@/components/Formula/Phrase"
-import Arg from "@/components/Formula/Arg"
+import Block from "@/components/Formula/Block"
 import Editable from "@/components/Formula/Editable"
-import Pipe from "@/components/Formula/Pipe"
 
 export default {
     components: {
-        Phrase,
-        Arg,
+        Block,
         Editable,
-        Pipe
     },
     props: ["value", "writable", "clickable"],
     data() {
@@ -148,21 +118,3 @@ export default {
     }
 }
 </script>
-
-
-<style scoped>
-.Formula {
-    display: inline-block;
-    vertical-align: middle;
-}
-.Block {
-    display: inline-block;
-    margin-right: 5px;
-    vertical-align: middle;
-}
-
-.optionwith {
-    margin-left: -20px;
-    padding-left: 18px;
-}
-</style>
