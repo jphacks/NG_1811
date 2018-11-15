@@ -116,5 +116,5 @@ ipcMain.on('inputBlock', (event, block) => {
 
 ipcMain.on('setSubWindowBounds', (event, r) => {
     const a = mainWindow.getPosition();
-    subWindow.setPosition(Math.ceil(r.x + a[0]), Math.ceil(r.y + a[1] + 20));
+    subWindow.setPosition(Math.ceil(r.x + a[0] - 17), Math.ceil(r.y + a[1] + 24));
 })

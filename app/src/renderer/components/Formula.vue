@@ -104,7 +104,7 @@ export default {
             }
         },
         inputBlock(block) {
-            console.log(this.$refs.endEditable.$refs.ediv.getBoundingClientRect())
+            // console.log(this.$refs.endEditable.$refs.ediv.getBoundingClientRect())
 
             if (block.type == "phrase") {
                 if (
