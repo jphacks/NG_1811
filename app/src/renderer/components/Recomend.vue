@@ -47,28 +47,18 @@ export default {
             this.$emit("update", JSON.parse(JSON.stringify(rec)))
 
         },
-        // search(){
-        //     let searchList = []
-            
-        //     if(this.searchWord.length == 0){
-        //         this.update() 
-        //     }
-
-        //     for(let cmd in model){
-        //         if(model[cmd]["des"].includes(this.searchWord) || this.searchWord.includes(cmd)){
-        //             searchList.push({
-        //                 val:cmd,
-        //                 description:model[cmd]["des"],
-        //                 type:model[cmd]["type"]
-        //             })
-        //         }
-        //     }
-        //     if(this.searchWord != ""){
-        //         this.$emit("update",searchList)
-        //     }
-        // },
         changeInputText:function(){
-            if((this.inputText[this.inputText.length-1] == " " && this.inputText.trim() != 0) || this.inputText[this.inputText.length-1] == "\n"){
+            if(this.inputText[this.inputText.length-1] == "\n"){
+                if(this.inputText.length > 1){
+                    this.input.push({
+                        "type":"text",
+                        "val":this.inputText.replace(/\r?\n/g, '')
+                    })
+                    this._changeInput()
+                    this.$emit("update:inputText","")
+                }
+            }
+            else if((this.inputText[this.inputText.length-1] == " " && this.inputText.trim() != 0)){
                 this.input.push({
                     "type":"text",
                     "val":this.inputText.slice(0,this.inputText.length-1)
@@ -89,6 +79,8 @@ export default {
             this.$emit("update", JSON.parse(JSON.stringify(rec)))
         },
         _changeInput(){
+
+            console.log("changeInput:",this.lastCmd)
 
             if(this.lastCmd["val"] == "|"){
                 this.lastCmd["type"] = "pipe"
