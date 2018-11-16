@@ -1,10 +1,14 @@
 <template>
     <div class="Hint" ref="container">
-        <div class="item" v-for="block of candidate">
-            <span class="block" @click="inputBlock(block)">
-                <Formula :value="[block]" @drop="inputBlock(block)" clickable="true" />
-            </span>
-            <span class="description">{{block.description}}</span>
+        <div class="item">
+            <div>
+                <div class="block" @click="inputBlock(block)" v-for="block of candidate">
+                    <Formula :value="[block]" @drop="inputBlock(block)" clickable="true" />
+                </div>
+            </div>
+            <div>
+                <div class="description" v-for="block of candidate">{{block.description}}</div>
+            </div>
         </div>
         <div class="item" v-if="candidate.length == 0">
             候補がありません
@@ -70,17 +74,20 @@ export default {
     /* background: rgba(255, 255, 255, 0.11); */
     /* display: inline-block; */
     margin: 6px 2px;
-    height: 26px;
+    /* height: 26px; */
     line-height: 26px;
     display: flex;
     flex-direction: row;
     flex-wrap: no-wrap;
+        /* justify-content: space-between; */
 }
 
 .block {
+    height: 26px;
+    text-align: left;
 }
 .description {
-    margin-left: -6px;
+    height: 26px;
     white-space: nowrap;
 }
 

@@ -6,7 +6,7 @@
         ref="ediv"
         @input="update"
         @paste="paste"
-        @keydown.enter="enter"
+        @keydown.enter.prevent="enter"
         @keydown.delete="backspace"
         @focus="onfocus"
         @blur="onblur"

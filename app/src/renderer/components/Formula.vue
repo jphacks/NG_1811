@@ -15,7 +15,7 @@
             />
         </div>
         <Editable
-            cv-if="writable"
+            type="text"
             :writable="writable"
             endEditable="true"
             ref="endEditable"

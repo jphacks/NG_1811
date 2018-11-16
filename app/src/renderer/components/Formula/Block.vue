@@ -1,5 +1,6 @@
 <template>
     <span
+        class="Block"
         :class="{
             Command: type == 'command',
             Option: type == 'option',
@@ -63,6 +64,10 @@ export default {
 </script>
 
 <style scoped>
+
+.Block {
+    white-space: nowrap;
+}
 
 .Text, .Command, .Option, .Redirect, .Arg {
     position: relative;
