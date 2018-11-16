@@ -15,6 +15,7 @@
                     @onfocus="onfocus"
                     @onblur="onblur"
                     @updateInputText="updateInputText"
+                    :inputText="inputText"
                 />
                 </div>
             </div>

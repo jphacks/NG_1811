@@ -56,7 +56,7 @@ export default {
         Block,
         Editable,
     },
-    props: ["value", "writable", "clickable"],
+    props: ["value", "writable", "clickable", "inputText"],
     data() {
         return {
             args: ["ls"],
@@ -71,6 +71,9 @@ export default {
         },
         text() {
             this.$emit("updateInputText", this.text)
+        },
+        inputText(text) {
+            this.text = text
         }
     },
     methods: {
