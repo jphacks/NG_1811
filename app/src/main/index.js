@@ -49,6 +49,7 @@ function createSubWindow() {
         alwaysOnTop: true,
         frame: false,
         transparent: true,
+        vibrancy: "dark"
         focusable: false,
         resizable: false,
         // hasShadow: false,

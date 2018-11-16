@@ -3,7 +3,13 @@
         <div class="item">
             <div>
                 <div class="block" @click="inputBlock(block)" v-for="block of candidate">
-                    <Formula :value="[block]" @drop="inputBlock(block)" clickable="true" />
+                    <Block
+                        :type="block.type"
+                        v-model="block.val"
+                        :placeholder="block.placeholder"
+                        :clickable="true"
+                        @drop="inputBlock(block)"
+                    />
                 </div>
             </div>
             <div>
@@ -17,7 +23,7 @@
 </template>
 
 <script>
-import Formula from "@/components/Formula"
+import Block from "@/components/Formula/Block"
 
 const child_process = require("child_process")
 const path = require("path")
@@ -25,7 +31,7 @@ const { ipcRenderer } = require("electron")
 
 export default {
     components: {
-        Formula
+        Block
     },
     data() {
         return {
@@ -61,9 +67,8 @@ export default {
 .Hint {
     /* margin-top: 10px; */
     /* box-shadow: 0px 9px 34px -6px #030303; */
-    background: rgb(26, 26, 26);
+    background: rgb(0, 0, 0);
     color: rgb(255, 255, 255);
-    padding: 0 7px;
     /* border: 1px solid #222; */
     border-radius: 5px;
     display: inline-block;
@@ -73,22 +78,33 @@ export default {
     margin: 1px;
     /* background: rgba(255, 255, 255, 0.11); */
     /* display: inline-block; */
-    margin: 6px 2px;
     /* height: 26px; */
     line-height: 26px;
     display: flex;
     flex-direction: row;
     flex-wrap: no-wrap;
-        /* justify-content: space-between; */
+    /* justify-content: space-between; */
+    padding: 4px;
 }
 
 .block {
-    height: 26px;
-    text-align: left;
+    height: 28px;
+    text-align: right;
+    padding-right: 5px;
+    padding-left: 1px;
 }
 .description {
-    height: 26px;
+    height: 28px;
     white-space: nowrap;
+    background: rgb(63, 63, 63);
+    padding: 0 4px;
 }
-
+.description:first-child {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.description:last-child {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
 </style>

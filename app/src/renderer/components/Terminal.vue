@@ -11,7 +11,7 @@
                 <div class="Console-output">{{op.outputString}}</div>
                 </div>
                 <div class="Input Console-input">
-                $ <Formula v-model="inputForm" writable @send="send" ref="inputForm" @y="y" 
+                $ <Formula v-model="inputForm" :writable="true" @send="send" ref="inputForm" @y="y" 
                     @onfocus="onfocus"
                     @onblur="onblur"
                     :inputText.sync="inputText"

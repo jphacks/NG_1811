@@ -7,14 +7,13 @@
                 :placeholder="block.placeholder"
                 :writable="writable"
                 :class="{optionwith: block.type.match(/option|arg|text/)&&i>0&&value[i-1]!=undefined}"
-                :style="{'z-index': 99-i}"  
-                :clickable="clickable"
-                @drop="drop"
+                :style="{'z-index': 99-i}"
                 @focus="focus"
                 @send="send"
             />
         </div>
         <Editable
+            v-if="writable"
             type="text"
             :writable="writable"
             endEditable="true"
@@ -54,7 +53,7 @@ import Editable from "@/components/Formula/Editable"
 export default {
     components: {
         Block,
-        Editable,
+        Editable
     },
     props: ["value", "writable", "clickable", "inputText"],
     data() {
@@ -66,7 +65,8 @@ export default {
     watch: {
         value() {
             this.$nextTick(() => {
-                this.$refs.endEditable.updateY()
+                if (this.$refs.endEditable)
+                    this.$refs.endEditable.updateY()
             })
         },
         text() {
@@ -103,7 +103,6 @@ export default {
             }
             // console.log(block)
             this.value.push(block)
-
         },
         deleteBlock(e) {
             this.value.splice(this.value.length - 1, 1)
