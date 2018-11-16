@@ -8,7 +8,7 @@
 import model from "@/assets/model.json"
 
 export default {
-    props: ["input","searchWord","inputText"],
+    props: ["input","inputText"],
     data:function(){
         return{
             "preRecomend":[]
@@ -49,27 +49,36 @@ export default {
             this.$emit("update", JSON.parse(JSON.stringify(rec)))
 
         },
-        search(){
-            let searchList = []
+        // search(){
+        //     let searchList = []
             
-            if(this.searchWord.length == 0){
-                this.update() 
+        //     if(this.searchWord.length == 0){
+        //         this.update() 
+        //     }
+
+        //     for(let cmd in model){
+        //         if(model[cmd]["des"].includes(this.searchWord) || this.searchWord.includes(cmd)){
+        //             searchList.push({
+        //                 val:cmd,
+        //                 description:model[cmd]["des"],
+        //                 type:model[cmd]["type"]
+        //             })
+        //         }
+        //     }
+        //     if(this.searchWord != ""){
+        //         this.$emit("update",searchList)
+        //     }
+        // },
+        filtering:function(){            
+            if(this.inputText[this.inputText.length-1] == " "){
+                let type = this.input.length  == 0 ? "command" : "option"
+                this.input.push({
+                    "type":type,
+                    "val":this.inputText.slice(0,this.inputText.length-1)
+                })
+                this.$emit("updateInputText","")
             }
 
-            for(let cmd in model){
-                if(model[cmd]["des"].includes(this.searchWord) || this.searchWord.includes(cmd)){
-                    searchList.push({
-                        val:cmd,
-                        description:model[cmd]["des"],
-                        type:model[cmd]["type"]
-                    })
-                }
-            }
-            if(this.searchWord != ""){
-                this.$emit("update",searchList)
-            }
-        },
-        filtering:function(){
             let rec = []
             for(let item of this.preRecomend){
                 if(item["type"]=="arg"){
