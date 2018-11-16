@@ -98,15 +98,21 @@ export default {
                 this.input[this.input.length-1]["placeholder"] = this.previous["@place"]["placeholder"]
             }
             else{
-                try{
-                    execSync("type "+this.lastCmd["val"])
-                    this.lastCmd["type"] = "command"
-                    this.lastCmd["val"] = this.lastCmd["val"]
+                if(this.input.length <= 1 || this.input[this.input.length-2]["val"] == "|"){
+                    try{
+                        this.lastCmd["type"] = "command"
+                        this.lastCmd["val"] = this.lastCmd["val"]
+                    }
+                    catch(e){
+                        this.lastCmd["type"] = "text"
+                        this.lastCmd["val"] = this.lastCmd["val"]
+                    }
                 }
-                catch(e){
+                else{
                     this.lastCmd["type"] = "text"
                     this.lastCmd["val"] = this.lastCmd["val"]
                 }
+
             }
         },
         _getNextRecommend(){
