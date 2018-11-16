@@ -68,7 +68,7 @@ export default {
 .Hint {
     /* margin-top: 10px; */
     /* box-shadow: 0px 9px 34px -6px #030303; */
-    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.2);
     color: rgb(255, 255, 255);
     /* border: 1px solid #222; */
     border-radius: 5px;
@@ -85,7 +85,7 @@ export default {
     flex-direction: row;
     flex-wrap: no-wrap;
     /* justify-content: space-between; */
-    padding: 4px;
+    padding: 3px 5px;
     max-height: 198px;
     overflow-y: scroll;
 }
@@ -94,13 +94,13 @@ export default {
     height: 28px;
     /* text-align: right; */
     padding-right: 5px;
-    padding-left: 1px;
+    /* padding-left: 1px; */
 }
 .description {
     height: 28px;
     white-space: nowrap;
-    background: rgb(63, 63, 63);
-    padding: 0 4px;
+    /* background: rgb(63, 63, 63, 0.9);
+    padding: 0 4px; */
 }
 .description:first-child {
     border-top-left-radius: 5px;
