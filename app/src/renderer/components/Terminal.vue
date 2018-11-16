@@ -82,7 +82,7 @@
 <script>
 import Recomend from "@/components/Recomend"
 
-import Formula from "./Formula"
+import Formula from "@/components/Formula"
 const { ipcRenderer } = require("electron")
 const child_process = require("child_process")
 const path = require("path")

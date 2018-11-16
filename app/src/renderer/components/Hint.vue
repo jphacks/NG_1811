@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import Block from "@/components/Formula/Block"
+import Block from "@/components/Block"
 
 const child_process = require("child_process")
 const path = require("path")

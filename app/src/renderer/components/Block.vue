@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import Editable from "./Editable"
+import Editable from "@/components/Editable"
 
 export default {
     components: {

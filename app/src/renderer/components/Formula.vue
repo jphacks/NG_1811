@@ -47,8 +47,8 @@
 </style>
 
 <script>
-import Block from "@/components/Formula/Block"
-import Editable from "@/components/Formula/Editable"
+import Block from "@/components/Block"
+import Editable from "@/components/Editable"
 
 export default {
     components: {
