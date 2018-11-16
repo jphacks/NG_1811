@@ -1,0 +1,36 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif;
+    text-align: center;
+}
+
+.logo {
+    height: 80px;
+    margin-top: 80px;
+}
+
+
+h1 {
+    font-weight: 600;
+    font-size: 40px;
+    /* margin: 60px 0; */
+    margin-top: 24px;
+    vertical-align: top;
+}
+
+
+.download-link {
+    margin-top: 8px;
+    /* background: rgb(0, 0, 0); */
+    display: inline-block;
+    color: #000;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0px 3px 10px rgba(0,0,0,0.3);
+    text-decoration: none;
+    margin: 10px;
+}
+
+.screenshot {
+    width: 600px;
+    margin-top: 50px;
+}
