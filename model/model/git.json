@@ -1,0 +1,196 @@
+{
+  "git": {
+    "weight": 1,
+    "type": "command",
+    "val": "git",
+    "predict": true,
+    "des": "gitを使用",
+    "@next": {
+      "push": {
+        "weight": 1,
+        "type": "option",
+        "val": "push",
+        "predict": true,
+        "des": "リモートリポジトリに変更を送信",
+        "@next": {
+          "@place": {
+            "type": "arg",
+            "des": "送信先のブランチ",
+            "val": "@place",
+            "predict": true,
+            "placeholder": "リモートのブランチ",
+            "weight": 10,
+            "@next": {
+              "@place": {
+                "type": "arg",
+                "des": "送信元のブランチ",
+                "val": "@place",
+                "predict": true,
+                "placeholder": "ブランチ名",
+                "weight": 10,
+                "@next": {}
+              }
+            }
+          }
+        }
+      },
+      "diff": {
+        "weight": 1,
+        "type": "option",
+        "val": "diff",
+        "predict": true,
+        "des": "変更の詳細を表示",
+        "@next": {}
+      },
+      "status": {
+        "weight": 1,
+        "type": "option",
+        "val": "status",
+        "predict": true,
+        "des": "gitの状態を表示",
+        "@next": {}
+      },
+      "init": {
+        "weight": 1,
+        "type": "option",
+        "val": "status",
+        "predict": true,
+        "des": "リポジトリを初期化",
+        "@next": {}
+      },
+      "add": {
+        "weight": 1,
+        "type": "option",
+        "val": "add",
+        "predict": true,
+        "des": "変更をステージ",
+        "@next": {
+          "@place": {
+            "type": "arg",
+            "des": "ステージするファイルを指定",
+            "val": "@place",
+            "predict": true,
+            "placeholder": "ファイル名",
+            "weight": 10,
+            "@next": {
+              "@place": {
+                "type": "arg",
+                "des": "ステージするファイルを指定",
+                "val": "@place",
+                "predict": false,
+                "repeat":true,
+                "placeholder": "ファイル名",
+                "weight": 10,
+                "@next": {}
+              }
+            }
+          },
+          "-A": {
+            "weight": 1,
+            "type": "option",
+            "val": "-A",
+            "predict": false,
+            "ignore":["-u","@place"],
+            "des": "変更された全てのファイルをステージ",
+            "@next": {}
+          },
+          "-u": {
+            "weight": 1,
+            "type": "option",
+            "val": "-u",
+            "predict": false,
+            "ignore":["-A","@place"],
+            "des": "変更があった場所ファイルをステージ(新規追加は対象外)",
+            "@next": {}
+          },
+          "-f": {
+            "weight": 1,
+            "type": "option",
+            "val": "-f",
+            "predict": false,
+            "des": "gitignoreに記述されたファイルを強制的にステージ",
+            "@next": {}
+          },
+          "-n": {
+            "weight": 1,
+            "type": "option",
+            "val": "-n",
+            "predict": false,
+            "des": "ドライラン",
+            "@next": {}
+          },
+          "-p": {
+            "weight": 1,
+            "type": "option",
+            "val": "-p",
+            "predict": false,
+            "des": "ステージする変更を手動で選択",
+            "@next": {}
+          }
+        }
+      },
+      "commit": {
+        "weight": 1,
+        "type": "option",
+        "val": "commit",
+        "predict": true,
+        "des": "変更をコミット",
+        "@next": {
+          "-m": {
+            "weight": 1,
+            "type": "option",
+            "val": "-m",
+            "predict": true,
+            "des": "コミットメッセージを追加",
+            "@next": {
+              "@place": {
+                "weight": 1,
+                "type": "arg",
+                "placeholder": "\"String\"",
+                "predict": true,
+                "des": "コミットメッセージを入力",
+                "@next": {}
+              }
+            }
+          },
+          "-a": {
+            "weight": 1,
+            "type": "option",
+            "val": "-a",
+            "predict": true,
+            "des": "直前のコミットを修正",
+            "@next": {
+            }
+          },
+          "strip":{
+            "weight": 1,
+            "type": "option",
+            "val": "strip",
+            "predict": true,
+            "des": "空白行や行末の空白を自動的に削除",
+            "@next": {
+            }
+          }
+        }
+      },
+      "clone": {
+        "weight": 1,
+        "type": "option",
+        "val": "clone",
+        "predict": true,
+        "des": "リモートリポジトリをコピ-",
+        "@next": {
+          "@place": {
+            "type": "arg",
+            "des": "",
+            "val": "@place",
+            "predict": true,
+            "placeholder": "リモートリポジトリのURL",
+            "weight": 10,
+            "@next": {}
+          }
+        }
+      }
+    }
+  }
+}

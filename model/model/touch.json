@@ -1,0 +1,102 @@
+{
+  "touch": {
+    "weight": 1,
+    "type": "command",
+    "val": "touch",
+    "ignore":["-r"],
+    "predict": true,
+    "des": "ファイルのアクセス時刻と修正時刻を変更",
+    "@next": {
+      "-a": {
+        "type": "option",
+        "val": "-a",
+        "ignore":["-r"],
+        "predict": false,
+        "des": "アクセス時刻のみを変更",
+        "weight": 1
+      },
+      "-c": {
+        "type": "option",
+        "val": "-c",
+        "predict": false,
+        "ignore":["-r"],
+        "des": "ファイルが存在しない場合、ファイルを作成しない",
+        "weight": 1
+      },
+      "-m": {
+        "type": "option",
+        "val": "-m",
+        "predict": false,
+        "ignore":["-r"],
+        "des": "ファイルの最終時刻を更新",
+        "weight": 1
+      },
+      "-r": {
+        "type": "option",
+        "val": "-r",
+        "predict": true,
+        "ignore":["-m","-c","-a"],
+        "des": "次の引数のファイル時刻で変更",
+        "weight": 1,
+        "@next": {
+          "@place": {
+            "type": "arg",
+            "des": "合わせる元のファイル名",
+            "val": "@place",
+            "predict": true,
+            "placeholder": "PATH",
+            "weight": 10,
+            "@next": {
+              "@place": {
+                "type": "arg",
+                "des": "変更するファイル名",
+                "val": "@place",
+                "predict": false,
+                "placeholder": "PATH",
+                "weight": 10,
+                "@next": {}
+              }
+            }
+          }
+        }
+      },
+      "-t": {
+        "type": "option",
+        "val": "",
+        "predict": true,
+        "des": "次に指定する日時で更新",
+        "weight": 1,
+        "@next": {
+          "@place": {
+            "type": "arg",
+            "des": "[[CC]YY]MMDDhhmm[.SS]",
+            "val": "@place",
+            "predict": true,
+            "placeholder": "時刻表記",
+            "weight": 10,
+            "@next": {
+              "@place": {
+                "type": "arg",
+                "des": "変更するファイル名",
+                "val": "@place",
+                "predict": true,
+                "placeholder": "PATH",
+                "weight": 10,
+                "@next": {}
+              }
+            }
+          }
+        }
+      },
+      "@place": {
+        "type": "arg",
+        "des": "更新するファイル",
+        "val": "@place",
+        "predict": false,
+        "placeholder": "PATH",
+        "weight": 10,
+        "@next": {}
+      }
+    }
+  }
+}

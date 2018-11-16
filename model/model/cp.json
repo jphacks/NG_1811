@@ -1,0 +1,78 @@
+{
+  "cp": {
+    "weight": 1,
+    "type": "command",
+    "val": "cp",
+    "predict": true,
+    "des": "ファイルやディレクトリをコピー",
+    "@next": {
+      "-f": {
+        "type": "option",
+        "val": "-f",
+        "predict": false,
+        "des": "強制的にコピー",
+        "weight": 1,
+        "@next": {}
+      },
+      "-r": {
+        "type": "option",
+        "val": "-r",
+        "predict": false,
+        "des": "ディレクトリごとコピー",
+        "weight": 1,
+        "@next": {}
+      },
+      "-i": {
+        "type": "option",
+        "val": "-i",
+        "predict": false,
+        "des": "上書きする場合、確認する",
+        "weight": 1,
+        "@next": {}
+      },
+      "-b": {
+        "type": "option",
+        "val": "-b",
+        "predict": false,
+        "des": "上書きするファイルのバックアップを取る",
+        "weight": 1,
+        "@next": {}
+      },
+      "-s": {
+        "type": "option",
+        "val": "-s",
+        "predict": false,
+        "des": "シンボリックリンクを作成する",
+        "weight": 1,
+        "@next": {}
+      },
+      "-v": {
+        "type": "option",
+        "val": "-v",
+        "predict": false,
+        "des": "コピーの詳細を表示",
+        "weight": 1,
+        "@next": {}
+      },
+      "@place": {
+        "type": "arg",
+        "des": "コピーするファイルを指定",
+        "val": "@place",
+        "predict": true,
+        "placeholder": "コピー元",
+        "weight": 10,
+        "@next": {
+          "@place": {
+            "type": "arg",
+            "des": "コピー先とファイル名を指定",
+            "val": "@place",
+            "predict": true,
+            "placeholder": "コピー先",
+            "weight": 10,
+            "@next": {}
+          }
+        }
+      }
+    }
+  }
+}
