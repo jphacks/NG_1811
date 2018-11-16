@@ -6,7 +6,7 @@
                 v-model="block.val"
                 :placeholder="block.placeholder"
                 :writable="writable"
-                :class="{optionwith: block.type.match(/option|arg|text/)&&i>0&&value[i-1]!=undefined}"
+                :class="{optionwith: block.type.match(/option|arg|text/)&&i>0&&value[i-1].type!='pipe'&&value[i-1]!=undefined}"
                 :style="{'z-index': 99-i}"
                 @focus="focus"
                 @send="send"
