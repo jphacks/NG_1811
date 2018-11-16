@@ -100,6 +100,7 @@ export default {
             else{
                 if(this.input.length <= 1 || this.input[this.input.length-2]["val"] == "|"){
                     try{
+                        execSync("type "+this.lastCmd["val"])
                         this.lastCmd["type"] = "command"
                         this.lastCmd["val"] = this.lastCmd["val"]
                     }
