@@ -1,6 +1,4 @@
 # jupyter labの設定ファイル
 .ipynb_checkpoints
 # モデルの追加
-
-cmdDescription.json
-model.json
+.cmd_data.txt

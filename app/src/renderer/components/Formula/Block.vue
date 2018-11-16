@@ -1,20 +1,19 @@
 <template>
     <span
-        class="Phrase"
         :class="{
             Command: type == 'command',
             Option: type == 'option',
             Redirect: type == 'redirect',
+            Arg: type == 'arg',
+            Pipe: type == 'pipe',
             clickable: clickable
             }"
-        @mousedown.stop="click"
         :draggable="clickable"
         @dragend="drop"
     >
-        <span class="Val">{{val}}</span><!-- 
-         --><Editable class="Arg" v-for="arg of value" v-model="arg.val" :placeholder="arg.placeholder" :writable="writable" ref="arg"
-            @focusEnd="focusEnd"
-         />
+        <Editable class="Edi" v-model="val" @input="update" :placeholder="placeholder" :writable="writable" ref="arg" 
+            @send="send" @focusEnd="focusEnd" v-if="type == 'arg'"/>
+        <span class="Val" v-else>{{value}}</span>
     </span>
 </template>
 
@@ -25,35 +24,49 @@ export default {
     components: {
         Editable
     },
-    props: ["val", "value", "type", "writable", "clickable"],
+    props: ["value", "type", "writable", "clickable", "placeholder"],
     data() {
-        return {}
+        return {
+            val: ""
+        }
+    },
+    created: function() {
+        this.val = this.value
+    },
+    watch: {
+        value() {
+            this.val = this.value
+        }
     },
     mounted() {
         // console.log(this.$refs.arg.focus())
     },
     methods: {
-        click() {},
+        update(e) {
+            this.$emit("input", this.val)
+        },
         drop() {
             this.$emit("drop")
         },
         focusEnd() {
             this.$emit("focus")
-        }
+        },
+        send() {
+            this.$emit("send")
+        },
     }
 }
 </script>
 
 <style scoped>
-.Phrase {
+.Command, .Option, .Redirect, .Arg {
     position: relative;
     outline: none;
     padding: 2px 0;
     border-radius: 30px;
     display: inline-block;
     color: rgb(255, 255, 255);
-    background: rgb(255, 0, 140);
-    transition: all 0.1s ease;
+    /* transition: all 1s ease; */
     z-index: 100;
     height: 20px;
     line-height: 20px;
@@ -64,20 +77,34 @@ export default {
     text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
     padding-left: 10px;
 }
-.clickable {
-    cursor: pointer;
+.Command {
+    background: rgb(255, 0, 140);
 }
-.clickable:active {
-    transform: translateY(3px);
-}
-
 .Option {
-    background: rgb(0, 224, 86);
+    background: rgb(0, 224, 67);
 }
-
 .Redirect {
     background: rgb(255, 136, 0);
 }
+.Arg {
+    padding-left: 2px;
+    background: rgb(217, 255, 0);
+}
+
+.Pipe {
+    display: inline-block;
+    box-shadow: 0 1px 2px rgb(92, 92, 92);
+    background: rgb(0, 183, 255);
+    width: 3px;
+    border-radius: 10px;
+    height: 24px;
+    margin: 0 0px;
+    color: rgba(0,0,0,0);
+}
+.Pipe .Val {
+    margin-left: -2px;
+}
+
 
 .Val {
     margin-right: 5px;
@@ -86,7 +113,14 @@ export default {
     margin-right: 10px;
 }
 
-.Arg {
+.clickable {
+    cursor: pointer;
+}
+.clickable:active {
+    transform: translateY(3px);
+}
+
+.Edi {
     color: #fff;
     background: rgba(0, 0, 0, 0.3);
     /* border: 1px solid rgb(255, 255, 255); */
@@ -96,5 +130,11 @@ export default {
     line-height: 20px;
     outline: none;
     min-width: 10px;
+}
+
+
+.optionwith .Edi {
+    margin-left: -15px;
+    padding-left: 15px;
 }
 </style>

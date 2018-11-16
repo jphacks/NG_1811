@@ -5,11 +5,29 @@
         @input="update"
         @paste="paste"
         :data-placeholder="placeholder"
-        @keydown.enter.prevent="enter"
         @keydown.delete="backspace"
-        @keydown.space.prevent="space"
+        @keydown="keydown"
+        @keydown.enter.prevent
+        ref="ediv"
+        @focus="onfocus"
+        @blur="onblur"
+        @click="onclick"
     />
 </template>
+
+<style scoped>
+.Editable {
+    display: inline-block;
+    text-align: left;
+    outline: none;
+    min-width: 1px;
+}
+.Editable:empty::before {
+    content: attr(data-placeholder);
+    opacity: 0.5;
+}
+</style>
+
 
 <script>
 export default {
@@ -19,7 +37,7 @@ export default {
             val: ""
         }
     },
-    mounted: function() {
+    created: function() {
         this.val = this.value
     },
     watch: {
@@ -38,7 +56,7 @@ export default {
             this.val = this.value
         },
         val() {
-            // console.log(this.val)
+            this.updateY()
 
             if (this.$el.innerText != this.val) {
                 if (this.val && this.val.length > 0) {
@@ -51,20 +69,28 @@ export default {
         }
     },
     methods: {
+        focus() {
+            this.$refs.ediv.focus()
+        },
+        updateY() {
+            this.$emit("y", this.$refs.ediv.getBoundingClientRect())
+        },
         update(e) {
             this.val = e.target.innerText
             this.$emit("input", this.val)
 
-            if (this.val == "|") {
-                const block = {
-                    type: "pipe"
-                }
-                this.$emit("inputBlock", block)
-                this.$nextTick(() => {
-                    this.$el.innerText = ""
-                    this.val = ""
-                })
-            }
+            // if (this.val == "|") {
+            //     const block = {
+            //         type: "pipe"
+            //     }
+            //     this.$emit("inputBlock", block)
+            //     this.$nextTick(() => {
+            //         this.$el.innerText = ""
+            //         this.val = ""
+            //     })
+            // }
+
+            // console.log(this.$refs.ediv.getBoundingClientRect())
         },
         paste(e) {
             e.preventDefault()
@@ -81,17 +107,14 @@ export default {
 
             // this.update()
         },
-        enter() {
-            if (this.endEditable) {
-                this.space()
-                this.$nextTick(() => {
-                    this.$emit("send")
-                })
-            } else {
-                    // this.$emit("focusEnd")
-            }
+        onclick(e) {
+            // console.log("w", this.writable)
+            // if(this.writable) {
+            //     e.stopPropagation()
+            // }
         },
-        space() {
+        enter() {
+            
             if (this.endEditable) {
                 if (this.val.length > 0) {
                     let block
@@ -104,6 +127,36 @@ export default {
                     this.val = ""
                 }
             }
+
+            this.$nextTick(() => {
+                this.$emit("send")
+            })
+        },
+        keydown(e) {
+            // console.log("suiso", e.keyCode)
+            if (e.keyCode == 32) {
+                //space
+                this.space()
+            } else if (e.keyCode == 13) {
+                //enter
+                this.enter()
+            }
+        },
+        space() {
+            if (this.endEditable) {
+                // if (this.val.length > 0) {
+                //     let block
+                //     block = {
+                //         type: "phrase",
+                //         val: this.val
+                //     }
+                //     this.$emit("inputBlock", block)
+
+                //     this.val = ""
+                // }
+            } else {
+                this.$emit("focusEnd")
+            }
         },
         backspace() {
             if (this.endEditable) {
@@ -112,22 +165,18 @@ export default {
                 if (range.endOffset == "0") {
                     this.$emit("deleteBlock")
                 }
+                this.$nextTick(() => {
+                    this.updateY()
+                })
             }
+        },
+        onfocus() {
+            this.updateY()
+            this.$emit("onfocus")
+        },
+        onblur() {
+            this.$emit("onblur")
         }
     }
 }
 </script>
-
-<style scoped>
-.Editable {
-    display: inline-block;
-    text-align: left;
-    outline: none;
-    min-width: 1px;
-}
-.Editable:empty::before {
-    content: attr(data-placeholder);
-    opacity: 0.5;
-}
-</style>
-
