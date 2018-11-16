@@ -55,7 +55,7 @@ export default {
             if(this.searchWord.length == 0){
                 this.update() 
             }
-        
+
             for(let cmd in model){
                 if(model[cmd]["des"].includes(this.searchWord) || this.searchWord.includes(cmd)){
                     searchList.push({
@@ -82,7 +82,7 @@ export default {
             this.$emit("update", JSON.parse(JSON.stringify(rec)))
         },
         _changeInput(){
-            if(this.lastCmd["type"] == "pipe"){
+            if(this.lastCmd["val"] == "|"){
                 this.input[this.input.length-1]["type"] = "pipe"
                 this.input[this.input.length-1]["val"] = "|"
             }
