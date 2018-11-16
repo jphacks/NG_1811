@@ -172,7 +172,7 @@ export default {
             if (r.top > 1) {
                 ipcRenderer.send("setSubWindowBounds", {
                     x: r.left,
-                    y: r.top,
+                    y: r.top
                 })
             }
         },
@@ -184,31 +184,10 @@ export default {
             let s = []
 
             for (let block of input) {
-                switch (block.type) {
-                    case "command":
-                        s.push(block.val)
-                        break
-                    case "option":
-                        s.push(block.val)
-                        break
-                    case "arg":
-                        s.push(block.val)
-                        break
-                    case "text":
-                        s.push(block.val)
-                        break
-                    case "pipe":
-                        s.push("|")
-                        break
-                }
-                if (block.args) {
-                    for (let arg of block.args) {
-                        s.push(arg.val)
-                    }
-                }
+                s.push(block.val)
             }
 
-            return s.map(t => new String(t).trim()).filter(e => e !== "")
+            return s
         },
         send() {
             const f = JSON.parse(JSON.stringify(this.inputForm))
