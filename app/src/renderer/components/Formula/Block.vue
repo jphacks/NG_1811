@@ -6,6 +6,7 @@
             Redirect: type == 'redirect',
             Arg: type == 'arg',
             Pipe: type == 'pipe',
+            Text: type == 'text',
             clickable: clickable
             }"
         :draggable="clickable"
@@ -65,6 +66,7 @@ export default {
 </script>
 
 <style scoped>
+
 .Command, .Option, .Redirect, .Arg {
     position: relative;
     outline: none;
@@ -112,10 +114,10 @@ export default {
 }
 
 
-.Val {
+:not(.Text) .Val {
     margin-right: 5px;
 }
-.Val:last-child {
+:not(.Text) .Val:last-child {
     margin-right: 10px;
 }
 

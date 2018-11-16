@@ -70,7 +70,7 @@ export default {
             })
         },
         text() {
-            this.$emit("updateInputText", this.text)
+            this.$emit("update:inputText", this.text)
         },
         inputText(text) {
             this.text = text

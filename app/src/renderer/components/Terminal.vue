@@ -14,14 +14,13 @@
                 $ <Formula v-model="inputForm" writable @send="send" ref="inputForm" @y="y" 
                     @onfocus="onfocus"
                     @onblur="onblur"
-                    @updateInputText="updateInputText"
-                    :inputText="inputText"
+                    :inputText.sync="inputText"
                 />
                 </div>
             </div>
         </div>
 
-        <Recomend :input="inputForm" :inputText="inputText" @updateInputText="updateInputText" @update="mlupdate" />
+        <Recomend :input="inputForm" :inputText.sync="inputText" @update="mlupdate" />
     </div>
 </template>
 
