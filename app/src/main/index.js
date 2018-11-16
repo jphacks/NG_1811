@@ -52,6 +52,7 @@ function createSubWindow() {
         vibrancy: "dark",
         focusable: false,
         resizable: false,
+        show: false,
         // hasShadow: false,
     })
 
@@ -120,7 +121,7 @@ ipcMain.on('inputBlock', (event, block) => {
 
 ipcMain.on('setSubWindowBounds', (event, r) => {
     const a = mainWindow.getPosition();
-    subWindow.setPosition(Math.ceil(r.x + a[0] - 17), Math.ceil(r.y + a[1] + 28));
+    subWindow.setPosition(Math.ceil(r.x + a[0] - 7), Math.ceil(r.y + a[1] + 26));
 })
 
 ipcMain.on('setSubWindowSize', (event, r) => {
