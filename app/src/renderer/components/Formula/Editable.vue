@@ -2,13 +2,12 @@
     <div
         class="Editable"
         :contenteditable="writable"
+        :data-placeholder="placeholder"
+        ref="ediv"
         @input="update"
         @paste="paste"
-        :data-placeholder="placeholder"
+        @keydown.enter="enter"
         @keydown.delete="backspace"
-        @keydown="keydown"
-        @keydown.enter.prevent
-        ref="ediv"
         @focus="onfocus"
         @blur="onblur"
     />
@@ -26,7 +25,6 @@
     opacity: 0.5;
 }
 </style>
-
 
 <script>
 export default {
@@ -83,25 +81,12 @@ export default {
             // this.update()
         },
         enter() {
-                        
-            if (this.endEditable) {
-                this.val += "\n"
-                this.$emit('input', this.val) 
-            }
+            this.val += "\n"
+            this.$emit("input", this.val)
 
             this.$nextTick(() => {
                 this.$emit("send")
             })
-            
-        },
-        keydown(e) {
-            // console.log("suiso", e.keyCode)
-            if (e.keyCode == 32) {
-                //space
-            } else if (e.keyCode == 13) {
-                //enter
-                this.enter()
-            }
         },
         backspace() {
             if (this.endEditable) {

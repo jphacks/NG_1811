@@ -14,7 +14,7 @@
         @click="onclick"
     >
         <Editable class="Edi" v-model="val" @input="update" :placeholder="placeholder" :writable="writable" ref="arg" 
-            @send="send" @focusEnd="focusEnd" v-if="type == 'arg'"/>
+            @send="send" @focusEnd="focusEnd" v-if="type == 'arg' || type == 'text'"/>
         <span class="Val" v-else>{{value}}</span>
     </span>
 </template>
@@ -40,9 +40,6 @@ export default {
             this.val = this.value
         }
     },
-    mounted() {
-        // console.log(this.$refs.arg.focus())
-    },
     methods: {
         update(e) {
             this.$emit("input", this.val)
@@ -67,7 +64,7 @@ export default {
 
 <style scoped>
 
-.Command, .Option, .Redirect, .Arg {
+.Text, .Command, .Option, .Redirect, .Arg {
     position: relative;
     outline: none;
     padding: 2px 0;
@@ -83,7 +80,13 @@ export default {
     box-shadow: 0 1px 2px rgb(92, 92, 92);
     z-index: 101;
     text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+    padding-left: 2px;
+}
+.Command, .Option, .Redirect, .Arg {
     padding-left: 10px;
+}
+.Text {
+    background: rgb(119, 119, 119);
 }
 .Command {
     background: rgb(255, 0, 140);
@@ -114,13 +117,12 @@ export default {
 }
 
 
-:not(.Text) .Val {
+.Val {
     margin-right: 5px;
 }
-:not(.Text) .Val:last-child {
+.Val:last-child {
     margin-right: 10px;
 }
-
 .clickable {
     cursor: pointer;
 }

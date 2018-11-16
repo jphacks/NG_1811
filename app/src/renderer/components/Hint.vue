@@ -12,39 +12,6 @@
     </div>
 </template>
 
-<style scoped>
-.Hint {
-    /* margin-top: 10px; */
-    /* box-shadow: 0px 9px 34px -6px #030303; */
-    background: rgb(26, 26, 26);
-    color: rgb(255, 255, 255);
-    padding: 0 7px;
-    /* border: 1px solid #222; */
-    border-radius: 5px;
-    display: inline-block;
-}
-
-.item {
-    margin: 1px;
-    /* background: rgba(255, 255, 255, 0.11); */
-    /* display: inline-block; */
-    margin: 6px 2px;
-    height: 26px;
-    line-height: 26px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: no-wrap;
-}
-
-.block {
-}
-.description {
-    margin-left: -6px;
-    white-space: nowrap;
-}
-
-</style>
-
 <script>
 import Formula from "@/components/Formula"
 
@@ -85,3 +52,36 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.Hint {
+    /* margin-top: 10px; */
+    /* box-shadow: 0px 9px 34px -6px #030303; */
+    background: rgb(26, 26, 26);
+    color: rgb(255, 255, 255);
+    padding: 0 7px;
+    /* border: 1px solid #222; */
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.item {
+    margin: 1px;
+    /* background: rgba(255, 255, 255, 0.11); */
+    /* display: inline-block; */
+    margin: 6px 2px;
+    height: 26px;
+    line-height: 26px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: no-wrap;
+}
+
+.block {
+}
+.description {
+    margin-left: -6px;
+    white-space: nowrap;
+}
+
+</style>
