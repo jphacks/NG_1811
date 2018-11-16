@@ -622,6 +622,148 @@
             }
         }
     },
+    "npm": {
+        "weight": 1,
+        "type": "command",
+        "val": "@PATH",
+        "predict": true,
+        "des": "npmを使用",
+        "@next": {
+            "init": {
+                "weight": 1,
+                "type": "option",
+                "val": "@PATH",
+                "predict": true,
+                "des": "package.jsonをインタラクティブに作成",
+                "@next": {}
+            },
+            "install": {
+                "weight": 1,
+                "type": "option",
+                "val": "@PATH",
+                "predict": true,
+                "des": "パッケージを追加",
+                "@next": {
+                    "@place": {
+                        "weight": 1,
+                        "type": "arg",
+                        "val": "@PATH",
+                        "predict": true,
+                        "placeholder": "パッケージ名",
+                        "des": "追加するパッケージ名",
+                        "@next": {}
+                    }
+                }
+            },
+            "uninstall": {
+                "weight": 1,
+                "type": "option",
+                "val": "@PATH",
+                "predict": true,
+                "des": "パッケージを削除",
+                "@next": {
+                    "@place": {
+                        "weight": 1,
+                        "type": "arg",
+                        "val": "@PATH",
+                        "predict": true,
+                        "placeholder": "パッケージ名",
+                        "des": "削除するパッケージ名",
+                        "@next": {}
+                    }
+                }
+            },
+            "update": {
+                "weight": 1,
+                "type": "option",
+                "val": "@PATH",
+                "predict": true,
+                "des": "パッケージの更新",
+                "@next": {
+                    "@place": {
+                        "weight": 1,
+                        "type": "arg",
+                        "val": "@PATH",
+                        "predict": true,
+                        "placeholder": "パッケージ名",
+                        "des": "更新するパッケージ名",
+                        "@next": {}
+                    }
+                }
+            },
+            "info": {
+                "weight": 1,
+                "type": "option",
+                "val": "@PATH",
+                "predict": true,
+                "des": "パッケージ情報の表示",
+                "@next": {
+                    "@place": {
+                        "weight": 1,
+                        "type": "arg",
+                        "val": "@PATH",
+                        "predict": true,
+                        "placeholder": "パッケージ名",
+                        "des": "表示するパッケージ名",
+                        "@next": {}
+                    }
+                }
+            },
+            "run": {
+                "weight": 1,
+                "type": "option",
+                "val": "@PATH",
+                "predict": true,
+                "des": "package.jsonのscriptの実行",
+                "@next": {
+                    "@place": {
+                        "weight": 1,
+                        "type": "arg",
+                        "val": "@PATH",
+                        "predict": true,
+                        "placeholder": "script",
+                        "des": "実行するscript",
+                        "@next": {}
+                    }
+                }
+            },
+            "search": {
+                "weight": 1,
+                "type": "option",
+                "val": "@PATH",
+                "predict": true,
+                "des": "パッケージのバージョン一覧を取得",
+                "@next": {
+                    "@place": {
+                        "weight": 1,
+                        "type": "arg",
+                        "val": "@PATH",
+                        "predict": true,
+                        "placeholder": "パッケージ名",
+                        "des": "バージョン一覧を確認したいパッケージ名",
+                        "@next": {}
+                    }
+                }
+            },
+            "cache": {
+                "weight": 1,
+                "type": "option",
+                "val": "@PATH",
+                "predict": true,
+                "des": "キャッシュを操作",
+                "@next": {
+                    "clean": {
+                        "weight": 1,
+                        "type": "option",
+                        "val": "@PATH",
+                        "predict": true,
+                        "des": "キャッシュをクリア",
+                        "@next": {}
+                    }
+                }
+            }
+        }
+    },
     "pwd": {
         "weight": 1,
         "type": "command",

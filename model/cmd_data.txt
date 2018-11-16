@@ -1,48 +1,9 @@
-git add [ファイル名]
-git commit -m [コミットメッセージ]
-git push origin master
-git init
-git merge [コミット名]
-git checkout [ブランチ名]
-git diff [ファイル名]
-git push origin master
-git log
-find [検索箇所] -name [検索対象]
-find [検索箇所] -name [検索対象] | xargs cat
-find [検索箇所] -name [検索対象] | xargs rm
-cat [ファイル名] >> [追加対象]
-cat [ファイル名] > [上書き対象]
-cat [ファイル名] | grep [検索ワード]
-echo [表示文字] >> [追加対象]
-echo [表示文字] > [上書き対象]
-cd [移動先ディレクトリ]
-touch [ファイル名]
-rm [ファイル名]
-rm -r [ディレクトリ名]
-rm -f [ファイル名]
-mkdir [ディレクトリ名]
-vim [ファイル名]
-less [ファイル名]
-more [ファイル名]
-clear
-pwd
-ls |
-ls -l | grep [検索ワード]
-ls -l -F
-ls -l -a
-ls -l -1
-ls -l -t
-ls -l -S
-ls -l -X
-ls -l -R
-ls -l -q
-ls -l -v
-ls -a
-ls -1
-ls -t
-ls -S
-ls -X
-ls -R
-ls -q
-ls -v
-
+npm init
+npm init
+npm install @パッケージ名
+npm uninstall @パッケージ名
+npm update @パッケージ名
+npm info @パッケージ名
+npm run @script
+npm search @パッケージ名
+npm cache clean

@@ -49,6 +49,10 @@ export default {
 
             this.$emit("update", JSON.parse(JSON.stringify(rec)))
 
+            if(this.endBlock["type"] == "arg" && this.inputText.length != 0){
+                this.endBlock["val"] = this.inputText
+            }
+            this.$emit("update:inputText","")
         },
         changeInputText:function(){
             if(this.inputText[this.inputText.length-1] == "\n"){
@@ -67,6 +71,7 @@ export default {
                     "val":this.inputText.trim()
                 })
                 this._changeInput()
+                console.log(this.input)
                 this.$emit("update:inputText","")
             }
 
@@ -83,15 +88,15 @@ export default {
         },
         _changeInput(){
 
-            if(this.lastCmd["val"] == "|"){
-                this.lastCmd["type"] = "pipe"
+            if(this.endBlock["val"] == "|"){
+                this.endBlock["type"] = "pipe"
             }
-            else if(this.lastCmd["val"] == ">>" || this.lastCmd["val"] == ">"){
-                this.lastCmd["type"] = "redirect"
+            else if(this.endBlock["val"] == ">>" || this.endBlock["val"] == ">"){
+                this.endBlock["type"] = "redirect"
             }
-            else if(this.lastCmd["val"] in this.previous){
-                this.lastCmd["type"] = this.previous[this.lastCmd["val"]]["type"]
-                this.lastCmd["val"] = this.lastCmd["val"]
+            else if(this.endBlock["val"] in this.previous){
+                this.endBlock["type"] = this.previous[this.endBlock["val"]]["type"]
+                this.endBlock["val"] = this.endBlock["val"]
             }
             else if("@place" in this.previous){
                 this.input[this.input.length-1]["type"] = "arg"
@@ -100,18 +105,18 @@ export default {
             else{
                 if(this.input.length <= 1 || this.input[this.input.length-2]["val"] == "|"){
                     try{
-                        execSync("type "+this.lastCmd["val"])
-                        this.lastCmd["type"] = "command"
-                        this.lastCmd["val"] = this.lastCmd["val"]
+                        execSync("type "+this.endBlock["val"])
+                        this.endBlock["type"] = "command"
+                        this.endBlock["val"] = this.endBlock["val"]
                     }
                     catch(e){
-                        this.lastCmd["type"] = "text"
-                        this.lastCmd["val"] = this.lastCmd["val"]
+                        this.endBlock["type"] = "text"
+                        this.endBlock["val"] = this.endBlock["val"]
                     }
                 }
                 else{
-                    this.lastCmd["type"] = "text"
-                    this.lastCmd["val"] = this.lastCmd["val"]
+                    this.endBlock["type"] = "text"
+                    this.endBlock["val"] = this.endBlock["val"]
                 }
 
             }
@@ -200,7 +205,7 @@ export default {
             }
             return use
         },
-        lastCmd:function(){
+        endBlock:function(){
             return this.input.length != 0 ? this.input[this.input.length-1] : {}
         },
         previous:function(){
