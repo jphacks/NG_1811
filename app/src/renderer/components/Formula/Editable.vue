@@ -80,16 +80,16 @@ export default {
             this.val = e.target.innerText
             this.$emit("input", this.val)
 
-            if (this.val == "|") {
-                const block = {
-                    type: "pipe"
-                }
-                this.$emit("inputBlock", block)
-                this.$nextTick(() => {
-                    this.$el.innerText = ""
-                    this.val = ""
-                })
-            }
+            // if (this.val == "|") {
+            //     const block = {
+            //         type: "pipe"
+            //     }
+            //     this.$emit("inputBlock", block)
+            //     this.$nextTick(() => {
+            //         this.$el.innerText = ""
+            //         this.val = ""
+            //     })
+            // }
 
             // console.log(this.$refs.ediv.getBoundingClientRect())
         },
