@@ -9,14 +9,15 @@
             Pipe: type == 'pipe',
             Text: type == 'text',
             Last: type == 'last',
-            clickable: clickable
+            clickable: clickable,
+            writable: writable
             }"
         @dragend="$emit('dragend')"
         @click="onclick">
 
         <div
             class="Editable"
-            :contenteditable="writable"
+            :contenteditable="type.match(/arg|text|last/)&&writable"
             :data-placeholder="placeholder"
             ref="ediv"
             @input="update"
@@ -160,7 +161,7 @@ export default {
     box-shadow: none;
 }
 .Text {
-    background: rgb(119, 119, 119);
+    background: rgb(105, 105, 105);
 }
 .Command {
     background: rgb(255, 0, 140);
@@ -172,11 +173,11 @@ export default {
     background: rgb(255, 136, 0);
 }
 .Arg {
-    background: rgb(217, 255, 0);
+    background: rgb(0, 255, 221);
 }
 
 .Pipe {
-    background: rgb(0, 183, 255);
+    background: rgb(225, 0, 255);
     width: 3px;
     border-radius: 10px;
     height: 24px;
@@ -195,10 +196,15 @@ export default {
     transform: translateY(3px);
 }
 
+.Arg .Editable {
+    background: rgba(0, 0, 0, 0.3);
+}
+.Text .Editable {
+    background: rgba(0, 0, 0, 0.3);
+}
 
 .Editable {
     color: #fff;
-    background: rgba(0, 0, 0, 0.3);
     /* border: 1px solid rgb(255, 255, 255); */
     border-radius: 30px;
     padding: 0px 8px;
@@ -212,6 +218,7 @@ export default {
 }
 .Last .Editable {
     min-width: 50px;
+    background: rgba(0, 0, 0, 0.3);
 }
 
 .optionwith {

@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div>
-                <div class="description" v-for="block of candidate">{{block.description}}</div>
+                <div class="description" v-for="block of candidate" @click="inputBlock(block)">{{block.description}}</div>
             </div>
             <div v-if="candidate.length == 0">
                 候補がありません
@@ -80,27 +80,27 @@ export default {
     /* background: rgba(255, 255, 255, 0.11); */
     /* display: inline-block; */
     /* height: 26px; */
+    /* justify-content: space-between; */
     line-height: 26px;
     display: flex;
     flex-direction: row;
     flex-wrap: no-wrap;
-    /* justify-content: space-between; */
-    padding: 3px 5px;
-    max-height: 198px;
+    padding: 3px 3px;
+    max-height: 180px;
     overflow-y: scroll;
 }
 
 .block {
     height: 28px;
-    /* text-align: right; */
     padding-right: 5px;
+    /* text-align: right; */
     /* padding-left: 1px; */
 }
 .description {
     height: 28px;
     white-space: nowrap;
-    /* background: rgb(63, 63, 63, 0.9);
-    padding: 0 4px; */
+    background: rgba(255, 255, 255, 0.14);
+    padding: 0 4px;
 }
 .description:first-child {
     border-top-left-radius: 5px;
