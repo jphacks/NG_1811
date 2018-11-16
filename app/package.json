@@ -52,7 +52,8 @@
   },
   "dependencies": {
     "vue": "^2.5.16",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "xterm": "^3.8.0"
   },
   "devDependencies": {
     "ajv": "^6.5.0",

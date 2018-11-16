@@ -86,6 +86,8 @@ export default {
     flex-wrap: no-wrap;
     /* justify-content: space-between; */
     padding: 4px;
+    max-height: 198px;
+    overflow-y: scroll;
 }
 
 .block {
