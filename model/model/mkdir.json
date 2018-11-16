@@ -1,0 +1,75 @@
+{
+  "mkdir": {
+    "weight": 2,
+    "type": "command",
+    "val": "mkdir",
+    "predict": true,
+    "des": "ディレクトリを作成",
+    "@next": {
+      "-m": {
+        "type": "option",
+        "val": "-m",
+        "predict": true,
+        "use":true,
+        "des": "パーミッションを指定",
+        "weight": 1,
+        "@next": {
+          "@place": {
+            "type": "arg",
+            "des": "パーミッションを指定",
+            "val": "@place",
+            "predict": true,
+            "placeholder": "Permission",
+            "weight": 10,
+            "@next": {
+              "@place": {
+                "type": "arg",
+                "des": "作成するフォルダ名",
+                "val": "@place",
+                "predict": false,
+                "repeat":true,
+                "placeholder": "PATH",
+                "weight": 10,
+                "@next": {}
+              }
+            }
+          }
+        }
+      },
+      "-p": {
+        "type": "option",
+        "val": "-p",
+        "predict": false,
+        "des": "再帰的にディレクトリを作成",
+        "weight": 1
+      },
+      "-v": {
+        "type": "option",
+        "val": "-v",
+        "predict": false,
+        "des": "詳細を表示",
+        "weight": 1
+      },
+      "@place": {
+        "type": "arg",
+        "des": "これが説明だよー",
+        "val": "@place",
+        "predict": false,
+        "placeholder": "PATH",
+        "weight": 10,
+        "@next": {
+          "@place": {
+            "type": "arg",
+            "des": "作成するフォルダ名",
+            "val": "@place",
+            "predict": false,
+            "repeat":true,
+            "placeholder": "PATH",
+            "weight": 10,
+            "@next": {}
+          }
+        }
+      }
+    }
+  }
+}

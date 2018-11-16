@@ -1,0 +1,153 @@
+{
+  "yarn": {
+    "weight": 1,
+    "type": "command",
+    "val": "@PATH",
+    "predict": true,
+    "des": "yarnを使用",
+    "@next": {
+      "init": {
+        "weight": 1,
+        "type": "option",
+        "val": "@PATH",
+        "predict": true,
+        "des": "package.jsonをインタラクティブに作成",
+        "@next": {}
+      },
+      "add": {
+        "weight": 1,
+        "type": "option",
+        "val": "@PATH",
+        "predict": true,
+        "des": "パッケージを追加",
+        "@next": {
+          "@place": {
+            "weight": 1,
+            "type": "arg",
+            "val": "@PATH",
+            "predict": true,
+            "placeholder": "パッケージ名",
+            "des": "追加するパッケージ名",
+            "@next": {}
+          }
+        }
+      },
+      "global": {
+        "weight": 1,
+        "type": "option",
+        "val": "@PATH",
+        "predict": true,
+        "des": "グローバルなパッケージを操作",
+        "@next": {
+          "add": {
+            "weight": 1,
+            "type": "option",
+            "val": "@PATH",
+            "predict": true,
+            "des": "パッケージの追加",
+            "@next": {
+              "@place": {
+                "weight": 1,
+                "type": "arg",
+                "val": "@PATH",
+                "predict": true,
+                "placeholder": "パッケージ名",
+                "des": "追加するパッケージ名",
+                "@next": {}
+              }
+            }
+          }
+        }
+      },
+      "run": {
+        "weight": 1,
+        "type": "option",
+        "val": "@PATH",
+        "predict": true,
+        "des": "package.jsonのscriptを実行",
+        "@next": {
+          "@place": {
+            "weight": 1,
+            "type": "arg",
+            "val": "@PATH",
+            "predict": true,
+            "placeholder": "Script名",
+            "des": "実行するscript",
+            "@next": {}
+          }
+        }
+      },
+      "upgrade": {
+        "weight": 1,
+        "type": "option",
+        "val": "@PATH",
+        "predict": true,
+        "des": "パッケージをアップグレード",
+        "@next": {
+          "@place": {
+            "weight": 1,
+            "type": "arg",
+            "val": "@PATH",
+            "predict": true,
+            "placeholder": "パッケージ名",
+            "des": "アップグレードするパッケージ名",
+            "@next": {}
+          }
+        }
+      },
+      "info": {
+        "weight": 1,
+        "type": "option",
+        "val": "@PATH",
+        "predict": true,
+        "des": "パッケージ情報の表示",
+        "@next": {
+          "@place": {
+            "weight": 1,
+            "type": "arg",
+            "val": "@PATH",
+            "predict": true,
+            "placeholder": "パッケージ名",
+            "des": "情報を表示したいパッケージ",
+            "@next": {}
+          }
+        }
+      },
+      "remove": {
+        "weight": 1,
+        "type": "option",
+        "val": "@PATH",
+        "predict": true,
+        "des": "パッケージと記録を削除",
+        "@next": {
+          "@place": {
+            "weight": 1,
+            "type": "arg",
+            "val": "@PATH",
+            "predict": true,
+            "placeholder": "パッケージ名",
+            "des": "削除するパッケージ名",
+            "@next": {}
+          }
+        }
+      },
+      "cache": {
+        "weight": 1,
+        "type": "option",
+        "val": "@PATH",
+        "predict": true,
+        "des": "キャッシュを操作",
+        "@next": {
+          "clean": {
+            "weight": 1,
+            "type": "option",
+            "val": "@PATH",
+            "predict": true,
+            "des": "キャッシュを削除",
+            "@next": {}
+          }
+        }
+      }
+    }
+  }
+}
