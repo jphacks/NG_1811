@@ -11,7 +11,6 @@
         ref="ediv"
         @focus="onfocus"
         @blur="onblur"
-        @click="onclick"
     />
 </template>
 
@@ -41,17 +40,6 @@ export default {
         this.val = this.value
     },
     watch: {
-        // value(text) {
-        //     this.val = text
-        //     // const s = (text).split(" ")
-        //     // const newtext = s.pop()
-        //     // for (const t of s) {
-        //     //     this.$emit("inputBlock", {
-        //     //         type: "command",
-        //     //         val: t
-        //     //     })
-        //     // }
-        // },
         value() {
             this.val = this.value
         },
@@ -78,19 +66,6 @@ export default {
         update(e) {
             this.val = e.target.innerText
             this.$emit("input", this.val)
-
-            // if (this.val == "|") {
-            //     const block = {
-            //         type: "pipe"
-            //     }
-            //     this.$emit("inputBlock", block)
-            //     this.$nextTick(() => {
-            //         this.$el.innerText = ""
-            //         this.val = ""
-            //     })
-            // }
-
-            // console.log(this.$refs.ediv.getBoundingClientRect())
         },
         paste(e) {
             e.preventDefault()
@@ -107,55 +82,25 @@ export default {
 
             // this.update()
         },
-        onclick(e) {
-            // console.log("w", this.writable)
-            // if(this.writable) {
-            //     e.stopPropagation()
-            // }
-        },
         enter() {
-            
+                        
             if (this.endEditable) {
-                if (this.val.length > 0) {
-                    let block
-                    block = {
-                        type: "phrase",
-                        val: this.val
-                    }
-                    this.$emit("inputBlock", block)
-
-                    this.val = ""
-                }
+                this.val += "\n"
+                this.$emit('input', this.val) 
             }
 
             this.$nextTick(() => {
                 this.$emit("send")
             })
+            
         },
         keydown(e) {
             // console.log("suiso", e.keyCode)
             if (e.keyCode == 32) {
                 //space
-                this.space()
             } else if (e.keyCode == 13) {
                 //enter
                 this.enter()
-            }
-        },
-        space() {
-            if (this.endEditable) {
-                // if (this.val.length > 0) {
-                //     let block
-                //     block = {
-                //         type: "phrase",
-                //         val: this.val
-                //     }
-                //     this.$emit("inputBlock", block)
-
-                //     this.val = ""
-                // }
-            } else {
-                this.$emit("focusEnd")
             }
         },
         backspace() {
