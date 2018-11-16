@@ -150,7 +150,6 @@ export default {
     z-index: 100;
     height: 20px;
     line-height: 20px;
-    min-width: 24px;
     text-align: center;
     box-shadow: 0 1px 2px rgb(92, 92, 92);
     z-index: 101;
@@ -206,14 +205,13 @@ export default {
     margin-right: 2px;
     line-height: 20px;
     outline: none;
-    min-width: 13px;
 
-    display: inline-block;
+    display: inline-block; 
     text-align: left;
     outline: none;
 }
 .Last .Editable {
-    min-width: 20px;
+    min-width: 50px;
 }
 
 .optionwith {

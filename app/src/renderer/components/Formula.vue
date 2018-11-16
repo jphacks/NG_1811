@@ -1,6 +1,6 @@
 <template>
     <div class="Formula">
-        <div v-for="(block, i) of value" class="Block">
+        $ <div v-for="(block, i) of value" class="Block">
             <Block
                 :type="block.type"
                 v-model="block.val"

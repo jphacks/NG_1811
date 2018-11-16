@@ -7,12 +7,12 @@
             <div class="Console-inner" ref="inner">
                 <div v-for="op of log">
                     <div class="Console-input">
-                        $ <Formula v-model="op.inputFormula" />
+                        <Formula v-model="op.inputFormula" />
                     </div>
                     <div class="Console-output">{{op.outputString}}</div>
                 </div>
                 <div class="Input Console-input" v-show="!isRunning">
-                    $ <Formula v-model="inputForm" :writable="true" @send="send" ref="inputForm" @y="y" 
+                    <Formula v-model="inputForm" :writable="true" @send="send" ref="inputForm" @y="y" 
                         @onfocus="onfocus"
                         @onblur="onblur"
                         :inputText.sync="inputText"
@@ -68,20 +68,24 @@
 }
 .Console-inner {
     position: absolute;
-    bottom: 0;
-    left: 4px;
-    right: 4px;
-    top: 32px;
+    bottom: 15px;
+    left: 15px;
+    right: 15px;
+    /* padding-right: 5px; */
+    top: 36px;
     overflow: scroll;
 }
 
 .Console-input {
-    margin: 10px;
+    margin-bottom: 5px;
     line-height: 24px;
+}
+.Input {
+    margin-bottom: 0;
 }
 
 .Console-output {
-    margin: 10px;
+    margin-bottom: 5px;
     white-space: pre-wrap;
 }
 </style>
