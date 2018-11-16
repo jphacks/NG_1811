@@ -74,7 +74,7 @@ export default {
                     "val":this.inputText.slice(0,this.inputText.length-1)
                 })
                 this._changeInput()
-                this.$emit("updateInputText","")
+                this.$emit("update:inputText","")
             }
 
             let rec = []
