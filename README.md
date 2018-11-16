@@ -1,6 +1,6 @@
 # Eterm - Best Terminal for Education
 
-[![Thumbnail](docs/thumb.png)](https://vimeo.com/296239145)
+[![Thumbnail](thumb.png)](https://vimeo.com/296239145)
 
 ## 製品概要
 
