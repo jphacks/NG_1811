@@ -8,7 +8,8 @@
                         v-model="block.val"
                         :placeholder="block.placeholder"
                         :clickable="true"
-                        @drop="inputBlock(block)"
+                        draggable
+                        @dragend="inputBlock(block)"
                     />
                 </div>
             </div>
@@ -89,7 +90,7 @@ export default {
 
 .block {
     height: 28px;
-    text-align: right;
+    /* text-align: right; */
     padding-right: 5px;
     padding-left: 1px;
 }

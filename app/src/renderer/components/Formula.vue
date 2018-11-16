@@ -23,8 +23,8 @@
             @deleteBlock="deleteBlock"
             @send="send"
             @y="y"
-            @onfocus="onfocus"
-            @onblur="onblur"
+            @onfocus="$emit('onfocus')"
+            @onblur="$emit('onblur')"
         />
     </div>
 </template>
@@ -107,18 +107,9 @@ export default {
         deleteBlock(e) {
             this.value.splice(this.value.length - 1, 1)
         },
-        drop() {
-            this.$emit("drop")
-        },
         y(r) {
             this.$emit("y", r)
         },
-        onfocus() {
-            this.$emit("onfocus")
-        },
-        onblur() {
-            this.$emit("onblur")
-        }
     }
 }
 </script>

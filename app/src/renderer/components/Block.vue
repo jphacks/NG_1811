@@ -10,12 +10,11 @@
             Text: type == 'text',
             clickable: clickable
             }"
-        :draggable="clickable"
-        @dragend="drop"
+        @dragend="$emit('dragend')"
         @click="onclick"
     >
-        <Editable class="Edi" v-model="val" @input="update" :placeholder="placeholder" :writable="writable" ref="arg" 
-            @send="send" @focusEnd="focusEnd" v-if="type == 'arg' || type == 'text'"/>
+        <Editable class="Edi" v-model="val" :placeholder="placeholder" :writable="writable" ref="arg" 
+            @send="$emit('send')" @focusEnd="$emit('focus')" v-if="type == 'arg' || type == 'text'"/>
         <span class="Val" v-else>{{value}}</span>
     </span>
 </template>
@@ -39,21 +38,12 @@ export default {
     watch: {
         value() {
             this.val = this.value
+        },
+        val() {
+            this.$emit("input", this.val)
         }
     },
     methods: {
-        update(e) {
-            this.$emit("input", this.val)
-        },
-        drop() {
-            this.$emit("drop")
-        },
-        focusEnd() {
-            this.$emit("focus")
-        },
-        send() {
-            this.$emit("send")
-        },
         onclick(e) {
             if(!this.clickable) {
                 e.stopPropagation()
