@@ -68,8 +68,7 @@ export default {
         //     }
         // },
         changeInputText:function(){
-
-            if(this.inputText[this.inputText.length-1] == " " && this.inputText.trim() != 0){
+            if((this.inputText[this.inputText.length-1] == " " && this.inputText.trim() != 0) || this.inputText[this.inputText.length-1] == "\n"){
                 this.input.push({
                     "type":"text",
                     "val":this.inputText.slice(0,this.inputText.length-1)
