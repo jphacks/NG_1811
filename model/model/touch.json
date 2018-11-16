@@ -51,10 +51,20 @@
                 "type": "arg",
                 "des": "変更するファイル名",
                 "val": "@place",
-                "predict": false,
+                "predict": true,
                 "placeholder": "PATH",
                 "weight": 10,
-                "@next": {}
+                "@next": {
+                  "@place": {
+                    "type": "arg",
+                    "des": "更新するファイル",
+                    "val": "@place",
+                    "predict": false,
+                    "repeat":true,
+                    "placeholder": "PATH",
+                    "weight": 10
+                  }
+                }
               }
             }
           }
@@ -82,7 +92,17 @@
                 "predict": true,
                 "placeholder": "PATH",
                 "weight": 10,
-                "@next": {}
+                "@next": {
+                  "@place": {
+                    "type": "arg",
+                    "des": "更新するファイル",
+                    "val": "@place",
+                    "predict": false,
+                    "repeat":true,
+                    "placeholder": "PATH",
+                    "weight": 10
+                  }
+                }
               }
             }
           }
@@ -92,10 +112,20 @@
         "type": "arg",
         "des": "更新するファイル",
         "val": "@place",
-        "predict": false,
+        "predict": true,
         "placeholder": "PATH",
         "weight": 10,
-        "@next": {}
+        "@next": {
+          "@place": {
+            "type": "arg",
+            "des": "更新するファイル",
+            "val": "@place",
+            "predict": false,
+            "repeat":true,
+            "placeholder": "PATH",
+            "weight": 10
+          }
+        }
       }
     }
   }
