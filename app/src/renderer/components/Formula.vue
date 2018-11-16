@@ -41,7 +41,7 @@
 }
 
 .optionwith {
-    margin-left: -20px;
+    margin-left: -24px;
     padding-left: 18px;
 }
 </style>
