@@ -30,7 +30,7 @@ export default {
         inputText: {
             deep: true,
             handler() {
-                this.filtering()
+                this.changeInputText()
             }
         }
 
@@ -40,8 +40,6 @@ export default {
     },
     methods: {
         update() {
-            this._changeInput()
-
             let rec = this._getNextRecommend()
 
             this.preRecomend = rec
@@ -69,13 +67,13 @@ export default {
         //         this.$emit("update",searchList)
         //     }
         // },
-        filtering:function(){            
+        changeInputText:function(){            
             if(this.inputText[this.inputText.length-1] == " "){
-                let type = this.input.length  == 0 ? "command" : "option"
                 this.input.push({
-                    "type":type,
+                    "type":"text",
                     "val":this.inputText.slice(0,this.inputText.length-1)
                 })
+                this._changeInput()
                 this.$emit("updateInputText","")
             }
 
@@ -91,21 +89,24 @@ export default {
             this.$emit("update", JSON.parse(JSON.stringify(rec)))
         },
         _changeInput(){
+
             if(this.lastCmd["val"] == "|"){
-                this.input[this.input.length-1]["type"] = "pipe"
-                this.input[this.input.length-1]["val"] = "|"
+                this.lastCmd["type"] = "pipe"
             }
-            else if(this.lastCmd["type"] == "option"){
-                if(this.lastCmd["val"] == ">>" || this.lastCmd["val"] == ">"){
-                    this.input[this.input.length-1]["type"] = "redirect"
-                    this.input[this.input.length-1]["val"] = this.lastCmd["val"]
-                }
-                else if(!(this.lastCmd["val"] in this.previous)){
-                    if("@place" in this.previous){
-                        this.input[this.input.length-1]["type"] = "arg"
-                        this.input[this.input.length-1]["placeholder"] = this.previous["@place"]["placeholder"]
-                    }    
-                }
+            else if(this.lastCmd["val"] == ">>" || this.lastCmd["val"] == ">"){
+                this.lastCmd["type"] = "redirect"
+            }
+            else if(this.lastCmd["val"] in this.previous){
+                this.lastCmd["type"] = this.previous[this.lastCmd["val"]]["type"]
+                this.lastCmd["val"] = this.lastCmd["val"]
+            }
+            else if("@place" in this.previous){
+                this.input[this.input.length-1]["type"] = "arg"
+                this.input[this.input.length-1]["placeholder"] = this.previous["@place"]["placeholder"]
+            }
+            else{
+                this.lastCmd["type"] = "option"
+                this.lastCmd["val"] = this.lastCmd["val"]
             }
         },
         _getNextRecommend(){
@@ -225,4 +226,3 @@ export default {
     // }
 }
 </script> 
-
