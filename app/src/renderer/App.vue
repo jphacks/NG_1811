@@ -27,7 +27,6 @@ body {
         "Yu Gothic", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN,
         Arial, "メイリオ", Meiryo, sans-serif;
         /* font-weight: bold;  */
-    background: none;
     -webkit-user-select: none;
     font-size: 12px;
 }

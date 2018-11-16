@@ -46,14 +46,12 @@ function createSubWindow() {
         width: 500,
         height: 360,
         useContentSize: true,
-        // titleBarStyle: "hidden",
         alwaysOnTop: true,
         frame: false,
         transparent: true,
         focusable: false,
         resizable: false,
-        hasShadow: false,
-        // alwaysOnTop: true,
+        // hasShadow: false,
     })
 
     subWindow.loadURL(winURL + "#/hint")
@@ -121,9 +119,12 @@ ipcMain.on('inputBlock', (event, block) => {
 
 ipcMain.on('setSubWindowBounds', (event, r) => {
     const a = mainWindow.getPosition();
-    subWindow.setPosition(Math.ceil(r.x + a[0] - 17), Math.ceil(r.y + a[1] + 24));
+    subWindow.setPosition(Math.ceil(r.x + a[0] - 17), Math.ceil(r.y + a[1] + 28));
 })
 
+ipcMain.on('setSubWindowSize', (event, r) => {
+    subWindow.setSize(Math.ceil(r.width), Math.ceil(r.height));
+})
 
 ipcMain.on('onfocus', (event) => {
     subWindow.showInactive();

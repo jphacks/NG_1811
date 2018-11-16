@@ -49,7 +49,7 @@
     bottom: 0px;
     left: 0px;
     right: 0px;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.2);
     /* border-radius: 3px; */
     color: #fff;
     cursor: text;
@@ -158,7 +158,7 @@ export default {
             if (r.top > 1) {
                 ipcRenderer.send("setSubWindowBounds", {
                     x: r.left,
-                    y: r.top
+                    y: r.top,
                 })
             }
         },
