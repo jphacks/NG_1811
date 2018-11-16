@@ -1,0 +1,443 @@
+{
+  "git": {
+    "val": "git",
+    "type": "command",
+    "weight": 10,
+    "next": {
+      "add": {
+        "val": "add",
+        "type": "option",
+        "weight": 1,
+        "next": {
+          "ファイル名": {
+            "val": "ファイル名",
+            "type": "arg",
+            "weight": 1,
+            "next": {}
+          }
+        }
+      },
+      "commit": {
+        "val": "commit",
+        "type": "option",
+        "weight": 1,
+        "next": {
+          "-m": {
+            "val": "-m",
+            "type": "option",
+            "weight": 1,
+            "next": {
+              "コミットメッセージ": {
+                "val": "コミットメッセージ",
+                "type": "arg",
+                "weight": 1,
+                "next": {}
+              }
+            }
+          }
+        }
+      },
+      "push": {
+        "val": "push",
+        "type": "option",
+        "weight": 2,
+        "next": {
+          "origin": {
+            "val": "origin",
+            "type": "option",
+            "weight": 2,
+            "next": {
+              "master": {
+                "val": "master",
+                "type": "option",
+                "weight": 2,
+                "next": {}
+              }
+            }
+          }
+        }
+      },
+      "init": {
+        "val": "init",
+        "type": "option",
+        "weight": 1,
+        "next": {}
+      },
+      "merge": {
+        "val": "merge",
+        "type": "option",
+        "weight": 1,
+        "next": {
+          "コミット名": {
+            "val": "コミット名",
+            "type": "arg",
+            "weight": 1,
+            "next": {}
+          }
+        }
+      },
+      "checkout": {
+        "val": "checkout",
+        "type": "option",
+        "weight": 1,
+        "next": {
+          "ブランチ名": {
+            "val": "ブランチ名",
+            "type": "arg",
+            "weight": 1,
+            "next": {}
+          }
+        }
+      },
+      "diff": {
+        "val": "diff",
+        "type": "option",
+        "weight": 2,
+        "next": {
+          "ファイル名": {
+            "val": "ファイル名",
+            "type": "arg",
+            "weight": 1,
+            "next": {}
+          }
+        }
+      },
+      "log": {
+        "val": "log",
+        "type": "option",
+        "weight": 1,
+        "next": {}
+      }
+    }
+  },
+  "find": {
+    "val": "find",
+    "type": "command",
+    "weight": 3,
+    "next": {
+      "検索箇所": {
+        "val": "検索箇所",
+        "type": "arg",
+        "weight": 3,
+        "next": {
+          "-name": {
+            "val": "-name",
+            "type": "option",
+            "weight": 3,
+            "next": {
+              "検索対象": {
+                "val": "検索対象",
+                "type": "arg",
+                "weight": 3,
+                "next": {
+                  "|": {
+                    "val": "|",
+                    "type": "pipe",
+                    "weight": 2,
+                    "next": {
+                      "xargs": {
+                        "val": "xargs",
+                        "type": "command",
+                        "weight": 2,
+                        "next": {
+                          "cat": {
+                            "val": "cat",
+                            "type": "option",
+                            "weight": 1,
+                            "next": {}
+                          },
+                          "rm": {
+                            "val": "rm",
+                            "type": "option",
+                            "weight": 1,
+                            "next": {}
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "cat": {
+    "val": "cat",
+    "type": "command",
+    "weight": 3,
+    "next": {
+      "ファイル名": {
+        "val": "ファイル名",
+        "type": "arg",
+        "weight": 3,
+        "next": {
+          ">>": {
+            "val": ">>",
+            "type": "redirect",
+            "weight": 1,
+            "next": {
+              "追加対象": {
+                "val": "追加対象",
+                "type": "arg",
+                "weight": 1,
+                "next": {}
+              }
+            }
+          },
+          ">": {
+            "val": ">",
+            "type": "redirect",
+            "weight": 1,
+            "next": {
+              "上書き対象": {
+                "val": "上書き対象",
+                "type": "arg",
+                "weight": 1,
+                "next": {}
+              }
+            }
+          },
+          "|": {
+            "val": "|",
+            "type": "pipe",
+            "weight": 1,
+            "next": {
+              "grep": {
+                "val": "grep",
+                "type": "command",
+                "weight": 1,
+                "next": {
+                  "検索ワード": {
+                    "val": "検索ワード",
+                    "type": "arg",
+                    "weight": 1,
+                    "next": {}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "echo": {
+    "val": "echo",
+    "type": "command",
+    "weight": 2,
+    "next": {
+      "表示文字": {
+        "val": "表示文字",
+        "type": "arg",
+        "weight": 2,
+        "next": {
+          ">>": {
+            "val": ">>",
+            "type": "redirect",
+            "weight": 1,
+            "next": {
+              "追加対象": {
+                "val": "追加対象",
+                "type": "arg",
+                "weight": 1,
+                "next": {}
+              }
+            }
+          },
+          ">": {
+            "val": ">",
+            "type": "redirect",
+            "weight": 1,
+            "next": {
+              "上書き対象": {
+                "val": "上書き対象",
+                "type": "arg",
+                "weight": 1,
+                "next": {}
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "cd": {
+    "val": "cd",
+    "type": "command",
+    "weight": 1,
+    "next": {
+      "移動先ディレクトリ": {
+        "val": "移動先ディレクトリ",
+        "type": "arg",
+        "weight": 1,
+        "next": {}
+      }
+    }
+  },
+  "touch": {
+    "val": "touch",
+    "type": "command",
+    "weight": 1,
+    "next": {
+      "ファイル名": {
+        "val": "ファイル名",
+        "type": "arg",
+        "weight": 1,
+        "next": {}
+      }
+    }
+  },
+  "rm": {
+    "val": "rm",
+    "type": "command",
+    "weight": 3,
+    "next": {
+      "ファイル名": {
+        "val": "ファイル名",
+        "type": "arg",
+        "weight": 1,
+        "next": {}
+      },
+      "-r": {
+        "val": "-r",
+        "type": "option",
+        "weight": 1,
+        "next": {
+          "ディレクトリ名": {
+            "val": "ディレクトリ名",
+            "type": "arg",
+            "weight": 1,
+            "next": {}
+          }
+        }
+      },
+      "-f": {
+        "val": "-f",
+        "type": "option",
+        "weight": 1,
+        "next": {
+          "ファイル名": {
+            "val": "ファイル名",
+            "type": "arg",
+            "weight": 1,
+            "next": {}
+          }
+        }
+      }
+    }
+  },
+  "mkdir": {
+    "val": "mkdir",
+    "type": "command",
+    "weight": 1,
+    "next": {
+      "ディレクトリ名": {
+        "val": "ディレクトリ名",
+        "type": "arg",
+        "weight": 1,
+        "next": {}
+      }
+    }
+  },
+  "vim": {
+    "val": "vim",
+    "type": "command",
+    "weight": 1,
+    "next": {
+      "ファイル名": {
+        "val": "ファイル名",
+        "type": "arg",
+        "weight": 1,
+        "next": {}
+      }
+    }
+  },
+  "less": {
+    "val": "less",
+    "type": "command",
+    "weight": 1,
+    "next": {
+      "ファイル名": {
+        "val": "ファイル名",
+        "type": "arg",
+        "weight": 1,
+        "next": {}
+      }
+    }
+  },
+  "more": {
+    "val": "more",
+    "type": "command",
+    "weight": 1,
+    "next": {
+      "ファイル名": {
+        "val": "ファイル名",
+        "type": "arg",
+        "weight": 1,
+        "next": {}
+      }
+    }
+  },
+  "clear": {
+    "val": "clear",
+    "type": "command",
+    "weight": 1,
+    "next": {}
+  },
+  "pwd": {
+    "val": "pwd",
+    "type": "command",
+    "weight": 1,
+    "next": {}
+  },
+  "ls": {
+    "val": "ls",
+    "type": "command",
+    "weight": 1,
+    "next": {
+      "|": {
+        "val": "|",
+        "type": "pipe",
+        "weight": 1,
+        "next": {
+          "grep": {
+            "val": "grep",
+            "type": "command",
+            "weight": 1,
+            "next": {
+              "検索ワード": {
+                "val": "検索ワード",
+                "type": "arg",
+                "weight": 1,
+                "next": {}
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "mv": {
+    "val": "mv",
+    "type": "command",
+    "weight": 1,
+    "next": {
+      "移動元": {
+        "val": "移動元",
+        "type": "arg",
+        "weight": 1,
+        "next": {
+          "移動先": {
+            "val": "移動先",
+            "type": "arg",
+            "weight": 1,
+            "next": {}
+          }
+        }
+      }
+    }
+  }
+}
