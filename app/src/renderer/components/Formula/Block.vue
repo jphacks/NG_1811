@@ -10,6 +10,7 @@
             }"
         :draggable="clickable"
         @dragend="drop"
+        @click="onclick"
     >
         <Editable class="Edi" v-model="val" @input="update" :placeholder="placeholder" :writable="writable" ref="arg" 
             @send="send" @focusEnd="focusEnd" v-if="type == 'arg'"/>
@@ -53,6 +54,11 @@ export default {
         },
         send() {
             this.$emit("send")
+        },
+        onclick(e) {
+            if(!this.clickable) {
+                e.stopPropagation()
+            }
         },
     }
 }
