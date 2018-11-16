@@ -11,6 +11,7 @@ export default {
     props: ["input","searchWord","inputText"],
     data:function(){
         return{
+            "preRecomend":[]
         }
     },
     watch:{
@@ -43,6 +44,8 @@ export default {
 
             let rec = this._getNextRecommend()
 
+            this.preRecomend = rec
+
             this.$emit("update", JSON.parse(JSON.stringify(rec)))
 
         },
@@ -67,10 +70,18 @@ export default {
             }
         },
         filtering:function(){
-            console.log(this.inputText)
+            let rec = []
+            for(let item of this.preRecomend){
+                if(item["type"]=="arg"){
+                    rec.push(item)
+                }
+                else if(item["val"].includes(this.inputText)){
+                    rec.push(item)
+                }
+            }
+            this.$emit("update", JSON.parse(JSON.stringify(rec)))
         },
         _changeInput(){
-            console.log(this.lastCmd,this.previous)
             if(this.lastCmd["type"] == "pipe"){
                 this.input[this.input.length-1]["type"] = "pipe"
                 this.input[this.input.length-1]["val"] = "|"
@@ -81,7 +92,6 @@ export default {
                     this.input[this.input.length-1]["val"] = this.lastCmd["val"]
                 }
                 else if(!(this.lastCmd["val"] in this.previous)){
-                    console.log("aaaaaaaaaaaaaaaa")
                     if("@place" in this.previous){
                         this.input[this.input.length-1]["type"] = "arg"
                         this.input[this.input.length-1]["placeholder"] = this.previous["@place"]["placeholder"]
