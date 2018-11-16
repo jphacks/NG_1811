@@ -1,0 +1,85 @@
+  {
+    "find": {
+      "weight": 1,
+      "type": "command",
+      "val": "find",
+      "predict": true,
+      "des": "ディレクトリやファイルの検索を行う",
+      "@next": {
+        "-H": {
+          "type": "option",
+          "val": "-H",
+          "predict": false,
+          "ignore": [
+            "-P",
+            "-L"
+          ],
+          "des": "コマンドラインで指定されたファイルがシンボリックリンクの場合のみシンボリックリンクを辿る",
+          "weight": 1
+        },
+        "-L": {
+          "type": "option",
+          "val": "-L",
+          "predict": false,
+          "ignore": [
+            "-H",
+            "-P"
+          ],
+          "des": "シンボリックリンクを辿る",
+          "weight": 1
+        },
+        "-P": {
+          "type": "option",
+          "val": "-P",
+          "ignore": [
+            "-L",
+            "-H"
+          ],
+          "predict": false,
+          "des": "シンボリックリンクを一切辿らない(デフォルト)",
+          "weight": 1
+        },
+        "@place": {
+          "type": "arg",
+          "val": "@place",
+          "predict": true,
+          "placeholder": "PATH",
+          "des":"検索を開始するパス",
+          "weight": 10,
+          "@next": {
+            "-name": {
+              "type": "option",
+              "val": "-name",
+              "predict": true,
+              "des": "検索ワードの指定",
+              "weight": 1,
+              "@next": {
+                "@place": {
+                  "type": "arg",
+                  "placeholder": "検索ワード",
+                  "des": "検索ワードを指定",
+                  "val": "@place",
+                  "predict": true
+                }
+              }
+            },
+            "-iname": {
+              "type": "option",
+              "val": "-iname",
+              "predict": true,
+              "des": "曖昧な検索",
+              "weight": 1,
+              "@next": {
+                "@place": {
+                  "type": "arg",
+                  "placeholder": "曖昧な検索ワード",
+                  "val": "@place",
+                  "predict": true
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }

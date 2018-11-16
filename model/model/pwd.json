@@ -1,0 +1,25 @@
+{
+"pwd": {
+    "weight": 1,
+    "type": "command",
+    "val": "pwd",
+    "predict": true,
+    "des": "現在の作業ディレクトリをフルパスで表示",
+    "@next": {
+      "-L": {
+        "type": "option",
+        "val": "-L",
+        "predict": true,
+        "des": "シンボリックリンクは そのまま使用する",
+        "weight": 1
+      },
+      "-P": {
+        "type": "option",
+        "val": "-P",
+        "predict": true,
+        "des": "全てのシンボリックリンクを辿る",
+        "weight": 1
+      }
+    }
+  }
+}

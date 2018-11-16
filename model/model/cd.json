@@ -1,0 +1,20 @@
+{
+  "cd": {
+    "weight": 1,
+    "type": "command",
+    "val": "cd",
+    "predict": true,
+    "des": "ディレクトリを移動",
+    "@next": {
+      "@place": {
+        "type": "arg",
+        "des": "移動先のディレクトリを指定",
+        "val": "@place",
+        "predict": true,
+        "placeholder": "PATH",
+        "weight": 10,
+        "@next": {}
+      }
+    }
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "ls": {
+    "weight": 1,
+    "type": "command",
+    "val": "ls",
+    "predict": true,
+    "des": "ディレクトリの中身を表示",
+    "@next": {
+      "-a": {
+        "type": "option",
+        "val": "-a",
+        "predict": false,
+        "des": "「.」で始まるファイルも表示",
+        "weight": 3
+      },
+      "-C": {
+        "type": "option",
+        "val": "-d",
+        "predict": false,
+        "des": "結果を複数列にまとめて表示",
+        "weight": 1
+      },
+      "-i": {
+        "type": "option",
+        "val": "-i",
+        "predict": false,
+        "des": "ファイルのシリアル番号も表示",
+        "weight": 1
+      },
+      "-l": {
+        "type": "option",
+        "val": "-l",
+        "predict": false,
+        "des": "ファイルの詳細の表示",
+        "weight": 2
+      },
+      "-r": {
+        "type": "option",
+        "val": "-r",
+        "predict": false,
+        "des": "ソートの順を逆にする",
+        "weight": 1
+      },
+      "-t": {
+        "type": "option",
+        "val": "-t",
+        "predict": false,
+        "des": "タイムスタンプ順にソートして出力",
+        "weight": 1
+      },
+      "-u": {
+        "type": "option",
+        "val": "-u",
+        "predict": false,
+        "des": "ソートの際に修正時刻ではなく最終アクセス時刻を使用",
+        "weight": 1
+      },
+      "|": {
+        "type": "pipe",
+        "des": "前のコマンドの結果を次に受け渡す",
+        "predict": true,
+        "weight": 10,
+        "@next": {
+          "grep": {
+            "weight": 1,
+            "type": "command",
+            "val": "grep",
+            "predict": true,
+            "des": "前のコマンドの結果から文字列にマッチする結果を抽出",
+            "@next": {
+              "@place": {
+                "type": "arg",
+                "predict": false,
+                "placeholder": "検索ワード",
+                "@next": {}
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "clear": {
+    "weight": 1,
+    "type": "command",
+    "val": "clear",
+    "predict": true,
+    "des": "端末をクリアする"
+  }
+}

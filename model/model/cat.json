@@ -1,0 +1,89 @@
+{
+"cat": {
+    "weight": 1,
+    "type": "command",
+    "val": "cat",
+    "predict": true,
+    "des": "ファイルの表示",
+    "@next": {
+      "-b": {
+        "type": "option",
+        "val": "-b",
+        "ignore": [
+          "-n"
+        ],
+        "predict": false,
+        "des": "空白ではない行に番号をつける",
+        "weight": 1
+      },
+      "-n": {
+        "type": "option",
+        "val": "-n",
+        "ignore": [
+          "-b"
+        ],
+        "predict": false,
+        "des": "全ての行に番号をつける",
+        "weight": 1
+      },
+      "-s": {
+        "type": "option",
+        "val": "-s",
+        "predict": false,
+        "des": "連続した空白行を1つにまとめる",
+        "weight": 1
+      },
+      "@place": {
+        "type": "arg",
+        "val": "@place",
+        "predict": true,
+        "placeholder": "ファイル名",
+        "weight": 10,
+        "@next": {
+          ">>": {
+            "weight": 2,
+            "type": "redirect",
+            "val": ">>",
+            "predict": true,
+            "des": "前のコマンドの結果をファイルに書き込み(追加)",
+            "@next": {
+              "@place": {
+                "type": "arg",
+                "val": "@place",
+                "predict": false,
+                "placeholder": "ファイル名",
+                "weight": 10,
+                "@next": {}
+              }
+            }
+          },
+          ">": {
+            "weight": 2,
+            "type": "redirect",
+            "val": ">>",
+            "predict": true,
+            "des": "前のコマンドの結果をファイルに書き込み(上書き)",
+            "@next": {
+              "@place": {
+                "type": "arg",
+                "val": "@place",
+                "predict": false,
+                "placeholder": "ファイル名",
+                "weight": 10,
+                "@next": {}
+              }
+            }
+          },
+          "@place": {
+            "type": "arg",
+            "val": "@place",
+            "repeat": true,
+            "predict": false,
+            "placeholder": "ファイル名",
+            "weight": 10
+          }
+        }
+      }
+    }
+  }
+}
