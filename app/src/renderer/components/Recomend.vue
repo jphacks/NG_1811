@@ -67,8 +67,9 @@ export default {
         //         this.$emit("update",searchList)
         //     }
         // },
-        changeInputText:function(){            
-            if(this.inputText[this.inputText.length-1] == " "){
+        changeInputText:function(){
+
+            if(this.inputText[this.inputText.length-1] == " " && this.inputText.trim() != 0){
                 this.input.push({
                     "type":"text",
                     "val":this.inputText.slice(0,this.inputText.length-1)
@@ -105,7 +106,7 @@ export default {
                 this.input[this.input.length-1]["placeholder"] = this.previous["@place"]["placeholder"]
             }
             else{
-                this.lastCmd["type"] = "option"
+                this.lastCmd["type"] = "text"
                 this.lastCmd["val"] = this.lastCmd["val"]
             }
         },
@@ -148,7 +149,6 @@ export default {
         },
         _pathTransition(path,target){
             let val = (target["type"] == "arg")?"@place":target["val"] 
-
             if(val in path){
                 return (path[val]["predict"]) ? path[val]["@next"] : path
             }
@@ -162,9 +162,7 @@ export default {
             let path = model
             for(let i = 0;i < this.input.length;i++){
                 let target = this.input[i]
-
                 path = this._pathTransition(path,target)
-
             }
             return path
         },
