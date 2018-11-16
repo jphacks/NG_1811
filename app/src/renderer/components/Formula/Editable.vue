@@ -7,7 +7,6 @@
         :data-placeholder="placeholder"
         @keydown.delete="backspace"
         @keydown="keydown"
-        @keydown.space.prevent
         @keydown.enter.prevent
         ref="ediv"
         @focus="onfocus"
@@ -132,16 +131,16 @@ export default {
         },
         space() {
             if (this.endEditable) {
-                if (this.val.length > 0) {
-                    let block
-                    block = {
-                        type: "phrase",
-                        val: this.val
-                    }
-                    this.$emit("inputBlock", block)
+                // if (this.val.length > 0) {
+                //     let block
+                //     block = {
+                //         type: "phrase",
+                //         val: this.val
+                //     }
+                //     this.$emit("inputBlock", block)
 
-                    this.val = ""
-                }
+                //     this.val = ""
+                // }
             } else {
                 this.$emit("focusEnd")
             }
@@ -153,10 +152,10 @@ export default {
                 if (range.endOffset == "0") {
                     this.$emit("deleteBlock")
                 }
+                this.$nextTick(() => {
+                    this.updateY()
+                })
             }
-            this.$nextTick(() => {
-                this.updateY()
-            })
         },
         onfocus() {
             this.updateY()

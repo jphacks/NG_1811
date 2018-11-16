@@ -20,7 +20,7 @@
             </div>
         </div>
 
-        <Recomend :input="inputForm" :searchWord="searchWord" :inputText="inputText" @update="mlupdate" />
+        <Recomend :input="inputForm" :inputText="inputText" @updateInputText="updateInputText" @update="mlupdate" />
     </div>
 </template>
 
