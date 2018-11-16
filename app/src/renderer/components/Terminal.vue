@@ -1,7 +1,7 @@
 <template>
     <div class="Main">
 
-        <div class="Titlebar">{{pwd}}</div>
+        <div class="Titlebar">{{isFullScreen?lastCommand:pwd}}</div>
 
         <div class="Console" v-show="!isFullScreen" @click="clickConsole">
             <div class="Console-inner" ref="inner">
@@ -52,7 +52,7 @@
     -webkit-app-region: drag;
     text-align: center;
     line-height: 36px;
-    color: #fff;
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .Console {
@@ -145,6 +145,7 @@ export default {
             pwd: HOMEDIR,
 
             isFullScreen: false,
+            lastCommand: "",
             isRunning: false,
 
             inputText: "",
@@ -238,6 +239,8 @@ export default {
 
             const arr = this.inputArr
 
+            // console.log(arr)
+
             //const ls = child_process.spawn(a[0], a.slice(1))
             // console.log(this.inputArr)
             child = child_process.exec(arr.join(" "), {
@@ -250,6 +253,8 @@ export default {
             this.isRunning = true
 
             xterm.focus()
+
+            this.lastCommand = arr[0]
 
             if (arr[0].match(/vim?|less|sl|top/)) {
                 xterm.clear()
