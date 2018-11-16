@@ -1,6 +1,6 @@
 <template>
     <div class="Main">
-        <div class="Titlebar" />
+        <div class="Titlebar">{{pwd}}</div>
 
         <div class="Console" @click="clickConsole">
             <div class="Console-inner" ref="inner">
@@ -42,6 +42,9 @@
     right: 0;
     z-index: 200;
     -webkit-app-region: drag;
+    text-align: center;
+    line-height: 36px;
+    color: #fff;
 }
 
 .Console {
