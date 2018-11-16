@@ -5,7 +5,10 @@
 
 <script>
 // let fs = require("fs")
+
 import model from "@/assets/model.json"
+
+const execSync = require("child_process").execSync
 
 export default {
     props: ["input","inputText"],
@@ -80,8 +83,6 @@ export default {
         },
         _changeInput(){
 
-            console.log("changeInput:",this.lastCmd)
-
             if(this.lastCmd["val"] == "|"){
                 this.lastCmd["type"] = "pipe"
             }
@@ -97,8 +98,15 @@ export default {
                 this.input[this.input.length-1]["placeholder"] = this.previous["@place"]["placeholder"]
             }
             else{
-                this.lastCmd["type"] = "text"
-                this.lastCmd["val"] = this.lastCmd["val"]
+                try{
+                    execSync("type "+this.lastCmd["val"])
+                    this.lastCmd["type"] = "command"
+                    this.lastCmd["val"] = this.lastCmd["val"]
+                }
+                catch(e){
+                    this.lastCmd["type"] = "text"
+                    this.lastCmd["val"] = this.lastCmd["val"]
+                }
             }
         },
         _getNextRecommend(){
