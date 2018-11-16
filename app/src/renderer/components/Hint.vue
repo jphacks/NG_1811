@@ -16,9 +16,9 @@
             <div>
                 <div class="description" v-for="block of candidate">{{block.description}}</div>
             </div>
-        </div>
-        <div class="item" v-if="candidate.length == 0">
-            候補がありません
+            <div v-if="candidate.length == 0">
+                候補がありません
+            </div>
         </div>
     </div>
 </template>
