@@ -8,7 +8,7 @@
 import model from "@/assets/model.json"
 
 export default {
-    props: ["input","searchWord"],
+    props: ["input","searchWord","inputText"],
     data:function(){
         return{
         }
@@ -25,7 +25,14 @@ export default {
             handler() {
                 this.search()
             }
+        },
+        inputText: {
+            deep: true,
+            handler() {
+                this.filtering()
+            }
         }
+
     },
     mounted() {
         this.update()
@@ -59,7 +66,11 @@ export default {
                 this.$emit("update",searchList)
             }
         },
+        filtering:function(){
+            console.log(this.inputText)
+        },
         _changeInput(){
+            console.log(this.lastCmd,this.previous)
             if(this.lastCmd["type"] == "pipe"){
                 this.input[this.input.length-1]["type"] = "pipe"
                 this.input[this.input.length-1]["val"] = "|"
@@ -70,6 +81,7 @@ export default {
                     this.input[this.input.length-1]["val"] = this.lastCmd["val"]
                 }
                 else if(!(this.lastCmd["val"] in this.previous)){
+                    console.log("aaaaaaaaaaaaaaaa")
                     if("@place" in this.previous){
                         this.input[this.input.length-1]["type"] = "arg"
                         this.input[this.input.length-1]["placeholder"] = this.previous["@place"]["placeholder"]
@@ -144,10 +156,7 @@ export default {
 
                 let val = target["type"] == "arg"?"@place":target["val"]
 
-                // if(path[val]["use"]){
-                //     continue
-                // }
-                if(path[val]["repeat"]){
+                if(path[val]["use"]||path[val]["repeat"]){
                     continue
                 }
 
