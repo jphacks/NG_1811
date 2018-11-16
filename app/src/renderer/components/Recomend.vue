@@ -48,6 +48,7 @@ export default {
             this.preRecomend = rec
 
             this.$emit("update", JSON.parse(JSON.stringify(rec)))
+            this.$emit("update:inputText","")
 
         },
         changeInputText:function(){
