@@ -1,24 +1,27 @@
 <template>
-    <div class="Main">
-        <div class="Titlebar">{{pwd}}</div>
+    <div class="Main" @click="clickConsole">
 
-        <div class="Console" @click="clickConsole">
+        <div class="Titlebar" @click.stop>{{pwd}}</div>
+
+        <div class="Console" v-show="!isFullScreen">
             <div class="Console-inner" ref="inner">
                 <div v-for="op of log">
-                <div class="Console-input">
-                    $ <Formula v-model="op.inputFormula" />
+                    <div class="Console-input">
+                        $ <Formula v-model="op.inputFormula" />
+                    </div>
+                    <div class="Console-output">{{op.outputString}}</div>
                 </div>
-                <div class="Console-output">{{op.outputString}}</div>
-                </div>
-                <div class="Input Console-input">
-                $ <Formula v-model="inputForm" :writable="true" @send="send" ref="inputForm" @y="y" 
-                    @onfocus="onfocus"
-                    @onblur="onblur"
-                    :inputText.sync="inputText"
-                />
+                <div class="Input Console-input" v-show="!isRunning">
+                    $ <Formula v-model="inputForm" :writable="true" @send="send" ref="inputForm" @y="y" 
+                        @onfocus="onfocus"
+                        @onblur="onblur"
+                        :inputText.sync="inputText"
+                    />
                 </div>
             </div>
         </div>
+
+        <div ref="xterm" class="xterm" :style="{'opacity':isFullScreen?'1':'0'}"></div>
 
         <Recomend :input="inputForm" :inputText.sync="inputText" @update="mlupdate" />
     </div>
@@ -31,7 +34,12 @@
     bottom: 0;
     left: 0;
     right: 0;
-    /* background: linear-gradient(#FF00D8, #00FF62); */
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.xterm {
+    position: absolute;
+    top: 36px;
 }
 
 .Titlebar {
@@ -53,7 +61,6 @@
     bottom: 0px;
     left: 0px;
     right: 0px;
-    background: rgba(0, 0, 0, 0.2);
     /* border-radius: 3px; */
     color: #fff;
     cursor: text;
@@ -81,14 +88,20 @@
 
 <script>
 import Recomend from "@/components/Recomend"
-
 import Formula from "@/components/Formula"
+
 const { ipcRenderer } = require("electron")
 const child_process = require("child_process")
 const path = require("path")
+import { Terminal } from "xterm"
+import * as fit from "xterm/lib/addons/fit/fit"
+Terminal.applyAddon(fit)
 
 const HOMEDIR =
     process.env[process.platform == "win32" ? "USERPROFILE" : "HOME"]
+
+let xterm
+let child
 
 export default {
     components: {
@@ -96,7 +109,23 @@ export default {
         Formula
     },
     mounted() {
-        this.$refs.inputForm.focus()
+        this.focus()
+
+        xterm = new Terminal({
+            allowTransparency: true,
+            theme: {
+                background: "transparent"
+            }
+        })
+
+        xterm.open(this.$refs.xterm)
+
+        xterm.on("data", data => {
+            child.stdin.write(data)
+        })
+
+        this.fits()
+        window.addEventListener("resize", this.fits)
     },
     data() {
         return {
@@ -109,8 +138,10 @@ export default {
                 // }
             ],
             inputArr: [],
-            searchWord: "",
             pwd: HOMEDIR,
+
+            isFullScreen: false,
+            isRunning: false,
 
             inputText: "",
 
@@ -154,7 +185,7 @@ export default {
             this.focus()
         },
         focus() {
-            this.$refs.inputForm.focus()
+            if (this.$refs.inputForm) this.$refs.inputForm.focus()
         },
         scrollToBottom() {
             this.$nextTick(() => {
@@ -204,20 +235,32 @@ export default {
 
             //const ls = child_process.spawn(a[0], a.slice(1))
             // console.log(this.inputArr)
-            const ls = child_process.exec(arr.join(" "), {
+            child = child_process.exec(arr.join(" "), {
                 cwd: this.pwd,
                 shell: true
+                // cols: xterm.cols,
+                // rows: xterm.rows
             })
 
-            ls.stdout.on("data", data => {
-                ioobj.outputString += data
+            this.isRunning = true
+
+            xterm.focus()
+
+            if (arr[0].match(/vim?|less|sl|top/)) {
+                xterm.clear()
+                this.isFullScreen = true
+            }
+
+            child.stdout.on("data", data => {
+                if (!this.isFullScreen) ioobj.outputString += data
+
+                xterm.write(data)
             })
 
-            ls.stderr.on("data", data => {
-                ioobj.outputString += data
-            })
+            child.on("close", code => {
+                this.isRunning = false
+                this.isFullScreen = false
 
-            ls.on("close", code => {
                 if (code === 0) {
                     if (arr[0] == "cd") {
                         const p = arr[1]
@@ -238,6 +281,8 @@ export default {
                     }
                 }
                 // console.log(`child process exited with code ${code}`)
+
+                this.focus()
             })
         },
         mlupdate(list) {
@@ -245,6 +290,10 @@ export default {
 
             // 非同期
             ipcRenderer.send("candidateList", list)
+        },
+        fits() {
+            // xterm.fit()
+            // if (child) child.resize(xterm.cols, xterm.rows)
         }
     }
 }
