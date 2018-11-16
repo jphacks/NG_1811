@@ -14,12 +14,13 @@
                 $ <Formula v-model="inputForm" writable @send="send" ref="inputForm" @y="y" 
                     @onfocus="onfocus"
                     @onblur="onblur"
+                    @updateInputText="updateInputText"
                 />
                 </div>
             </div>
         </div>
 
-        <Recomend :input="inputForm" :searchWord="searchWord" @update="mlupdate" />
+        <Recomend :input="inputForm" :searchWord="searchWord" :inputText="inputText" @update="mlupdate" />
     </div>
 </template>
 
@@ -98,10 +99,17 @@ export default {
         return {
             candidate: [],
             log: [],
-            inputForm: [],
+            inputForm: [
+                // {
+                //     type: "text",
+                //     val: "a"
+                // }
+            ],
             inputArr: [],
             searchWord: "",
             pwd: HOMEDIR,
+
+            inputText: "",
 
             suggestY: 0
         }
@@ -132,6 +140,9 @@ export default {
         })
     },
     methods: {
+        updateInputText(text) {
+            this.inputText = text
+        },
         send() {
             this.$emit("send")
             this.focus()

@@ -70,6 +70,9 @@ export default {
         }
     },
     methods: {
+        focus() {
+            this.$refs.ediv.focus()
+        },
         updateY() {
             this.$emit("y", this.$refs.ediv.getBoundingClientRect())
         },

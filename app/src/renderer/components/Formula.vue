@@ -65,10 +65,12 @@ export default {
     },
     watch: {
         value() {
-
             this.$nextTick(() => {
                 this.$refs.endEditable.updateY()
             })
+        },
+        text() {
+            this.$emit("updateInputText", this.text)
         }
     },
     methods: {
@@ -80,7 +82,7 @@ export default {
         },
         focus() {
             if (this.$refs.endEditable) {
-                this.$nextTick(() => this.$refs.endEditable.$el.focus())
+                this.$nextTick(() => this.$refs.endEditable.focus())
             }
         },
         inputBlock(block) {
