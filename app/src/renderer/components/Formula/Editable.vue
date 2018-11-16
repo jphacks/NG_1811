@@ -114,7 +114,20 @@ export default {
             // }
         },
         enter() {
-            this.space()
+            
+            if (this.endEditable) {
+                if (this.val.length > 0) {
+                    let block
+                    block = {
+                        type: "phrase",
+                        val: this.val
+                    }
+                    this.$emit("inputBlock", block)
+
+                    this.val = ""
+                }
+            }
+
             this.$nextTick(() => {
                 this.$emit("send")
             })
