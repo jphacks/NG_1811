@@ -1,9 +1,9 @@
 <template>
-    <div class="Main" @click="clickConsole">
+    <div class="Main">
 
-        <div class="Titlebar" @click.stop>{{pwd}}</div>
+        <div class="Titlebar">{{pwd}}</div>
 
-        <div class="Console" v-show="!isFullScreen">
+        <div class="Console" v-show="!isFullScreen" @click="clickConsole">
             <div class="Console-inner" ref="inner">
                 <div v-for="op of log">
                     <div class="Console-input">
@@ -21,7 +21,7 @@
             </div>
         </div>
 
-        <div ref="xterm" class="xterm" :style="{'opacity':isFullScreen?'1':'0'}"></div>
+        <div ref="xterm" class="xterm" :style="{'z-index':isFullScreen?'1000':'-10','opacity':isFullScreen?'1':'0'}"></div>
 
         <Recomend :input="inputForm" :inputText.sync="inputText" @update="mlupdate" />
     </div>
@@ -34,7 +34,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.6);
 }
 
 .xterm {
@@ -177,14 +177,13 @@ export default {
         updateInputText(text) {
             this.inputText = text
         },
-        send() {
-            this.$emit("send")
-            this.focus()
-        },
         clickConsole() {
             this.focus()
         },
         focus() {
+            if (this.$refs.inputForm) this.$refs.inputForm.focus()
+        },
+        blur() {
             if (this.$refs.inputForm) this.$refs.inputForm.focus()
         },
         scrollToBottom() {
@@ -231,6 +230,8 @@ export default {
             this.log.push(ioobj)
             this.inputForm.splice(0)
 
+            this.scrollToBottom()
+
             const arr = this.inputArr
 
             //const ls = child_process.spawn(a[0], a.slice(1))
@@ -255,6 +256,9 @@ export default {
                 if (!this.isFullScreen) ioobj.outputString += data
 
                 xterm.write(data)
+            })
+            child.stderr.on("data", data => {
+                if (!this.isFullScreen) ioobj.outputString += data
             })
 
             child.on("close", code => {
@@ -284,6 +288,8 @@ export default {
 
                 this.focus()
             })
+
+            
         },
         mlupdate(list) {
             this.candidate = list

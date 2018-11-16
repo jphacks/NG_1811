@@ -8,25 +8,29 @@
             Arg: type == 'arg',
             Pipe: type == 'pipe',
             Text: type == 'text',
+            Last: type == 'last',
             clickable: clickable
             }"
         @dragend="$emit('dragend')"
-        @click="onclick"
-    >
-        <Editable class="Edi" v-model="val" :placeholder="placeholder" :writable="writable" ref="arg" 
-            @send="$emit('send')" @focusEnd="$emit('focus')" v-if="type == 'arg' || type == 'text'"/>
-        <span class="Val" v-else>{{value}}</span>
+        @click="onclick">
+
+        <div
+            class="Editable"
+            :contenteditable="writable"
+            :data-placeholder="placeholder"
+            ref="ediv"
+            @input="update"
+            @paste="paste"
+            @keydown="keydown"
+            @keydown.enter.prevent
+            @focus="onfocus"
+            @blur="onblur" />
     </span>
 </template>
 
 <script>
-import Editable from "@/components/Editable"
-
 export default {
-    components: {
-        Editable
-    },
-    props: ["value", "type", "writable", "clickable", "placeholder"],
+    props: ["value", "type", "writable", "clickable", "placeholder", "endEditable"],
     data() {
         return {
             val: ""
@@ -40,26 +44,102 @@ export default {
             this.val = this.value
         },
         val() {
+            // this.updateY()
+
+            if (this.$refs.ediv.innerText != this.val) {
+                if (this.val && this.val.length > 0) {
+                    this.$refs.ediv.innerText = this.val
+                } else {
+                    this.$refs.ediv.innerText = ""
+                }
+            } else {
+            }
+            
             this.$emit("input", this.val)
         }
     },
     methods: {
         onclick(e) {
-            if(!this.clickable) {
+            if (!this.clickable) {
                 e.stopPropagation()
             }
         },
+        y(r) {
+            this.$emit("y", r)
+        },
+        focus() {
+            this.$refs.ediv.focus()
+        },
+        updateY() {
+            this.$emit("y", this.$refs.ediv.getBoundingClientRect())
+        },
+        update(e) {
+            this.val = this.$refs.ediv.innerText
+            this.$emit("input", this.val)
+        },
+        paste(e) {
+            e.preventDefault()
+            const text = e.clipboardData.getData("text/plain")
+
+            const selection = window.getSelection()
+            const range = selection.getRangeAt(0)
+            const node = document.createTextNode(text)
+            range.insertNode(node)
+            range.setStartAfter(node)
+            range.setEndAfter(node)
+            selection.removeAllRanges()
+            selection.addRange(range)
+
+            // this.update()
+        },
+        keydown(e) {
+            if (e.keyCode == 13) {
+                //enter
+                this.val += "\n"
+                this.$emit("input", this.val)
+
+                this.$nextTick(() => {
+                    this.$emit("send")
+                })
+            } else if (e.keyCode == 8) {
+                //delete
+
+                if (this.endEditable) {
+                    const selection = window.getSelection()
+                    const range = selection.getRangeAt(0)
+                    if (range.endOffset == "0") {
+                        this.$emit("deleteBlock")
+                    }
+                    this.$nextTick(() => {
+                        this.updateY()
+                    })
+                }
+            }
+        },
+        onfocus() {
+            this.updateY()
+            this.$emit("onfocus")
+        },
+        onblur() {
+            this.$emit("onblur")
+        }
     }
 }
 </script>
 
 <style scoped>
-
 .Block {
     white-space: nowrap;
+    display: inline-block;
+    vertical-align: middle;
 }
 
-.Text, .Command, .Option, .Redirect, .Arg {
+.Last,
+.Text,
+.Command,
+.Option,
+.Redirect,
+.Arg {
     position: relative;
     outline: none;
     padding: 2px 0;
@@ -77,8 +157,8 @@ export default {
     text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
     padding-left: 2px;
 }
-.Command, .Option, .Redirect, .Arg {
-    padding-left: 10px;
+.Last {
+    box-shadow: none;
 }
 .Text {
     background: rgb(119, 119, 119);
@@ -93,31 +173,22 @@ export default {
     background: rgb(255, 136, 0);
 }
 .Arg {
-    padding-left: 2px;
     background: rgb(217, 255, 0);
 }
 
 .Pipe {
-    display: inline-block;
-    box-shadow: 0 1px 2px rgb(92, 92, 92);
     background: rgb(0, 183, 255);
     width: 3px;
     border-radius: 10px;
     height: 24px;
     margin: 0 0px;
-    color: rgba(0,0,0,0);
+    color: rgba(0, 0, 0, 0);
 }
-.Pipe .Val {
+.Pipe .Editable {
     margin-left: -2px;
+    opacity: 0;
 }
 
-
-.Val {
-    margin-right: 5px;
-}
-.Val:last-child {
-    margin-right: 10px;
-}
 .clickable {
     cursor: pointer;
 }
@@ -125,7 +196,8 @@ export default {
     transform: translateY(3px);
 }
 
-.Edi {
+
+.Editable {
     color: #fff;
     background: rgba(0, 0, 0, 0.3);
     /* border: 1px solid rgb(255, 255, 255); */
@@ -134,12 +206,28 @@ export default {
     margin-right: 2px;
     line-height: 20px;
     outline: none;
-    min-width: 10px;
+    min-width: 13px;
+
+    display: inline-block;
+    text-align: left;
+    outline: none;
+}
+.Last .Editable {
+    min-width: 20px;
 }
 
-
-.optionwith .Edi {
+.optionwith {
+    margin-left: -24px;
+    padding-left: 18px;
+}
+.optionwith .Editable  {
     margin-left: -15px;
     padding-left: 15px;
 }
+
+.Editable:empty::before {
+    content: attr(data-placeholder);
+    opacity: 0.5;
+}
+
 </style>

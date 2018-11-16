@@ -6,26 +6,33 @@
                 v-model="block.val"
                 :placeholder="block.placeholder"
                 :writable="writable"
-                :class="{optionwith: block.type.match(/option|arg|text/)&&i>0&&value[i-1].type!='pipe'&&value[i-1]!=undefined}"
+                :class="{
+                    optionwith: block.type.match(/option|arg|text/)&&i>0&&value[i-1].type!='pipe'&&value[i-1]!=undefined
+                }"
                 :style="{'z-index': 99-i}"
                 @focus="focus"
                 @send="send"
             />
+        </div><div class="Block">
+            <Block
+                v-if="writable"
+                type="last"
+                :writable="writable"
+                v-model="text"
+                :class="{
+                    optionwith: value.length>0&&value[value.length-1].type!='pipe'
+                }"
+                :style="{'z-index': 0}"
+                endEditable="true"
+                ref="endEditable"
+                @inputBlock="inputBlock"
+                @deleteBlock="deleteBlock"
+                @send="send"
+                @y="y"
+                @onfocus="$emit('onfocus')"
+                @onblur="$emit('onblur')"
+            />
         </div>
-        <Editable
-            v-if="writable"
-            type="text"
-            :writable="writable"
-            endEditable="true"
-            ref="endEditable"
-            v-model="text"
-            @inputBlock="inputBlock"
-            @deleteBlock="deleteBlock"
-            @send="send"
-            @y="y"
-            @onfocus="$emit('onfocus')"
-            @onblur="$emit('onblur')"
-        />
     </div>
 </template>
 
@@ -39,23 +46,16 @@
     margin-right: 5px;
     vertical-align: middle;
 }
-
-.optionwith {
-    margin-left: -24px;
-    padding-left: 18px;
-}
 </style>
 
 <script>
 import Block from "@/components/Block"
-import Editable from "@/components/Editable"
 
 export default {
     components: {
         Block,
-        Editable
     },
-    props: ["value", "writable", "clickable", "inputText"],
+    props: ["value", "writable", "inputText"],
     data() {
         return {
             args: ["ls"],
@@ -65,8 +65,7 @@ export default {
     watch: {
         value() {
             this.$nextTick(() => {
-                if (this.$refs.endEditable)
-                    this.$refs.endEditable.updateY()
+                if (this.$refs.endEditable) this.$refs.endEditable.updateY()
             })
         },
         text() {
@@ -86,6 +85,11 @@ export default {
         focus() {
             if (this.$refs.endEditable) {
                 this.$nextTick(() => this.$refs.endEditable.focus())
+            }
+        },
+        blur() {
+            if (this.$refs.endEditable) {
+                this.$nextTick(() => this.$refs.endEditable.blur())
             }
         },
         inputBlock(block) {
@@ -109,7 +113,7 @@ export default {
         },
         y(r) {
             this.$emit("y", r)
-        },
+        }
     }
 }
 </script>
