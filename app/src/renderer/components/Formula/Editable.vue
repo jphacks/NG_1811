@@ -6,7 +6,7 @@
         ref="ediv"
         @input="update"
         @paste="paste"
-        @keydown.enter="enter"
+        @keydown.enter.prevent="enter"
         @keydown.delete="backspace"
         @focus="onfocus"
         @blur="onblur"
@@ -81,6 +81,7 @@ export default {
             // this.update()
         },
         enter() {
+            this.val += "\n"
             this.$emit("input", this.val)
 
             this.$nextTick(() => {
