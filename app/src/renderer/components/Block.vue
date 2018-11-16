@@ -90,7 +90,7 @@ export default {
             selection.removeAllRanges()
             selection.addRange(range)
 
-            // this.update()
+            this.update()
         },
         keydown(e) {
             if (e.keyCode == 13) {
