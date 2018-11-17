@@ -251,7 +251,8 @@
                                 "placeholder": "検索ワード",
                                 "des": "検索ワードを指定",
                                 "val": "@place",
-                                "predict": true
+                                "predict": true,
+                                "@next": {}
                             }
                         }
                     },
@@ -266,7 +267,8 @@
                                 "type": "arg",
                                 "placeholder": "曖昧な検索ワード",
                                 "val": "@place",
-                                "predict": true
+                                "predict": true,
+                                "@next": {}
                             }
                         }
                     }
