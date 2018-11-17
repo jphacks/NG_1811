@@ -1,4 +1,4 @@
-import { app, BrowserWindow,Menu } from "electron"
+import { app, BrowserWindow, Menu } from "electron"
 
 /**
  * Set `__static` path to static files in production
@@ -28,9 +28,11 @@ function createWindow() {
         frame: false,
         transparent: true,
         vibrancy: "dark",
-        show: false,
+        show: false
     })
-    mainWindow.once('ready-to-show', () => { mainWindow.show(); });
+    mainWindow.once("ready-to-show", () => {
+        mainWindow.show()
+    })
 
     mainWindow.loadURL(winURL)
 
@@ -39,26 +41,82 @@ function createWindow() {
     })
 
     // Create the Application's main menu
-    var template = [{
-        label: "Eterm",
-        submenu: [
-            { label: "About Application", selector: "orderFrontStandardAboutPanel:" },
-            { type: "separator" },
-            { label: "Quit", accelerator: "Command+Q", click: function() { app.quit(); }}
-        ]}, {
-        label: "Edit",
-        submenu: [
-            { label: "Undo", accelerator: "CmdOrCtrl+Z", selector: "undo:" },
-            { label: "Redo", accelerator: "Shift+CmdOrCtrl+Z", selector: "redo:" },
-            { type: "separator" },
-            { label: "Cut", accelerator: "CmdOrCtrl+X", selector: "cut:" },
-            { label: "Copy", accelerator: "CmdOrCtrl+C", selector: "copy:" },
-            { label: "Paste", accelerator: "CmdOrCtrl+V", selector: "paste:" },
-            { label: "Select All", accelerator: "CmdOrCtrl+A", selector: "selectAll:" }
-        ]}
-    ];
+    var template = [
+        {
+            label: "Eterm",
+            submenu: [
+                {
+                    label: "About Application",
+                    selector: "orderFrontStandardAboutPanel:"
+                },
+                { type: "separator" },
+                {
+                    label: "Quit",
+                    accelerator: "Command+Q",
+                    click: function() {
+                        app.quit()
+                    }
+                }
+            ]
+        },
+        {
+            label: "シェル",
+            submenu: []
+        },
+        {
+            label: "編集",
+            submenu: [
+                {
+                    label: "Reload",
+                    accelerator: "Command+R",
+                    click: function() {
+                        mainWindow.reload()
+                    }
+                },
+                {
+                    label: "Undo",
+                    accelerator: "CmdOrCtrl+Z",
+                    selector: "undo:"
+                },
+                {
+                    label: "Redo",
+                    accelerator: "Shift+CmdOrCtrl+Z",
+                    selector: "redo:"
+                },
+                { type: "separator" },
+                { label: "Cut", accelerator: "CmdOrCtrl+X", selector: "cut:" },
+                {
+                    label: "Copy",
+                    accelerator: "CmdOrCtrl+C",
+                    selector: "copy:"
+                },
+                {
+                    label: "Paste",
+                    accelerator: "CmdOrCtrl+V",
+                    selector: "paste:"
+                },
+                {
+                    label: "Select All",
+                    accelerator: "CmdOrCtrl+A",
+                    selector: "selectAll:"
+                }
+            ]
+        },
+        {
+            label: "表示",
+            submenu: []
+        },
+        {
+            label: "ウィンドウ",
+            submenu: []
+        },
+        {
+            label: "ヘルプ",
+            submenu: []
+        },
+    ]
 
-    Menu.setApplicationMenu(Menu.buildFromTemplate(template));
+    Menu.setApplicationMenu(Menu.buildFromTemplate(template))
 }
 
 let subWindow
@@ -76,7 +134,7 @@ function createSubWindow() {
         vibrancy: "dark",
         focusable: false,
         resizable: false,
-        show: false,
+        show: false
         // hasShadow: false,
     })
 
@@ -127,37 +185,29 @@ app.on('ready', () => {
 })
  */
 
+// メインプロセスでやりとりするipcMain
+const { ipcMain } = require("electron")
 
-
- // メインプロセスでやりとりするipcMain
-const {ipcMain} = require('electron');
-
-ipcMain.on('candidateList', (event, list) => {
-    subWindow.webContents.send('candidateList', list);
-
-
+ipcMain.on("candidateList", (event, list) => {
+    subWindow.webContents.send("candidateList", list)
 })
 
-ipcMain.on('inputBlock', (event, block) => {
-    mainWindow.webContents.send('inputBlock', block);
+ipcMain.on("inputBlock", (event, block) => {
+    mainWindow.webContents.send("inputBlock", block)
 })
 
-
-ipcMain.on('setSubWindowBounds', (event, r) => {
-    const a = mainWindow.getPosition();
-    subWindow.setPosition(Math.ceil(r.x + a[0] - 7), Math.ceil(r.y + a[1] + 26));
+ipcMain.on("setSubWindowBounds", (event, r) => {
+    const a = mainWindow.getPosition()
+    subWindow.setPosition(Math.ceil(r.x + a[0] - 7), Math.ceil(r.y + a[1] + 26))
 })
 
-ipcMain.on('setSubWindowSize', (event, r) => {
-    subWindow.setSize(Math.ceil(r.width), Math.ceil(r.height));
+ipcMain.on("setSubWindowSize", (event, r) => {
+    subWindow.setSize(Math.ceil(r.width), Math.ceil(r.height))
 })
 
-ipcMain.on('onfocus', (event) => {
-    subWindow.showInactive();
+ipcMain.on("onfocus", event => {
+    subWindow.showInactive()
 })
-ipcMain.on('onblur', (event) => {
-    subWindow.hide();
+ipcMain.on("onblur", event => {
+    subWindow.hide()
 })
-
-
-
