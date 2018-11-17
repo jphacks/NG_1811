@@ -76,11 +76,12 @@ export default {
             }
 
             let rec = []
+
             for(let item of this.preRecomend){
                 if(item["type"]=="arg"){
                     rec.push(item)
                 }
-                else if(item["val"].includes(this.inputText)){
+                else if(item["val"].includes(this.inputText) || item["description"].includes(this.inputText)){
                     rec.push(item)
                 }
             }
@@ -90,6 +91,9 @@ export default {
 
             if(this.endBlock["val"] == "|"){
                 this.endBlock["type"] = "pipe"
+            }
+            else if(this.endBlock["val"] == ";"){
+                this.endBlock ["type"] = "text"
             }
             else if(this.endBlock["val"] == ">>" || this.endBlock["val"] == ">"){
                 this.endBlock["type"] = "redirect"
@@ -103,14 +107,13 @@ export default {
                 this.input[this.input.length-1]["placeholder"] = this.previous["@place"]["placeholder"]
             }
             else{
-                if(this.input.length <= 1 || this.input[this.input.length-2]["val"] == "|"){
+                if(this.input.length <= 1 || this.input[this.input.length-2]["val"] == "|" || this.input[this.input.length-2]["val"] == ";"){
                     exec('type ' + this.endBlock["val"], (error, stdout, stderr) => {
                         if (error) {
                             this.endBlock["type"] = "text"
                             this.endBlock["val"] = this.endBlock["val"]
                             return;
                         }
-
                         this.endBlock["type"] = "command"
                         this.endBlock["val"] = this.endBlock["val"]
                     });
@@ -161,6 +164,7 @@ export default {
         },
         _pathTransition(path,target){
             let val = (target["type"] == "arg")?"@place":target["val"] 
+
             if(val in path){
                 return (path[val]["predict"]) ? path[val]["@next"] : path
             }
@@ -204,7 +208,6 @@ export default {
                 path = this._pathTransition(path,target)
 
             }
-            console.log(use)
             return use
         },
         endBlock:function(){
