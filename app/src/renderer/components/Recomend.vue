@@ -8,7 +8,7 @@
 
 import model from "@/assets/model.json"
 
-const execSync = require("child_process").execSync
+const exec = require("child_process").exec
 
 export default {
     props: ["input","inputText"],
@@ -71,7 +71,7 @@ export default {
                     "val":this.inputText.trim()
                 })
                 this._changeInput()
-                console.log(this.input)
+
                 this.$emit("update:inputText","")
             }
 
@@ -104,15 +104,16 @@ export default {
             }
             else{
                 if(this.input.length <= 1 || this.input[this.input.length-2]["val"] == "|"){
-                    try{
-                        execSync("type "+this.endBlock["val"])
+                    exec('type ' + this.endBlock["val"], (error, stdout, stderr) => {
+                        if (error) {
+                            this.endBlock["type"] = "text"
+                            this.endBlock["val"] = this.endBlock["val"]
+                            return;
+                        }
+
                         this.endBlock["type"] = "command"
                         this.endBlock["val"] = this.endBlock["val"]
-                    }
-                    catch(e){
-                        this.endBlock["type"] = "text"
-                        this.endBlock["val"] = this.endBlock["val"]
-                    }
+                    });
                 }
                 else{
                     this.endBlock["type"] = "text"
@@ -203,6 +204,7 @@ export default {
                 path = this._pathTransition(path,target)
 
             }
+            console.log(use)
             return use
         },
         endBlock:function(){
