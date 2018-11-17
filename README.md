@@ -1,8 +1,8 @@
 # <img src="docs/assets/favicon.png" height="24"> Eterm
 
-![JPHacks](https://img.shields.io/badge/jphacks-NG__1811-brightgreen.svg)
-![JPHacks](https://img.shields.io/badge/award-Best_Hack_Day-yellow.svg)
-![JPHacks](https://img.shields.io/badge/license-MIT-blue.svg)
+[![jphacks](https://img.shields.io/badge/jphacks-NG__1811-brightgreen.svg)](https://2018.jphacks.com/information/jphacks-award-finalists/)
+[![award](https://img.shields.io/badge/award-Best_Hack_Day-yellow.svg)](https://2018.jphacks.com/information/jphacks-award-finalists/)
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 
 [![Thumbnail](thumb.png)](https://vimeo.com/296239145)
