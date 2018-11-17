@@ -4,8 +4,13 @@
 [![award](https://img.shields.io/badge/award-Best_Hack_Day-yellow.svg)](https://2018.jphacks.com/information/jphacks-award-finalists/)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
+公式サイト: https://eterm.tokyo
 
-[![Thumbnail](thumb.png)](https://vimeo.com/296239145)
+![Thumbnail](docs/assets/screen.png)
+
+[Hack Day時点の動画を再生](https://vimeo.com/296239145)
+
+
 
 ## 製品概要
 
