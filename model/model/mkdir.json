@@ -54,7 +54,7 @@
         "type": "arg",
         "des": "これが説明だよー",
         "val": "@place",
-        "predict": false,
+        "predict": true,
         "placeholder": "PATH",
         "weight": 10,
         "@next": {

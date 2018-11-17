@@ -26,7 +26,7 @@
             "type": "arg",
             "val": "@PATH",
             "predict": true,
-            "placeholder": "パッケージ名",
+            "placeholder": "パッケージ",
             "des": "追加するパッケージ名",
             "@next": {}
           }
@@ -51,7 +51,7 @@
                 "type": "arg",
                 "val": "@PATH",
                 "predict": true,
-                "placeholder": "パッケージ名",
+                "placeholder": "パッケージ",
                 "des": "追加するパッケージ名",
                 "@next": {}
               }
@@ -71,7 +71,7 @@
             "type": "arg",
             "val": "@PATH",
             "predict": true,
-            "placeholder": "Script名",
+            "placeholder": "script",
             "des": "実行するscript",
             "@next": {}
           }
@@ -89,7 +89,7 @@
             "type": "arg",
             "val": "@PATH",
             "predict": true,
-            "placeholder": "パッケージ名",
+            "placeholder": "パッケージ",
             "des": "アップグレードするパッケージ名",
             "@next": {}
           }
@@ -107,7 +107,7 @@
             "type": "arg",
             "val": "@PATH",
             "predict": true,
-            "placeholder": "パッケージ名",
+            "placeholder": "パッケージ",
             "des": "情報を表示したいパッケージ",
             "@next": {}
           }
