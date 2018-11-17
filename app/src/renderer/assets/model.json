@@ -1,6 +1,6 @@
 {
     "cat": {
-        "weight": 1,
+        "weight": 4,
         "type": "command",
         "val": "cat",
         "predict": true,
@@ -14,7 +14,7 @@
                 ],
                 "predict": false,
                 "des": "空白ではない行に番号をつける",
-                "weight": 1
+                "weight": 3
             },
             "-n": {
                 "type": "option",
@@ -24,7 +24,7 @@
                 ],
                 "predict": false,
                 "des": "全ての行に番号をつける",
-                "weight": 1
+                "weight": 2
             },
             "-s": {
                 "type": "option",
@@ -91,7 +91,7 @@
         }
     },
     "cd": {
-        "weight": 1,
+        "weight": 5,
         "type": "command",
         "val": "cd",
         "predict": true,
@@ -109,14 +109,14 @@
         }
     },
     "clear": {
-        "weight": 1,
+        "weight": 3,
         "type": "command",
         "val": "clear",
         "predict": true,
         "des": "端末をクリアする"
     },
     "cp": {
-        "weight": 1,
+        "weight": 3,
         "type": "command",
         "val": "cp",
         "predict": true,
@@ -192,7 +192,7 @@
         }
     },
     "find": {
-        "weight": 1,
+        "weight": 3,
         "type": "command",
         "val": "find",
         "predict": true,
@@ -495,7 +495,7 @@
         }
     },
     "git": {
-        "weight": 1,
+        "weight": 2,
         "type": "command",
         "val": "git",
         "predict": true,
@@ -729,7 +729,7 @@
         }
     },
     "ls": {
-        "weight": 1,
+        "weight": 4,
         "type": "command",
         "val": "ls",
         "predict": true,
@@ -810,7 +810,7 @@
         }
     },
     "mkdir": {
-        "weight": 2,
+        "weight": 3,
         "type": "command",
         "val": "mkdir",
         "predict": true,
@@ -1025,7 +1025,7 @@
         }
     },
     "pwd": {
-        "weight": 1,
+        "weight": 4,
         "type": "command",
         "val": "pwd",
         "predict": true,
@@ -1048,7 +1048,7 @@
         }
     },
     "rm": {
-        "weight": 1,
+        "weight": 3,
         "type": "command",
         "val": "rm",
         "predict": true,
@@ -1161,7 +1161,7 @@
         }
     },
     "touch": {
-        "weight": 1,
+        "weight": 2,
         "type": "command",
         "val": "touch",
         "ignore": [

@@ -1,6 +1,6 @@
 {
   "clear": {
-    "weight": 1,
+    "weight": 3,
     "type": "command",
     "val": "clear",
     "predict": true,

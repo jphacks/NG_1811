@@ -1,6 +1,6 @@
 {
   "mkdir": {
-    "weight": 2,
+    "weight": 3,
     "type": "command",
     "val": "mkdir",
     "predict": true,

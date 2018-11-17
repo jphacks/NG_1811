@@ -1,6 +1,6 @@
 {
   "ls": {
-    "weight": 1,
+    "weight": 4,
     "type": "command",
     "val": "ls",
     "predict": true,

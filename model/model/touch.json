@@ -1,6 +1,6 @@
 {
   "touch": {
-    "weight": 1,
+    "weight": 2,
     "type": "command",
     "val": "touch",
     "ignore":["-r"],

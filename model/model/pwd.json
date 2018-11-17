@@ -1,6 +1,6 @@
 {
 "pwd": {
-    "weight": 1,
+    "weight": 4,
     "type": "command",
     "val": "pwd",
     "predict": true,
