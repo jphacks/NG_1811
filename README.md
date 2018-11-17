@@ -1,4 +1,4 @@
-# Eterm - Best Terminal for Education
+# Eterm
 
 [![Thumbnail](thumb.png)](https://vimeo.com/296239145)
 
