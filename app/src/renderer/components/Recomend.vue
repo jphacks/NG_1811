@@ -165,6 +165,8 @@ export default {
         _pathTransition(path,target){
             let val = (target["type"] == "arg")?"@place":target["val"] 
 
+            console.log(val)
+
             if(val in path){
                 return (path[val]["predict"]) ? path[val]["@next"] : path
             }
@@ -179,6 +181,7 @@ export default {
             for(let i = 0;i < this.input.length;i++){
                 let target = this.input[i]
                 path = this._pathTransition(path,target)
+                console.log(path)
             }
             return path
         },
@@ -206,7 +209,7 @@ export default {
                 }
 
                 path = this._pathTransition(path,target)
-
+                
             }
             return use
         },
