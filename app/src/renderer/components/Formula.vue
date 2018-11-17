@@ -7,7 +7,7 @@
                 :placeholder="block.placeholder"
                 :writable="writable"
                 :class="{
-                    optionwith: block.type.match(/option|arg|text/)&&i>0&&value[i-1].type!='pipe'&&value[i-1]!=undefined
+                    optionwith: block.type.match(/option|arg|text/)&&i>0&&!value[i-1].type.match(/pipe|redirect/)&&value[i-1]!=undefined
                 }"
                 :style="{'z-index': 99-i}"
                 @focus="focus"
@@ -20,7 +20,7 @@
                 :writable="writable"
                 v-model="text"
                 :class="{
-                    optionwith: value.length>0&&value[value.length-1].type!='pipe'
+                    optionwith: value.length>0&&!value[value.length-1].type.match(/pipe|redirect/)
                 }"
                 :style="{'z-index': 0}"
                 endEditable="true"
