@@ -1,4 +1,85 @@
 {
+    "aws": {
+        "weight": 1,
+        "type": "command",
+        "val": "aws",
+        "predict": true,
+        "des": "aws-cliを使用するコマンド",
+        "@next": {
+            "ec2": {
+                "weight": 1,
+                "type": "option",
+                "val": "ec2",
+                "predict": true,
+                "des": "EC2関連を操作",
+                "@next": {}
+            },
+            "configure": {
+                "weight": 1,
+                "type": "option",
+                "val": "configure",
+                "predict": true,
+                "des": "aws-cliの設定ファイルを生成",
+                "@next": {}
+            },
+            "iam": {
+                "weight": 1,
+                "type": "option",
+                "val": "iam",
+                "predict": true,
+                "des": "IAM関連を操作",
+                "@next": {}
+            },
+            "s3": {
+                "weight": 1,
+                "type": "option",
+                "val": "s3",
+                "predict": true,
+                "des": "S3関連を操作",
+                "@next": {}
+            },
+            "s3api": {
+                "weight": 1,
+                "type": "option",
+                "val": "s3api",
+                "predict": true,
+                "des": "Amazon S3 API関連を操作",
+                "@next": {}
+            },
+            "cloudfront": {
+                "weight": 1,
+                "type": "option",
+                "val": "cloudfront",
+                "predict": true,
+                "des": "CloudFront関連を操作",
+                "@next": {}
+            },
+            "lambda": {
+                "weight": 1,
+                "type": "option",
+                "val": "lambda",
+                "predict": true,
+                "des": "Lambda関連を操作",
+                "@next": {}
+            },
+            "acm": {
+                "weight": 1,
+                "type": "option",
+                "val": "acm",
+                "predict": true,
+                "des": "AWS Certificate Manager関連を操作",
+                "@next": {}
+            },
+            "ses": {
+                "weight": 1,
+                "type": "option",
+                "val": "ses",
+                "predict": true,
+                "des": "SimpleMailService関連を操作",
+                "@next": {}
+            }
+        }
+    },
     "cat": {
         "weight": 4,
         "type": "command",
@@ -188,6 +269,145 @@
                         "@next": {}
                     }
                 }
+            }
+        }
+    },
+    "curl": {
+        "weight": 1,
+        "type": "command",
+        "val": "curl",
+        "predict": true,
+        "des": "URLを用いてファイルを送受信",
+        "@next": {
+            "@place": {
+                "weight": 10,
+                "type": "arg",
+                "val": "URL",
+                "predict": true,
+                "placeholder": "URL",
+                "des": "取得するURL",
+                "@next": {
+                    "|": {
+                        "weight": 1,
+                        "type": "pipe",
+                        "val": "|",
+                        "predict": true,
+                        "des": "前のコマンドの結果を次に受け渡す",
+                        "@next": {
+                            "jq": {
+                                "weight": 1,
+                                "type": "command",
+                                "val": "jq",
+                                "predict": true,
+                                "des": "JSONを解析し、整形する",
+                                "@next": {
+                                    "@place": {
+                                        "weight": 10,
+                                        "type": "arg",
+                                        "val": "URL",
+                                        "predict": true,
+                                        "placeholder": "抽出PATH",
+                                        "des": "特定の値を抽出",
+                                        "@next": {}
+                                    }
+                                }
+                            },
+                            "grep": {
+                                "weight": 1,
+                                "type": "command",
+                                "val": "grep",
+                                "predict": true,
+                                "des": "次に指定するワードで検索",
+                                "@next": {
+                                    "weight": 10,
+                                    "type": "arg",
+                                    "val": "URL",
+                                    "predict": true,
+                                    "placeholder": "検索ワード",
+                                    "des": "検索ワードを指定",
+                                    "@next": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "-O": {
+                "weight": 1,
+                "type": "option",
+                "val": "-O",
+                "predict": false,
+                "des": "指定したURLの内容をそのままファイルとしてダウンロード"
+            },
+            "-user": {
+                "weight": 1,
+                "type": "option",
+                "val": "-user",
+                "predict": false,
+                "des": "認証情報を付与"
+            },
+            "-b": {
+                "weight": 2,
+                "type": "option",
+                "val": "-b",
+                "predict": false,
+                "des": "クッキーの送信"
+            },
+            "-A": {
+                "weight": 1,
+                "type": "option",
+                "val": "-A",
+                "predict": false,
+                "des": "User-Agentを付与"
+            },
+            "-head": {
+                "weight": 1,
+                "type": "option",
+                "val": "-head",
+                "predict": false,
+                "des": "HTTPヘッダーの指定"
+            },
+            "-X": {
+                "weight": 2,
+                "type": "option",
+                "val": "-X",
+                "predict": false,
+                "des": "HTTPメソッドの指定"
+            },
+            "-k": {
+                "weight": 2,
+                "type": "option",
+                "val": "-X",
+                "predict": false,
+                "des": "SSLのエラーを無視して処理を継続"
+            },
+            "-L": {
+                "weight": 2,
+                "type": "option",
+                "val": "-L",
+                "predict": false,
+                "des": "リダイレクトさせる"
+            },
+            "-I": {
+                "weight": 2,
+                "type": "option",
+                "val": "-I",
+                "predict": false,
+                "des": "HTTPレスポンスヘッダーの取得"
+            },
+            "-v": {
+                "weight": 2,
+                "type": "option",
+                "val": "-v",
+                "predict": false,
+                "des": "詳細をログ出力"
+            },
+            "-s": {
+                "weight": 5,
+                "type": "option",
+                "val": "-v",
+                "predict": false,
+                "des": "進捗表示をしない"
             }
         }
     },
