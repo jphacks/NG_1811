@@ -27,8 +27,10 @@ function createWindow() {
         titleBarStyle: "hiddenInset",
         frame: false,
         transparent: true,
-        vibrancy: "dark"
+        vibrancy: "dark",
+        show: false,
     })
+    mainWindow.once('ready-to-show', () => { mainWindow.show(); });
 
     mainWindow.loadURL(winURL)
 

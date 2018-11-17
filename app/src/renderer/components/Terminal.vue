@@ -107,6 +107,7 @@ const HOMEDIR =
 let xterm
 let child
 
+
 export default {
     components: {
         Recomend,
