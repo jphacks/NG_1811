@@ -1,5 +1,10 @@
 # Eterm
 
+![JPHacks](https://img.shields.io/badge/jphacks-NG__1811-brightgreen.svg)
+![JPHacks](https://img.shields.io/badge/award-Best_Hack_Day-yellow.svg)
+![JPHacks](https://img.shields.io/badge/license-MIT-blue.svg)
+
+
 [![Thumbnail](thumb.png)](https://vimeo.com/296239145)
 
 ## 製品概要
