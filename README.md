@@ -6,7 +6,7 @@
 
 公式サイト: https://eterm.tokyo
 
-![Thumbnail](docs/assets/screen.png)
+[![Thumbnail](docs/assets/screen.png)](https://eterm.tokyo)
 
 [Hack Day時点の動画を再生](https://vimeo.com/296239145)
 
