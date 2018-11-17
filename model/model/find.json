@@ -44,7 +44,7 @@
           "val": "@place",
           "predict": true,
           "placeholder": "PATH",
-          "des":"検索を開始するパス",
+          "des": "検索を開始するパス",
           "weight": 10,
           "@next": {
             "-name": {
@@ -59,7 +59,81 @@
                   "placeholder": "検索ワード",
                   "des": "検索ワードを指定",
                   "val": "@place",
-                  "predict": true
+                  "predict": true,
+                  "@next": {
+                    "|": {
+                      "weight": 1,
+                      "type": "pipe",
+                      "val": "|",
+                      "predict": true,
+                      "des":"前のコマンドの結果を次に渡す",
+                      "@next": {
+                        "xargs": {
+                          "weight": 1,
+                          "type": "command",
+                          "val": "@PATH",
+                          "predict": true,
+                          "des": "コマンドラインを作成して実行",
+                          "@next": {
+                            "cat": {
+                              "weight": 1,
+                              "type": "option",
+                              "val": "@PATH",
+                              "predict": true,
+                              "des": "ファイルの中身を表示",
+                              "@next": {
+                                "|": {
+                                  "weight": 1,
+                                  "type": "pipe",
+                                  "val": "@PATH",
+                                  "predict": true,
+                                  "des": "前のコマンドの結果を次に渡す",
+                                  "@next": {
+                                    "grep": {
+                                      "weight": 1,
+                                      "type": "command",
+                                      "val": "@PATH",
+                                      "predict": true,
+                                      "des": "次に指定する文字列で検索",
+                                      "@next": {
+                                        "@place": {
+                                          "weight": 1,
+                                          "type": "arg",
+                                          "val": "@PATH",
+                                          "predict": true,
+                                          "placeholder": "検索ワード",
+                                          "des": "検索したい文字列",
+                                          "@next": {}
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "grep": {
+                              "weight": 1,
+                              "type": "option",
+                              "val": "@PATH",
+                              "predict": true,
+                              "des": "次に指定する文字列で検索",
+                              "@next": {
+                                "@place": {
+                                  "weight": 1,
+                                  "type": "arg",
+                                  "val": "@PATH",
+                                  "predict": true,
+                                  "placeholder": "検索ワード",
+                                  "des": "検索したい文字列",
+                                  "@next": {}
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
                 }
               }
             },
@@ -67,14 +141,160 @@
               "type": "option",
               "val": "-iname",
               "predict": true,
-              "des": "曖昧な検索",
+              "des": "大文字と小文字を区別しない検索",
               "weight": 1,
               "@next": {
                 "@place": {
                   "type": "arg",
-                  "placeholder": "曖昧な検索ワード",
+                  "placeholder": "検索ワード",
                   "val": "@place",
-                  "predict": true
+                  "predict": true,
+                  "@next": {
+                    "|": {
+                      "weight": 1,
+                      "type": "pipe",
+                      "val": "|",
+                      "predict": true,
+                      "des": "前のコマンドの結果を次に渡す",
+                      "@next": {
+                        "xargs": {
+                          "weight": 1,
+                          "type": "command",
+                          "val": "@PATH",
+                          "predict": true,
+                          "des": "コマンドラインを作成して実行",
+                          "@next": {
+                            "cat": {
+                              "weight": 1,
+                              "type": "option",
+                              "val": "@PATH",
+                              "predict": true,
+                              "des": "ファイルの中身を表示",
+                              "@next": {
+                                "|": {
+                                  "weight": 1,
+                                  "type": "pipe",
+                                  "val": "@PATH",
+                                  "predict": true,
+                                  "des": "前のコマンドの結果を次に渡す",
+                                  "@next": {
+                                    "grep": {
+                                      "weight": 1,
+                                      "type": "command",
+                                      "val": "@PATH",
+                                      "predict": true,
+                                      "des": "次に指定する文字列で検索",
+                                      "@next": {
+                                        "@place": {
+                                          "weight": 1,
+                                          "type": "arg",
+                                          "val": "@PATH",
+                                          "predict": true,
+                                          "placeholder": "検索ワード",
+                                          "des": "検索したい文字列",
+                                          "@next": {}
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "grep": {
+                              "weight": 1,
+                              "type": "option",
+                              "val": "@PATH",
+                              "predict": true,
+                              "des": "次に指定する文字列で検索",
+                              "@next": {
+                                "@place": {
+                                  "weight": 1,
+                                  "type": "arg",
+                                  "val": "@PATH",
+                                  "predict": true,
+                                  "placeholder": "検索ワード",
+                                  "des": "検索したい文字列",
+                                  "@next": {}
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "|": {
+              "weight": 1,
+              "type": "pipe",
+              "val": "|",
+              "predict": true,
+              "des":"前のコマンドの結果を次に渡す",
+              "@next": {
+                "xargs": {
+                  "weight": 1,
+                  "type": "command",
+                  "val": "@PATH",
+                  "predict": true,
+                  "des": "コマンドラインを作成して実行",
+                  "@next": {
+                    "cat": {
+                      "weight": 1,
+                      "type": "option",
+                      "val": "@PATH",
+                      "predict": true,
+                      "des": "ファイルの中身を表示",
+                      "@next": {
+                        "|": {
+                          "weight": 1,
+                          "type": "pipe",
+                          "val": "@PATH",
+                          "predict": true,
+                          "des": "前のコマンドの結果を次に渡す",
+                          "@next": {
+                            "grep": {
+                              "weight": 1,
+                              "type": "command",
+                              "val": "@PATH",
+                              "predict": true,
+                              "des": "次に指定する文字列で検索",
+                              "@next": {
+                                "@place": {
+                                  "weight": 1,
+                                  "type": "arg",
+                                  "val": "@PATH",
+                                  "predict": true,
+                                  "placeholder": "検索ワード",
+                                  "des": "検索したい文字列",
+                                  "@next": {}
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "grep": {
+                      "weight": 1,
+                      "type": "option",
+                      "val": "@PATH",
+                      "predict": true,
+                      "des": "次に指定する文字列で検索",
+                      "@next": {
+                        "@place": {
+                          "weight": 1,
+                          "type": "arg",
+                          "val": "@PATH",
+                          "predict": true,
+                          "placeholder": "検索ワード",
+                          "des": "検索したい文字列",
+                          "@next": {}
+                        }
+                      }
+                    }
+                  }
                 }
               }
             }
