@@ -1,4 +1,4 @@
-# <img src="docs/assets/favicon.png" height="32"> Eterm
+# <img src="docs/assets/favicon.png" height="24"> Eterm
 
 ![JPHacks](https://img.shields.io/badge/jphacks-NG__1811-brightgreen.svg)
 ![JPHacks](https://img.shields.io/badge/award-Best_Hack_Day-yellow.svg)
