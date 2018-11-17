@@ -17,6 +17,8 @@ export default {
 </script>
 
 <style>
+@import "~xterm/dist/xterm.css";
+
 body {
     margin: 0;
 }
