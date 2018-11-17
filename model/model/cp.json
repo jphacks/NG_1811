@@ -1,6 +1,6 @@
 {
   "cp": {
-    "weight": 1,
+    "weight": 3,
     "type": "command",
     "val": "cp",
     "predict": true,

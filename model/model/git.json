@@ -1,6 +1,6 @@
 {
   "git": {
-    "weight": 1,
+    "weight": 2,
     "type": "command",
     "val": "git",
     "predict": true,

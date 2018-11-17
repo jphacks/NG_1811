@@ -1,6 +1,6 @@
 {
 "cat": {
-    "weight": 1,
+    "weight": 4,
     "type": "command",
     "val": "cat",
     "predict": true,
@@ -14,7 +14,7 @@
         ],
         "predict": false,
         "des": "空白ではない行に番号をつける",
-        "weight": 1
+        "weight": 3
       },
       "-n": {
         "type": "option",
@@ -24,7 +24,7 @@
         ],
         "predict": false,
         "des": "全ての行に番号をつける",
-        "weight": 1
+        "weight": 2
       },
       "-s": {
         "type": "option",
