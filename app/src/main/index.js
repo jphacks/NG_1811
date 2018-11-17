@@ -46,7 +46,7 @@ function createWindow() {
             label: "Eterm",
             submenu: [
                 {
-                    label: "About Application",
+                    label: "About Eterm",
                     selector: "orderFrontStandardAboutPanel:"
                 },
                 { type: "separator" },
