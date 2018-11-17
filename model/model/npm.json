@@ -44,7 +44,7 @@
             "type": "arg",
             "val": "@PATH",
             "predict": true,
-            "placeholder": "パッケージ名",
+            "placeholder": "パッケージ",
             "des": "削除するパッケージ名",
             "@next": {}
           }
@@ -62,7 +62,7 @@
             "type": "arg",
             "val": "@PATH",
             "predict": true,
-            "placeholder": "パッケージ名",
+            "placeholder": "パッケージ",
             "des": "更新するパッケージ名",
             "@next": {}
           }
@@ -80,7 +80,7 @@
             "type": "arg",
             "val": "@PATH",
             "predict": true,
-            "placeholder": "パッケージ名",
+            "placeholder": "パッケージ",
             "des": "表示するパッケージ名",
             "@next": {}
           }
@@ -116,7 +116,7 @@
             "type": "arg",
             "val": "@PATH",
             "predict": true,
-            "placeholder": "パッケージ名",
+            "placeholder": "パッケージ",
             "des": "バージョン一覧を確認したいパッケージ名",
             "@next": {}
           }

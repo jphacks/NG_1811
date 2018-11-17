@@ -70,7 +70,7 @@
             "des": "ステージするファイルを指定",
             "val": "@place",
             "predict": true,
-            "placeholder": "ファイル名",
+            "placeholder": "PATH",
             "weight": 10,
             "@next": {
               "@place": {
@@ -78,8 +78,8 @@
                 "des": "ステージするファイルを指定",
                 "val": "@place",
                 "predict": false,
-                "repeat":true,
-                "placeholder": "ファイル名",
+                "repeat": true,
+                "placeholder": "PATH",
                 "weight": 10,
                 "@next": {}
               }
@@ -90,7 +90,10 @@
             "type": "option",
             "val": "-A",
             "predict": false,
-            "ignore":["-u","@place"],
+            "ignore": [
+              "-u",
+              "@place"
+            ],
             "des": "変更された全てのファイルをステージ",
             "@next": {}
           },
@@ -99,7 +102,10 @@
             "type": "option",
             "val": "-u",
             "predict": false,
-            "ignore":["-A","@place"],
+            "ignore": [
+              "-A",
+              "@place"
+            ],
             "des": "変更があった場所ファイルをステージ(新規追加は対象外)",
             "@next": {}
           },
@@ -159,17 +165,15 @@
             "val": "-a",
             "predict": true,
             "des": "直前のコミットを修正",
-            "@next": {
-            }
+            "@next": {}
           },
-          "strip":{
+          "strip": {
             "weight": 1,
             "type": "option",
             "val": "strip",
             "predict": true,
             "des": "空白行や行末の空白を自動的に削除",
-            "@next": {
-            }
+            "@next": {}
           }
         }
       },
@@ -182,11 +186,47 @@
         "@next": {
           "@place": {
             "type": "arg",
-            "des": "",
+            "des": "リモートリポジトリのURL",
             "val": "@place",
             "predict": true,
-            "placeholder": "リモートリポジトリのURL",
+            "placeholder": "URL",
             "weight": 10,
+            "@next": {}
+          }
+        }
+      },
+      "checkout": {
+        "weight": 1,
+        "type": "option",
+        "val": "@PATH",
+        "predict": true,
+        "des": "作業ブランチの切り替え",
+        "@next": {
+          "@place": {
+            "weight": 1,
+            "type": "arg",
+            "val": "@PATH",
+            "predict": true,
+            "placeholder": "ブランチ",
+            "des": "移動するブランチ名",
+            "@next": {}
+          }
+        }
+      },
+      "log": {
+        "weight": 1,
+        "type": "option",
+        "val": "@PATH",
+        "predict": true,
+        "des": "ログを確認",
+        "@next": {
+          "@place": {
+            "weight": 1,
+            "type": "arg",
+            "val": "@PATH",
+            "predict": true,
+            "placeholder": "PATH",
+            "des": "変更履歴を確認するファイル名",
             "@next": {}
           }
         }

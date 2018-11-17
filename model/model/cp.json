@@ -59,7 +59,7 @@
         "des": "コピーするファイルを指定",
         "val": "@place",
         "predict": true,
-        "placeholder": "コピー元",
+        "placeholder": "PATH",
         "weight": 10,
         "@next": {
           "@place": {
@@ -67,7 +67,7 @@
             "des": "コピー先とファイル名を指定",
             "val": "@place",
             "predict": true,
-            "placeholder": "コピー先",
+            "placeholder": "PATH",
             "weight": 10,
             "@next": {}
           }

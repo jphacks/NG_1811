@@ -37,7 +37,8 @@
         "type": "arg",
         "val": "@place",
         "predict": true,
-        "placeholder": "ファイル名",
+        "placeholder": "PATH",
+        "des": "表示するファイル名",
         "weight": 10,
         "@next": {
           ">>": {
@@ -51,7 +52,8 @@
                 "type": "arg",
                 "val": "@place",
                 "predict": false,
-                "placeholder": "ファイル名",
+                "placeholder": "PATH",
+                "des": "変更を書き込むファイル名",
                 "weight": 10,
                 "@next": {}
               }
@@ -68,7 +70,8 @@
                 "type": "arg",
                 "val": "@place",
                 "predict": false,
-                "placeholder": "ファイル名",
+                "placeholder": "PATH",
+                "des": "変更を書き込むファイル名",
                 "weight": 10,
                 "@next": {}
               }
@@ -79,7 +82,8 @@
             "val": "@place",
             "repeat": true,
             "predict": false,
-            "placeholder": "ファイル名",
+            "placeholder": "PATH",
+            "des": "表示するファイル名",
             "weight": 10
           }
         }

@@ -37,7 +37,8 @@
                 "type": "arg",
                 "val": "@place",
                 "predict": true,
-                "placeholder": "ファイル名",
+                "placeholder": "PATH",
+                "des": "表示するファイル名",
                 "weight": 10,
                 "@next": {
                     ">>": {
@@ -51,7 +52,8 @@
                                 "type": "arg",
                                 "val": "@place",
                                 "predict": false,
-                                "placeholder": "ファイル名",
+                                "placeholder": "PATH",
+                                "des": "変更を書き込むファイル名",
                                 "weight": 10,
                                 "@next": {}
                             }
@@ -68,7 +70,8 @@
                                 "type": "arg",
                                 "val": "@place",
                                 "predict": false,
-                                "placeholder": "ファイル名",
+                                "placeholder": "PATH",
+                                "des": "変更を書き込むファイル名",
                                 "weight": 10,
                                 "@next": {}
                             }
@@ -79,7 +82,8 @@
                         "val": "@place",
                         "repeat": true,
                         "predict": false,
-                        "placeholder": "ファイル名",
+                        "placeholder": "PATH",
+                        "des": "表示するファイル名",
                         "weight": 10
                     }
                 }
@@ -171,7 +175,7 @@
                 "des": "コピーするファイルを指定",
                 "val": "@place",
                 "predict": true,
-                "placeholder": "コピー元",
+                "placeholder": "PATH",
                 "weight": 10,
                 "@next": {
                     "@place": {
@@ -179,7 +183,7 @@
                         "des": "コピー先とファイル名を指定",
                         "val": "@place",
                         "predict": true,
-                        "placeholder": "コピー先",
+                        "placeholder": "PATH",
                         "weight": 10,
                         "@next": {}
                     }
@@ -341,7 +345,7 @@
                         "des": "ステージするファイルを指定",
                         "val": "@place",
                         "predict": true,
-                        "placeholder": "ファイル名",
+                        "placeholder": "PATH",
                         "weight": 10,
                         "@next": {
                             "@place": {
@@ -350,7 +354,7 @@
                                 "val": "@place",
                                 "predict": false,
                                 "repeat": true,
-                                "placeholder": "ファイル名",
+                                "placeholder": "PATH",
                                 "weight": 10,
                                 "@next": {}
                             }
@@ -457,11 +461,47 @@
                 "@next": {
                     "@place": {
                         "type": "arg",
-                        "des": "",
+                        "des": "リモートリポジトリのURL",
                         "val": "@place",
                         "predict": true,
-                        "placeholder": "リモートリポジトリのURL",
+                        "placeholder": "URL",
                         "weight": 10,
+                        "@next": {}
+                    }
+                }
+            },
+            "checkout": {
+                "weight": 1,
+                "type": "option",
+                "val": "@PATH",
+                "predict": true,
+                "des": "作業ブランチの切り替え",
+                "@next": {
+                    "@place": {
+                        "weight": 1,
+                        "type": "arg",
+                        "val": "@PATH",
+                        "predict": true,
+                        "placeholder": "ブランチ",
+                        "des": "移動するブランチ名",
+                        "@next": {}
+                    }
+                }
+            },
+            "log": {
+                "weight": 1,
+                "type": "option",
+                "val": "@PATH",
+                "predict": true,
+                "des": "ログを確認",
+                "@next": {
+                    "@place": {
+                        "weight": 1,
+                        "type": "arg",
+                        "val": "@PATH",
+                        "predict": true,
+                        "placeholder": "PATH",
+                        "des": "変更履歴を確認するファイル名",
                         "@next": {}
                     }
                 }
@@ -604,7 +644,7 @@
                 "type": "arg",
                 "des": "これが説明だよー",
                 "val": "@place",
-                "predict": false,
+                "predict": true,
                 "placeholder": "PATH",
                 "weight": 10,
                 "@next": {
@@ -667,7 +707,7 @@
                         "type": "arg",
                         "val": "@PATH",
                         "predict": true,
-                        "placeholder": "パッケージ名",
+                        "placeholder": "パッケージ",
                         "des": "削除するパッケージ名",
                         "@next": {}
                     }
@@ -685,7 +725,7 @@
                         "type": "arg",
                         "val": "@PATH",
                         "predict": true,
-                        "placeholder": "パッケージ名",
+                        "placeholder": "パッケージ",
                         "des": "更新するパッケージ名",
                         "@next": {}
                     }
@@ -703,7 +743,7 @@
                         "type": "arg",
                         "val": "@PATH",
                         "predict": true,
-                        "placeholder": "パッケージ名",
+                        "placeholder": "パッケージ",
                         "des": "表示するパッケージ名",
                         "@next": {}
                     }
@@ -739,7 +779,7 @@
                         "type": "arg",
                         "val": "@PATH",
                         "predict": true,
-                        "placeholder": "パッケージ名",
+                        "placeholder": "パッケージ",
                         "des": "バージョン一覧を確認したいパッケージ名",
                         "@next": {}
                     }
@@ -1069,7 +1109,7 @@
                         "type": "arg",
                         "val": "@PATH",
                         "predict": true,
-                        "placeholder": "パッケージ名",
+                        "placeholder": "パッケージ",
                         "des": "追加するパッケージ名",
                         "@next": {}
                     }
@@ -1094,7 +1134,7 @@
                                 "type": "arg",
                                 "val": "@PATH",
                                 "predict": true,
-                                "placeholder": "パッケージ名",
+                                "placeholder": "パッケージ",
                                 "des": "追加するパッケージ名",
                                 "@next": {}
                             }
@@ -1114,7 +1154,7 @@
                         "type": "arg",
                         "val": "@PATH",
                         "predict": true,
-                        "placeholder": "Script名",
+                        "placeholder": "script",
                         "des": "実行するscript",
                         "@next": {}
                     }
@@ -1132,7 +1172,7 @@
                         "type": "arg",
                         "val": "@PATH",
                         "predict": true,
-                        "placeholder": "パッケージ名",
+                        "placeholder": "パッケージ",
                         "des": "アップグレードするパッケージ名",
                         "@next": {}
                     }
@@ -1150,7 +1190,7 @@
                         "type": "arg",
                         "val": "@PATH",
                         "predict": true,
-                        "placeholder": "パッケージ名",
+                        "placeholder": "パッケージ",
                         "des": "情報を表示したいパッケージ",
                         "@next": {}
                     }
